@@ -2,3 +2,4 @@ openpyxl
 matplotlib
 pandas
 numpy
+seaborn

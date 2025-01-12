@@ -10,6 +10,5 @@ def fetch_all_data():
     return data()
 
 if __name__ == "__main__":
-    # Example usage
     df = fetch_all_data()
     print(df.head())
