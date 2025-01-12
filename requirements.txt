@@ -1,0 +1,4 @@
+openpyxl
+matplotlib
+pandas
+numpy
