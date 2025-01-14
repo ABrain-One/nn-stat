@@ -3,6 +3,7 @@ from scripts.process_data import process_data
 from scripts.generate_plots import  generate_all_plots
 from scripts.export_excel import export_to_excel
 from scripts.filter_raw_data import filter_raw_data
+from scripts.export_raw_excel import export_raw_data_with_plots
 import os
 
 # Ensure output directories exist
@@ -43,4 +44,5 @@ export_to_excel(
 # Step 5: Filter Raw Data
 print("Filtering raw data...")
 filtered_raw_data = filter_raw_data(raw_data)
-filtered_raw_data.to_excel("excel/raw_data.xlsx", index=False)
+print("Exporting raw data and plots to Excel...")
+export_raw_data_with_plots(filtered_raw_data, output_file="excel/raw_data.xlsx", plot_dir="plots/raw_plots")

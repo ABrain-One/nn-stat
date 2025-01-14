@@ -43,19 +43,6 @@ def plot_box(data, metric, output_path):
     plt.savefig(output_path)
     plt.close()
 
-# Function for bar charts comparing tasks/datasets
-def plot_task_comparison(data, metric, output_path):
-    summary = data.groupby(['task', 'dataset'])[f'{metric}_mean'].max().reset_index()
-
-    plt.figure(figsize=(10, 6))
-    sns.barplot(x='task', y=f'{metric}_mean', hue='dataset', data=summary)
-    plt.xlabel("Task")
-    plt.ylabel(f"Max {metric.capitalize()}")
-    plt.title(f"Task Comparison by {metric.capitalize()}")
-    plt.legend(title="Dataset")
-    plt.grid()
-    plt.savefig(output_path)
-    plt.close()
 
 # Function for heatmap of metric correlations
 def plot_correlation_heatmap(data, output_path):
@@ -125,15 +112,6 @@ def generate_all_plots(data, output_dir="./plots"):
             rolling_mean_path = f"{output_dir}/{task}_{dataset}_{metric}_rolling_mean.png"
             print(f"Generating Rolling Mean plot: {rolling_mean_path}")
             plot_rolling_mean(metric_data, metric, rolling_mean_path)
-
-    # Generate task comparison bar chart
-    accuracy_comparison_path = f"{output_dir}/task_comparison_accuracy.png"
-    print(f"Generating Task Comparison (Accuracy): {accuracy_comparison_path}")
-    plot_task_comparison(data, 'accuracy', accuracy_comparison_path)
-
-    iou_comparison_path = f"{output_dir}/task_comparison_iou.png"
-    print(f"Generating Task Comparison (IoU): {iou_comparison_path}")
-    plot_task_comparison(data, 'iou', iou_comparison_path)
 
     # Generate correlation heatmap
     heatmap_path = f"{output_dir}/correlation_heatmap.png"
