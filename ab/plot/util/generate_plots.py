@@ -1,6 +1,9 @@
+import os
+
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
+
+from ab.plot.util.Const import plot_dir
 
 sns.set_theme(style="whitegrid")
 
@@ -83,7 +86,7 @@ def plot_rolling_mean(data, metric, output_path):
     plt.close()
 
 # Main function to generate all plots
-def generate_all_plots(data, output_dir="./plots"):
+def generate_all_plots(data, output_dir=plot_dir):
     metrics = ['accuracy', 'iou']
     os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
 
