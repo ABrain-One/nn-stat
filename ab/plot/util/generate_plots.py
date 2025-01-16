@@ -19,7 +19,7 @@ def plot_mean_std(data, metric, output_path):
 
     mean_col, std_col = metric_columns[metric]
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(12, 6))
     plt.plot(data['epoch'], data[mean_col], label='Mean', color='blue')
     plt.fill_between(
         data['epoch'],
@@ -27,22 +27,37 @@ def plot_mean_std(data, metric, output_path):
         data[mean_col] + data[std_col],
         color='blue', alpha=0.2, label='Std Dev'
     )
+
+    # Customize x-axis ticks and spacing
+    unique_epochs = sorted(data['epoch'].unique())
+    plt.xticks(unique_epochs, rotation=0)  # Ensure all epochs are shown
+    plt.tick_params(axis='x', which='major', labelsize=10)
+
     plt.xlabel("Epoch")
     plt.ylabel(metric.capitalize())
     plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} ({metric.capitalize()})")
     plt.legend()
     plt.grid()
+    plt.tight_layout()  # Adjust layout to prevent clipping
     plt.savefig(output_path)
     plt.close()
 
+
 # Function for box plots
 def plot_box(data, metric, output_path):
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(12, 6))
     sns.boxplot(x='epoch', y=metric, data=data)
+
+    # Customize x-axis ticks and spacing
+    unique_epochs = sorted(data['epoch'].unique())
+    plt.xticks(unique_epochs, rotation=0)  # Ensure all epochs are shown
+    plt.tick_params(axis='x', which='major', labelsize=10)
+
     plt.xlabel("Epoch")
     plt.ylabel(metric.capitalize())
     plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} ({metric.capitalize()} Distribution)")
     plt.grid()
+    plt.tight_layout()
     plt.savefig(output_path)
     plt.close()
 
@@ -74,14 +89,21 @@ def plot_rolling_mean(data, metric, output_path):
 
     data['rolling_mean'] = data[metric_column].rolling(window=5, min_periods=1).mean()
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(12, 6))
     plt.plot(data['epoch'], data[metric_column], label='Mean', color='blue')
     plt.plot(data['epoch'], data['rolling_mean'], label='Rolling Mean', color='orange', linestyle='--')
+
+    # Customize x-axis ticks and spacing
+    unique_epochs = sorted(data['epoch'].unique())
+    plt.xticks(unique_epochs, rotation=0)  # Ensure all epochs are shown
+    plt.tick_params(axis='x', which='major', labelsize=10)
+
     plt.xlabel("Epoch")
     plt.ylabel(metric.capitalize())
     plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} (Rolling Mean)")
     plt.legend()
     plt.grid()
+    plt.tight_layout()
     plt.savefig(output_path)
     plt.close()
 
