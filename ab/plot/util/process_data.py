@@ -15,6 +15,11 @@ def process_data(df):
     if not required_columns.issubset(df.columns):
         raise ValueError(f"Missing required columns: {required_columns - set(df.columns)}")
 
+    # Ensure 'epoch' is numeric for correct sorting
+    df['epoch'] = pd.to_numeric(df['epoch'], errors='coerce')
+    if df['epoch'].isna().any():
+        raise ValueError("Invalid epoch values detected. Ensure all epochs are numeric.")
+
     unique_metrics = df['metric'].unique()
 
     # Initialize an empty list to store aggregated results
@@ -44,5 +49,8 @@ def process_data(df):
 
     # Combine all aggregated results
     aggregated_data = pd.concat(aggregated_frames, ignore_index=True)
+
+    # Sort by 'epoch' to ensure correct order
+    aggregated_data = aggregated_data.sort_values(by=['task', 'dataset', 'metric', 'epoch']).reset_index(drop=True)
 
     return aggregated_data

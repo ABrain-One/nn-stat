@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from openpyxl import Workbook
 from openpyxl.drawing.image import Image
 import os
+import seaborn as sns
 
 
 
@@ -18,16 +19,18 @@ def create_plot(data, x_column, y_column, plot_type, title, output_path):
         title (str): Plot title.
         output_path (str): Path to save the plot.
     """
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(10, 6))
 
     if plot_type == "scatter":
         plt.scatter(data[x_column], data[y_column], alpha=0.7, edgecolor='k')
     elif plot_type == "line":
         plt.plot(data[x_column], data[y_column], marker='o', linestyle='-', alpha=0.7)
     elif plot_type == "box":
-        data.boxplot(column=y_column, by=x_column)
-        plt.title(title)
-        plt.suptitle("")  # Remove default subtitle
+        # Ensure proper spacing between epochs
+        unique_epochs = sorted(data[x_column].unique())
+        sns.boxplot(x=x_column, y=y_column, data=data)
+        plt.xticks(unique_epochs, labels=unique_epochs, rotation=0)  
+        plt.grid(axis='x', linestyle='--', alpha=0.7)
     elif plot_type == "histogram":
         plt.hist(data[y_column], bins=20, alpha=0.7, edgecolor='k')
 
@@ -35,6 +38,7 @@ def create_plot(data, x_column, y_column, plot_type, title, output_path):
     plt.xlabel(x_column.capitalize())
     plt.ylabel(y_column.capitalize())
     plt.grid(True)
+    plt.tight_layout()  # Prevent clipping
     plt.savefig(output_path)
     plt.close()
 
@@ -88,8 +92,8 @@ def export_raw_data_with_plots(filtered_raw_data, output_file, plot_dir):
             # Add plot title
             ws.cell(row=start_row, column=plot_column_start, value=title)
             img = Image(path)
-            img.width = 400
-            img.height = 300
+            img.width = 500
+            img.height = 350
             img.anchor = f"{get_column_letter(plot_column_start)}{start_row + 1}"  # Place below the title
             ws.add_image(img)
             start_row += 20  # Move to the next row for the next plot
