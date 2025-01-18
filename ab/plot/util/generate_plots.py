@@ -75,7 +75,7 @@ def plot_correlation_heatmap(data, output_path):
 def plot_time_vs_metric(data, metric, output_path):
     plt.figure(figsize=(10, 6))
     sns.scatterplot(x='duration', y=f'{metric}_mean', hue='task', style='dataset', data=data)
-    plt.xlabel("Training Time (seconds)")
+    plt.xlabel("Training Time (nanposeconds)")
     plt.ylabel(metric.capitalize())
     plt.title(f"Training Time vs {metric.capitalize()}")
     plt.legend(title="Task/Dataset")
