@@ -1,14 +1,102 @@
 import os
-
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
+import numpy as np
+from pathlib import Path
 
-from ab.plot.util.Const import plot_dir
-
+# Set global seaborn theme with a visually appealing color palette
 sns.set_theme(style="whitegrid")
+sns.set_palette("Set2")  # Set a distinct color palette globally
 
-# Function for line plots with mean and std deviation
-def plot_mean_std(data, metric, output_path):
+# Helper function to save plots in both PNG and SVG formats
+def save_plot(plt_obj, output_name, png_dir, svg_dir):
+    """Saves plots in both PNG and SVG formats in their respective directories."""
+    png_path = os.path.join(png_dir, f"{output_name}.png")
+    svg_path = os.path.join(svg_dir, f"{output_name}.svg")
+
+    # Ensure directories exist
+    os.makedirs(png_dir, exist_ok=True)
+    os.makedirs(svg_dir, exist_ok=True)
+
+    # Save files
+    plt_obj.savefig(png_path, format="png", dpi=300)  # Save with high DPI for better quality
+    plt_obj.savefig(svg_path, format="svg")
+    plt_obj.close()
+    
+
+# Function to create a consistent color palette
+def create_color_palette(unique_values, palette_name="tab20"):
+    """Generates a consistent color palette for unique values."""
+    palette = sns.color_palette(palette_name, n_colors=max(len(unique_values), 20))
+    return {value: color for value, color in zip(unique_values, palette)}
+
+
+def ensure_grouped_rolling_mean(data):
+    """Ensure rolling mean is calculated per group."""
+    print("Calculating rolling mean per group...")
+    data['rolling_mean'] = data.groupby(['task', 'dataset', 'nn'])['accuracy_mean'].transform(
+        lambda x: x.rolling(window=5, min_periods=1).mean()
+    )
+    return data
+
+# Function to set x-axis ticks dynamically based on epoch range
+def set_epoch_ticks(ax, max_epoch):
+    ticks = np.arange(0, max_epoch + 1, 10)
+    ax.set_xticks(ticks)
+
+
+# Function to plot rolling mean
+def plot_rolling_mean(data, metric, color_map, max_models=10):
+    metric_column = f'{metric}_mean'
+    data['rolling_mean'] = data[metric_column].rolling(window=5, min_periods=1).mean()
+    unique_models = data['nn'].unique()
+
+    # Limit the number of models displayed
+    if len(unique_models) > max_models:
+        print(f"Limiting models displayed to {max_models} for clarity.")
+        unique_models = unique_models[:max_models]
+
+    plt.figure(figsize=(20, 12))  # Increased figure size for clarity
+
+    for idx, model in enumerate(unique_models):
+        model_data = data[data['nn'] == model]
+        if model not in color_map:
+            color_map[model] = 'gray'
+
+        color = color_map[model]
+        linestyle = '-' if idx % 2 == 0 else '--'  
+        plt.plot(
+            model_data['epoch'],
+            model_data[metric_column],
+            label=f"{model} - Mean",
+            color=color,
+            marker='o',
+            linewidth=1.5,
+            linestyle=linestyle
+        )
+        plt.plot(
+            model_data['epoch'],
+            model_data['rolling_mean'],
+            label=f"{model} - Rolling Mean",
+            color=color,
+            linestyle=':',
+            linewidth=2
+        )
+
+    ax = plt.gca()
+    set_epoch_ticks(ax, data['epoch'].max())  # Adjust x-axis ticks dynamically
+    plt.xlabel("Epoch", fontsize=16)
+    plt.ylabel(metric.capitalize(), fontsize=16)
+    plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} (Rolling Mean)", fontsize=18, fontweight="bold")
+    plt.legend(fontsize=12, loc="upper center", bbox_to_anchor=(0.5, -0.15), ncol=3, title="Neural Network Model")
+    plt.grid(linestyle="--", alpha=0.5)
+    plt.tight_layout()
+
+
+
+# Function to plot mean and standard deviation
+def plot_mean_std(data, metric, color_map):
     metric_columns = {
         'accuracy': ('accuracy_mean', 'accuracy_std'),
         'iou': ('iou_mean', 'iou_std')
@@ -18,136 +106,258 @@ def plot_mean_std(data, metric, output_path):
         raise ValueError(f"Unsupported metric '{metric}'.")
 
     mean_col, std_col = metric_columns[metric]
+    unique_models = data['nn'].unique()
+    plt.figure(figsize=(14, 8))  # Increased figure size
 
-    plt.figure(figsize=(12, 6))
-    plt.plot(data['epoch'], data[mean_col], label='Mean', color='blue')
-    plt.fill_between(
-        data['epoch'],
-        data[mean_col] - data[std_col],
-        data[mean_col] + data[std_col],
-        color='blue', alpha=0.2, label='Std Dev'
+    for model in unique_models:
+        model_data = data[data['nn'] == model]
+        if model not in color_map:
+            color_map[model] = 'gray'
+
+        color = color_map[model]
+        plt.plot(
+            model_data['epoch'],
+            model_data[mean_col],
+            label=f"{model} - Mean",
+            color=color,
+            marker='o',
+            linewidth=2
+        )
+        plt.fill_between(
+            model_data['epoch'],
+            model_data[mean_col] - model_data[std_col],
+            model_data[mean_col] + model_data[std_col],
+            color=color,
+            alpha=0.3
+        )
+
+    ax = plt.gca()
+    set_epoch_ticks(ax, data['epoch'].max())  # Adjust x-axis ticks
+    plt.xlabel("Epoch", fontsize=14)
+    plt.ylabel(metric.capitalize(), fontsize=14)
+    plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} ({metric.capitalize()})", fontsize=16, fontweight="bold")
+    plt.legend(fontsize=10, loc="best", bbox_to_anchor=(1.05, 1))  # Adjust legend
+    plt.grid(linestyle="--", alpha=0.5)
+    plt.tight_layout()
+
+
+
+def plot_box(data, metric, color_map):
+    plt.figure(figsize=(14, 8))  # Increased figure size
+    sns.boxplot(
+        x='epoch',
+        y=metric,
+        hue='nn',
+        data=data,
+        palette=color_map,
+        width=0.7  # Adjust box width
     )
 
-    # Customize x-axis ticks and spacing
-    unique_epochs = sorted(data['epoch'].unique())
-    plt.xticks(unique_epochs, rotation=0)  # Ensure all epochs are shown
-    plt.tick_params(axis='x', which='major', labelsize=10)
-
-    plt.xlabel("Epoch")
-    plt.ylabel(metric.capitalize())
-    plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} ({metric.capitalize()})")
-    plt.legend()
-    plt.grid()
-    plt.tight_layout()  # Adjust layout to prevent clipping
-    plt.savefig(output_path)
-    plt.close()
-
-
-# Function for box plots
-def plot_box(data, metric, output_path):
-    plt.figure(figsize=(12, 6))
-    sns.boxplot(x='epoch', y=metric, data=data)
-
-    # Customize x-axis ticks and spacing
-    unique_epochs = sorted(data['epoch'].unique())
-    plt.xticks(unique_epochs, rotation=0)  # Ensure all epochs are shown
-    plt.tick_params(axis='x', which='major', labelsize=10)
-
-    plt.xlabel("Epoch")
-    plt.ylabel(metric.capitalize())
-    plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} ({metric.capitalize()} Distribution)")
-    plt.grid()
+    ax = plt.gca()
+    
+    # Adjust x-axis ticks
+    max_epoch = data['epoch'].max()
+    tick_values = list(range(0, max_epoch + 10, 10))  # Ensure ticks are in steps of 10
+    ax.set_xticks(tick_values)  # Set custom ticks
+    ax.set_xticklabels(tick_values)  # Adjust labels to match ticks
+    
+    plt.xlabel("Epoch", fontsize=14)
+    plt.ylabel(metric.capitalize(), fontsize=14)
+    plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} ({metric.capitalize()} Distribution)", fontsize=16, fontweight="bold")
+    plt.grid(linestyle="--", alpha=0.5)
+    plt.legend(title="Neural Network Model", fontsize=10, loc="best", bbox_to_anchor=(1.05, 1))
     plt.tight_layout()
-    plt.savefig(output_path)
-    plt.close()
 
 
-# Function for heatmap of metric correlations
-def plot_correlation_heatmap(data, output_path):
+# Function to plot correlation heatmap
+def plot_correlation_heatmap(data):
     correlation_data = data[['accuracy_mean', 'accuracy_std', 'iou_mean', 'iou_std']].corr()
     plt.figure(figsize=(8, 6))
-    sns.heatmap(correlation_data, annot=True, cmap="coolwarm", fmt=".2f")
-    plt.title("Metric Correlation Heatmap")
-    plt.savefig(output_path)
-    plt.close()
-
-# Function for scatter plot: training time vs metrics
-def plot_time_vs_metric(data, metric, output_path):
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(x='duration', y=f'{metric}_mean', hue='task', style='dataset', data=data)
-    plt.xlabel("Training Time (nanposeconds)")
-    plt.ylabel(metric.capitalize())
-    plt.title(f"Training Time vs {metric.capitalize()}")
-    plt.legend(title="Task/Dataset")
-    plt.grid()
-    plt.savefig(output_path)
-    plt.close()
-
-# Function to plot rolling mean
-def plot_rolling_mean(data, metric, output_path):
-    metric_column = f'{metric}_mean'
-
-    data['rolling_mean'] = data[metric_column].rolling(window=5, min_periods=1).mean()
-
-    plt.figure(figsize=(12, 6))
-    plt.plot(data['epoch'], data[metric_column], label='Mean', color='blue')
-    plt.plot(data['epoch'], data['rolling_mean'], label='Rolling Mean', color='orange', linestyle='--')
-
-    # Customize x-axis ticks and spacing
-    unique_epochs = sorted(data['epoch'].unique())
-    plt.xticks(unique_epochs, rotation=0)  # Ensure all epochs are shown
-    plt.tick_params(axis='x', which='major', labelsize=10)
-
-    plt.xlabel("Epoch")
-    plt.ylabel(metric.capitalize())
-    plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} (Rolling Mean)")
-    plt.legend()
-    plt.grid()
+    sns.heatmap(
+        correlation_data,
+        annot=True,
+        cmap="coolwarm",
+        fmt=".2f",
+        cbar_kws={'label': 'Correlation'},
+        annot_kws={"size": 10}  # Smaller annotations for clarity
+    )
+    plt.title("Metric Correlation Heatmap", fontsize=16, fontweight="bold")
     plt.tight_layout()
-    plt.savefig(output_path)
-    plt.close()
+
+# Function to plot scatter plot of training time vs metrics
+def plot_metric_vs_time(data, metric, task_color_map, model_color_map):
+    """
+    Plots Training Time vs Accuracy (or IoU depending on the metric).
+    The x-axis represents Training Time, and the y-axis represents the selected metric.
+    """
+    plt.figure(figsize=(10, 6))
+
+    # Determine the hue column and corresponding color map
+    hue_col = 'task' if 'task' in data.columns else 'nn'
+    color_map = task_color_map if hue_col == 'task' else model_color_map
+
+    # Handle missing keys in color_map
+    missing_keys = set(data[hue_col].unique()) - set(color_map.keys())
+    for key in missing_keys:
+        print(f"Warning: '{key}' is missing from color_map. Adding a default color.")
+        color_map[key] = 'gray'
+
+    # Create scatter plot
+    sns.scatterplot(
+        x='duration',  # Training Time on the x-axis
+        y=f'{metric}_mean',  # Metric (e.g., accuracy) on the y-axis
+        hue=hue_col,
+        palette=color_map,
+        data=data,
+        s=100,  # Marker size
+        alpha=0.8
+    )
+
+    # Customizing plot aesthetics
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.xlabel("Training Time (nanoseconds)", fontsize=14)
+    plt.ylabel(f"{metric.capitalize()}", fontsize=14)
+    plt.title(f"{metric.capitalize()} vs Training Time", fontsize=16, fontweight="bold")
+    plt.legend(title="Neural Network Model" if hue_col == 'nn' else "Task", fontsize=12, loc="best")
+    plt.grid(linestyle="--", alpha=0.5)
+    plt.tight_layout()
+
+#  distribution of duration values for the first epoch
+def plot_model_duration_distribution_by_task(data, output_name, png_dir, svg_dir):
+    """Generates grouped distribution plots of model durations for the first epoch."""
+    first_epoch_data = data[data['epoch'] == 1]
+
+    for task in first_epoch_data["task"].unique():
+        task_data = first_epoch_data[first_epoch_data["task"] == task]
+
+        plt.figure(figsize=(18, 10))
+
+        sns.violinplot(
+            x="dataset",
+            y="duration",
+            hue="nn",
+            data=task_data,
+            palette="tab20",
+            split=True,
+            density_norm="width",  # Replace scale with density_norm
+            inner="quartile"
+        )
+        sns.swarmplot(
+            x="dataset",
+            y="duration",
+            hue="nn",
+            data=task_data,
+            dodge=True,
+            size=6,
+            alpha=0.8,
+            palette="dark:black"  # Replace color="black"
+        )
+
+        plt.title(f"Model Duration Distribution ({task})", fontsize=18, fontweight="bold")
+        plt.xlabel("Dataset", fontsize=14)
+        plt.ylabel("Training Time (nanoseconds)", fontsize=14)
+        plt.xticks(rotation=45, fontsize=12)
+        plt.yscale("log")  # Logarithmic scale for duration
+        plt.grid(linestyle="--", alpha=0.5)
+
+        # Adjust the legend
+        plt.legend(
+            bbox_to_anchor=(1.05, 1),  # Keep the legend outside the plot
+            loc='upper left',
+            title="nn",
+            fontsize=10,
+            title_fontsize=12,
+            frameon=True,
+            ncol=2  # Split the legend into 2 columns
+        )
+
+
+        plt.tight_layout()
+        task_output_name = f"{output_name}_{task.replace(' ', '_')}"
+        save_plot(plt, task_output_name, png_dir, svg_dir)
+
 
 # Main function to generate all plots
-def generate_all_plots(data, output_dir=plot_dir):
+def generate_all_plots(data, png_dir, svg_dir):
     metrics = ['accuracy', 'iou']
-    os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
+
+    # Generate a global color map for tasks
+    unique_tasks = data['task'].unique()
+    task_color_map = create_color_palette(unique_tasks)
+
+
+    # Ensure rolling mean is calculated per group
+    data = ensure_grouped_rolling_mean(data)
 
     for metric in metrics:
-        for (task, dataset), group_data in data.groupby(['task', 'dataset']):
-            print(f"Processing task: {task}, dataset: {dataset}, metric: {metric}")
+        # Filter data by metric
+        metric_data = data[data['metric'] == metric]
 
-            metric_data = group_data[group_data['metric'] == metric]
+        if metric_data.empty:
+            print(f"No data available for metric: {metric}")
+            continue
 
-            # Skip if no data for the metric
-            if metric_data.empty:
+        for (task, dataset), group_data in metric_data.groupby(['task', 'dataset']):
+
+            if group_data.empty:
                 print(f"No data found for {task}, {dataset}, {metric}")
                 continue
 
-            # Generate mean and std deviation plot
-            mean_std_path = f"{output_dir}/{task}_{dataset}_{metric}_mean_std.png"
-            print(f"Generating Mean & Std Dev plot: {mean_std_path}")
-            plot_mean_std(metric_data, metric, mean_std_path)
+            # Dynamically generate a color_map for models within the group
+            unique_models = group_data['nn'].unique()
+            model_color_map = create_color_palette(unique_models)
 
-            # Generate box plot
-            box_path = f"{output_dir}/{task}_{dataset}_{metric}_box.png"
-            print(f"Generating Box Plot: {box_path}")
-            plot_box(metric_data, f'{metric}_mean', box_path)
+            # Save Mean and Std Plot
+            mean_std_output_name = f"{task}_{dataset}_{metric}_mean_std"
+            try:
+                plot_mean_std(group_data, metric, model_color_map)
+                save_plot(plt, mean_std_output_name, png_dir, svg_dir)
+            except ValueError as e:
+                print(f"Error plotting mean and std for {metric}: {e}")
 
-            # Generate rolling mean plot
-            rolling_mean_path = f"{output_dir}/{task}_{dataset}_{metric}_rolling_mean.png"
-            print(f"Generating Rolling Mean plot: {rolling_mean_path}")
-            plot_rolling_mean(metric_data, metric, rolling_mean_path)
+            # Save Box Plot
+            box_output_name = f"{task}_{dataset}_{metric}_box"
+            try:
+                plot_box(group_data, f"{metric}_mean", model_color_map)
+                save_plot(plt, box_output_name, png_dir, svg_dir)
+            except ValueError as e:
+                print(f"Error plotting box plot for {metric}: {e}")
 
-    # Generate correlation heatmap
-    heatmap_path = f"{output_dir}/correlation_heatmap.png"
-    print(f"Generating Correlation Heatmap: {heatmap_path}")
-    plot_correlation_heatmap(data, heatmap_path)
+            # Save Rolling Mean Plot
+            rolling_mean_output_name = f"{task}_{dataset}_{metric}_rolling_mean"
+            try:
+                plot_rolling_mean(group_data, metric, model_color_map)
+                save_plot(plt, rolling_mean_output_name, png_dir, svg_dir)
+            except ValueError as e:
+                print(f"Error plotting rolling mean for {metric}: {e}")
 
-    # Generate scatter plot for training time vs metrics
-    time_vs_accuracy_path = f"{output_dir}/time_vs_accuracy.png"
-    print(f"Generating Time vs Accuracy plot: {time_vs_accuracy_path}")
-    plot_time_vs_metric(data, 'accuracy', time_vs_accuracy_path)
+        # Training Time vs Metrics
+        time_vs_metric_output_name = f"{metric}_vs_training_time"
+        try:
+            plot_metric_vs_time(
+                metric_data,
+                metric,
+                task_color_map,  # Task-level coloring
+                model_color_map  # Model-level coloring
+            )
+            save_plot(plt, time_vs_metric_output_name, png_dir, svg_dir)
+        except ValueError as e:
+            print(f"Error plotting training time vs {metric}: {e}")
 
-    time_vs_iou_path = f"{output_dir}/time_vs_iou.png"
-    print(f"Generating Time vs IoU plot: {time_vs_iou_path}")
-    plot_time_vs_metric(data, 'iou', time_vs_iou_path)
+    # Correlation Heatmap
+    if not data[['accuracy_mean', 'accuracy_std', 'iou_mean', 'iou_std']].isna().all().all():
+        heatmap_output_name = "correlation_heatmap"
+        try:
+            plot_correlation_heatmap(data)
+            save_plot(plt, heatmap_output_name, png_dir, svg_dir)
+        except ValueError as e:
+            print(f"Error plotting correlation heatmap: {e}")
+
+    # First Epoch Duration Distribution
+    first_epoch_distribution_output_name = "first_epoch_duration_distribution"
+    try:
+        plot_model_duration_distribution_by_task(data, first_epoch_distribution_output_name, png_dir, svg_dir)
+    except ValueError as e:
+        print(f"Error plotting duration distribution: {e}")
+

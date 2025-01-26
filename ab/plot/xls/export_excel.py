@@ -30,11 +30,15 @@ def export_to_excel(aggregated_data, output_file, plot_dir, image_width=400, ima
         "Mean and Std Dev": "{task}_{dataset}_{metric}_mean_std.png",
         "Box Plot": "{task}_{dataset}_{metric}_box.png",
         "Rolling Mean": "{task}_{dataset}_{metric}_rolling_mean.png",
+        
     }
     sequential_categories = {
         "Correlation Heatmap": "correlation_heatmap.png",
-        "Time vs Accuracy": "time_vs_accuracy.png",
-        "Time vs IoU": "time_vs_iou.png",
+        "Accuracy vs Training Time": "accuracy_vs_training_time.png",
+        "IoU vs Training Time": "iou_vs_training_time.png",
+        "Distribution of Model Durations Image classification": "first_epoch_duration_distribution_img-classification.png",
+        "Distribution of Model Durations Image segmentation": "first_epoch_duration_distribution_img-segmentation.png",
+
     }
 
     # Add parallel layout plots (adjust positions for each category)
