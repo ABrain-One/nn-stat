@@ -142,30 +142,27 @@ def plot_mean_std(data, metric, color_map):
 
 
 
-def plot_box(data, metric, color_map):
-    plt.figure(figsize=(14, 8))  # Increased figure size
+def plot_box(data, metric):
+    plt.figure(figsize=(14, 8))  # Adjust figure size
     sns.boxplot(
         x='epoch',
         y=metric,
-        hue='nn',
         data=data,
-        palette=color_map,
         width=0.7  # Adjust box width
     )
 
     ax = plt.gca()
-    
+
     # Adjust x-axis ticks
     max_epoch = data['epoch'].max()
     tick_values = list(range(0, max_epoch + 10, 10))  # Ensure ticks are in steps of 10
     ax.set_xticks(tick_values)  # Set custom ticks
     ax.set_xticklabels(tick_values)  # Adjust labels to match ticks
-    
+
     plt.xlabel("Epoch", fontsize=14)
     plt.ylabel(metric.capitalize(), fontsize=14)
     plt.title(f"{data['task'].iloc[0]} - {data['dataset'].iloc[0]} ({metric.capitalize()} Distribution)", fontsize=16, fontweight="bold")
     plt.grid(linestyle="--", alpha=0.5)
-    plt.legend(title="Neural Network Model", fontsize=10, loc="best", bbox_to_anchor=(1.05, 1))
     plt.tight_layout()
 
 
@@ -224,8 +221,8 @@ def plot_metric_vs_time(data, metric, task_color_map, model_color_map):
     plt.tight_layout()
 
 #  distribution of duration values for the first epoch
-def plot_model_duration_distribution_by_task(data, output_name, png_dir, svg_dir):
-    """Generates grouped distribution plots of model durations for the first epoch."""
+def plot_model_duration_distribution_with_annotations(data, output_name, png_dir, svg_dir):
+    """Generates grouped distribution plots of model durations for the first epoch with annotations."""
     first_epoch_data = data[data['epoch'] == 1]
 
     for task in first_epoch_data["task"].unique():
@@ -233,27 +230,29 @@ def plot_model_duration_distribution_by_task(data, output_name, png_dir, svg_dir
 
         plt.figure(figsize=(18, 10))
 
+        # Violin plot for distribution
         sns.violinplot(
             x="dataset",
             y="duration",
-            hue="nn",
             data=task_data,
-            palette="tab20",
             split=True,
-            density_norm="width",  # Replace scale with density_norm
-            inner="quartile"
+            density_norm="width",  # Normalize by width
+            inner="quartile",
+            color="skyblue",  # Uniform color for simplicity
         )
+
+        # Swarm plot for individual points
         sns.swarmplot(
             x="dataset",
             y="duration",
-            hue="nn",
             data=task_data,
             dodge=True,
             size=6,
             alpha=0.8,
-            palette="dark:black"  # Replace color="black"
+            color="orange",  # Set yellow dots
         )
 
+        # Add title and labels
         plt.title(f"Model Duration Distribution ({task})", fontsize=18, fontweight="bold")
         plt.xlabel("Dataset", fontsize=14)
         plt.ylabel("Training Time (nanoseconds)", fontsize=14)
@@ -261,17 +260,16 @@ def plot_model_duration_distribution_by_task(data, output_name, png_dir, svg_dir
         plt.yscale("log")  # Logarithmic scale for duration
         plt.grid(linestyle="--", alpha=0.5)
 
-        # Adjust the legend
-        plt.legend(
-            bbox_to_anchor=(1.05, 1),  # Keep the legend outside the plot
-            loc='upper left',
-            title="nn",
-            fontsize=10,
-            title_fontsize=12,
-            frameon=True,
-            ncol=2  # Split the legend into 2 columns
+        # Add legend for explanation
+        plt.annotate(
+            "Yellow dots: Individual models\nViolin plot: Distribution of durations",
+            xy=(0.02, 0.9),  # Adjust location
+            xycoords="axes fraction",
+            fontsize=12,
+            color="black",
+            backgroundcolor="white",
+            bbox=dict(boxstyle="round,pad=0.3", edgecolor="gray", facecolor="white", alpha=0.7),
         )
-
 
         plt.tight_layout()
         task_output_name = f"{output_name}_{task.replace(' ', '_')}"
@@ -319,7 +317,7 @@ def generate_all_plots(data, png_dir, svg_dir):
             # Save Box Plot
             box_output_name = f"{task}_{dataset}_{metric}_box"
             try:
-                plot_box(group_data, f"{metric}_mean", model_color_map)
+                plot_box(group_data, f"{metric}_mean")
                 save_plot(plt, box_output_name, png_dir, svg_dir)
             except ValueError as e:
                 print(f"Error plotting box plot for {metric}: {e}")
@@ -357,7 +355,7 @@ def generate_all_plots(data, png_dir, svg_dir):
     # First Epoch Duration Distribution
     first_epoch_distribution_output_name = "first_epoch_duration_distribution"
     try:
-        plot_model_duration_distribution_by_task(data, first_epoch_distribution_output_name, png_dir, svg_dir)
+        plot_model_duration_distribution_with_annotations(data, first_epoch_distribution_output_name, png_dir, svg_dir)
     except ValueError as e:
         print(f"Error plotting duration distribution: {e}")
 
