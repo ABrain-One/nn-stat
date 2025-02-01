@@ -2,7 +2,7 @@
 
 The original version of the NN Plot was created by <strong>Waleed Khalid</strong> at the Computer Vision Laboratory, University of Würzburg, Germany.
 
-<img src='https://abrain.one/img/lemur-nn-plot-whit.jpg' width='30%'/>
+<img src='https://abrain.one/img/lemur-nn-plot-whit.jpg' width='20%'/>
 
 <h3>Overview 📖</h3>
 
