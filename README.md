@@ -1,4 +1,4 @@
-# Neural Network Performance Analysis
+# <img src='https://abrain.one/img/lemur-nn-icon-64x64.png' width='32px'/> Neural Network Performance Analysis
 
 The original version of the NN Plot was created by <strong>Waleed Khalid</strong> at the Computer Vision Laboratory, University of Würzburg, Germany.
 
