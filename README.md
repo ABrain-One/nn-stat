@@ -1,6 +1,6 @@
-# ABrain Statistical Analysis
+# Neural Network Performance Analysis
 
-The original version of NN Plot was created by <strong>Waleed Khalid</strong> at the Computer Vision Laboratory, University of Würzburg, Germany.
+The original version of the NN Plot was created by <strong>Waleed Khalid</strong> at the Computer Vision Laboratory, University of Würzburg, Germany.
 
 <h3>Overview 📖</h3>
 
