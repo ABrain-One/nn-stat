@@ -13,3 +13,4 @@ The original version of the NN Plot was created by <strong>Waleed Khalid</strong
 pip install git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu124
 ```
 
+#### The idea of Dr. Dmitry Ignatov
