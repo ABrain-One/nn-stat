@@ -12,6 +12,8 @@ The original version of the NN Plot was created by <strong>Waleed Khalid</strong
 ## Installation of the Latest Version of the NN Dataset
 
 ```bash
+pip uninstall nn-dataset -y
+rm -rf db
 pip install git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu124
 ```
 
