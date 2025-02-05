@@ -1,0 +1,6 @@
+recursive-include ab *.py *.json *.md
+recursive-include excel *.xlsx
+recursive-include plots *.png *.svg
+include requirements.txt
+include README.md
+include LICENSE.md
