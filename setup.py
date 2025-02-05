@@ -16,14 +16,14 @@ def read_readme():
     return ""
 
 setup(
-    name="nn-plot",
+    name="nn-plots",
     version="1.0.2",
     description="Neural Network Performance Analysis",
     long_description=read_readme(),
     long_description_content_type="text/markdown",
     author="ABrain One and contributors",
     author_email="AI@ABrain.one",
-    url="https://github.com/ABrain-One/nn-plot",
+    url="https://github.com/ABrain-One/nn-plots",
     packages=find_packages(include=["ab.*"]),
     install_requires=read_requirements(),
     classifiers=[
