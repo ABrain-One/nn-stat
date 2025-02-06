@@ -1,7 +1,7 @@
 # <img src='https://abrain.one/img/lemur-nn-icon-64x64.png' width='32px'/> Neural Network Performance Analysis
-<a href='https://pypi.python.org/pypi/nn-plots'><img src='https://img.shields.io/pypi/v/nn-plots.svg'/></a>
+<a href='https://pypi.python.org/pypi/nn-stat'><img src='https://img.shields.io/pypi/v/nn-stat.svg'/></a>
 
-The original version of the NN Plots was created by <strong>Waleed Khalid</strong> at the Computer Vision Laboratory, University of Würzburg, Germany.
+The original version of the NN Stat was created by <strong>Waleed Khalid</strong> at the Computer Vision Laboratory, University of Würzburg, Germany.
 
 <img src='https://abrain.one/img/lemur-nn-plot-t.jpg' width='25%'/>
 
