@@ -16,7 +16,7 @@ Remove old version of the LEMUR Dataset and its database:
 pip uninstall nn-dataset -y
 rm -rf db
 ```
-Installing the stable version via pip:
+Installing the stable version:
 ```bash
 pip install nn-dataset --upgrade --extra-index-url https://download.pytorch.org/whl/cu124
 ```
