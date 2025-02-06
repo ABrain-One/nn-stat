@@ -23,7 +23,7 @@ setup(
     long_description_content_type="text/markdown",
     author="ABrain One and contributors",
     author_email="AI@ABrain.one",
-    url="https://github.com/ABrain-One/nn-stat",
+    url="https://ABrain.one",
     packages=find_packages(include=["ab.*"]),
     install_requires=read_requirements(),
     classifiers=[
