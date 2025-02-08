@@ -16,7 +16,7 @@ def read_readme():
     return ""
 
 setup(
-    name="NN Stat",
+    name="NN-Stat",
     version="1.0.3",
     description="Neural Network Performance Analysis",
     long_description=read_readme(),
