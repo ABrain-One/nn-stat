@@ -13,15 +13,18 @@ The original version of the NN Stat was created by <strong>Waleed Khalid</strong
 ## Update of NN Dataset
 Remove old version of the LEMUR Dataset and its database:
 ```bash
+source .venv/bin/activate
 pip uninstall nn-dataset -y
 rm -rf db
 ```
 Installing the stable version:
 ```bash
+source .venv/bin/activate
 pip install nn-dataset --upgrade --extra-index-url https://download.pytorch.org/whl/cu124
 ```
 Install from GitHub to get the most recent code and statistics updates:
 ```bash
+source .venv/bin/activate
 pip install git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu124
 ```
 
