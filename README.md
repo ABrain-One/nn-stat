@@ -9,6 +9,19 @@ The original version of the NN Stat was created by <strong>Waleed Khalid</strong
 
 <p>Automated conversion of <a href="https://github.com/ABrain-One/nn-dataset" target="_blank" rel="noopener noreferrer">LEMUR</a> data into Excel format with statistical visualizations. It is developed to support the <a href="https://github.com/ABrain-One/nn-dataset">NN Dataset</a> and <a href="https://github.com/ABrain-One/nn-gen">NN Gen</a> projects.</p>
 
+## Installation with the LEMUR Dataset
+
+```bash
+source .venv/bin/activate
+pip install nn-stat[dataset]
+```
+
+## Usage
+
+```bash
+source .venv/bin/activate
+python -m ab.stat.export
+```
 
 ## Update of NN Dataset
 Remove old version of the LEMUR Dataset and its database:
@@ -42,13 +55,6 @@ pip install -r requirements.txt --extra-index-url https://download.pytorch.org/w
 All versions of this project are compatible with <a href='https://hub.docker.com/r/abrainone/ai-linux' target='_blank'>AI Linux</a> and can be run inside a Docker image:
 ```bash
 docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.stat.export"
-```
-
-## Usage
-
-```bash
-source .venv/bin/activate
-python -m ab.stat.export
 ```
 
 #### The idea of Dr. Dmitry Ignatov
