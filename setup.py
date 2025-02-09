@@ -26,6 +26,9 @@ setup(
     url="https://ABrain.one",
     packages=find_packages(include=["ab.*"]),
     install_requires=read_requirements(),
+     extras_require = {
+        'dataset': ['nn-dataset']
+    }
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
