@@ -44,6 +44,4 @@ All versions of this project are compatible with <a href='https://hub.docker.com
 docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.plot.export"
 ```
 
-
-
 #### The idea of Dr. Dmitry Ignatov
