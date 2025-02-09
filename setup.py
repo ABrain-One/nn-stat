@@ -24,7 +24,7 @@ setup(
     author="ABrain One and contributors",
     author_email="AI@ABrain.one",
     url="https://ABrain.one",
-    packages=find_packages(include=["ab.*"]),
+    packages=find_packages(include=["ab.plot.*"]),
     install_requires=read_requirements(),
     classifiers=[
         "Programming Language :: Python :: 3",
