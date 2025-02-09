@@ -41,14 +41,14 @@ pip install -r requirements.txt --extra-index-url https://download.pytorch.org/w
 ### Docker
 All versions of this project are compatible with <a href='https://hub.docker.com/r/abrainone/ai-linux' target='_blank'>AI Linux</a> and can be run inside a Docker image:
 ```bash
-docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.plot.export"
+docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.stat.export"
 ```
 
 ## Usage
 
 ```bash
 source .venv/bin/activate
-python -m ab.plot.export
+python -m ab.stat.export
 ```
 
 #### The idea of Dr. Dmitry Ignatov

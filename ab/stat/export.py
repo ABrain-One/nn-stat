@@ -1,13 +1,13 @@
 import os
 
-from ab.plot.util.Const import plot_dir, excel_dir
+from ab.stat.util.Const import plot_dir, excel_dir
 
-from ab.plot.util.fetch_data import fetch_all_data
-from ab.plot.util.filter_raw_data import filter_raw_data
-from ab.plot.util.generate_plots import generate_all_plots
-from ab.plot.util.process_data import process_data
-from ab.plot.xls.export_excel import export_to_excel
-from ab.plot.xls.export_raw_excel import export_raw_data_with_plots
+from ab.stat.util.fetch_data import fetch_all_data
+from ab.stat.util.filter_raw_data import filter_raw_data
+from ab.stat.util.generate_plots import generate_all_plots
+from ab.stat.util.process_data import process_data
+from ab.stat.xls.export_excel import export_to_excel
+from ab.stat.xls.export_raw_excel import export_raw_data_with_plots
 
 
 # directories for PNG and SVG
