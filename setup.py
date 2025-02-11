@@ -17,7 +17,7 @@ def read_readme():
     
 def version():
     with open('version', 'r') as file:
-      v = file.readline()
+        v = file.readline()
     return v
 
 setup(
