@@ -22,6 +22,7 @@ pip install nn-stat[dataset]
 source .venv/bin/activate
 python -m ab.stat.export
 ```
+Data and statistics are stored in the <strong>stat</strong> directory in Excel files and PNG/SVG plots.
 
 ## Update of NN Dataset
 Remove old version of the LEMUR Dataset and its database:
