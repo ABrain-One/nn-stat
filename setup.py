@@ -5,23 +5,23 @@ import sys
 
 # Function to read the requirements.txt file
 def read_requirements():
-    with open("requirements.txt", "r") as f:
+    with open('requirements.txt', 'r') as f:
         return [line.strip() for line in f if line.strip() and not line.startswith("#")]
 
 # Safely read the README.md file
 def read_readme():
-    readme_path = Path(__file__).parent / "README.md"
+    readme_path = Path(__file__).parent / 'README.md'
     if readme_path.exists():
         return readme_path.read_text(encoding="utf-8")
     return ""
     
 def version():
-    with open('version', 'r') as file:
+    with open(Path(__file__).parent / 'version', 'r') as file:
         v = file.readline()
     return v
 
 setup(
-    name="nn-stat",
+    name='nn-stat',
     version=version(),
     description="Neural Network Performance Analysis",
     long_description=read_readme(),
