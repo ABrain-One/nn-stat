@@ -1,6 +1,5 @@
 # <img src='https://abrain.one/img/lemur-nn-icon-64x64.png' width='32px'/> Neural Network Performance Analysis
-<sub><a href='https://pypi.python.org/pypi/nn-stat'><img src='https://img.shields.io/pypi/v/nn-stat.svg'/></a><br/>
-pip: <a href='https://pypi.python.org/pypi/nn-stat'>nn-stat</a> or <a href='https://pypi.python.org/pypi/lmurs'>lmurs</a></sub>
+<sub><a href='https://pypi.python.org/pypi/nn-stat'><img src='https://img.shields.io/pypi/v/nn-stat.svg'/></a><br/>short alias <a href='https://pypi.python.org/pypi/lmurs'>lmurs</a></sub>
 
 The original version of the NN Stat project was created by <strong>Waleed Khalid</strong> at the Computer Vision Laboratory, University of Würzburg, Germany.
 
