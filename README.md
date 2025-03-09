@@ -18,6 +18,15 @@ The original version of the NN Stat project was created by <strong>Waleed Khalid
 
 All subsequent commands are provided for Linux/Mac OS. For Windows, please replace ```source .venv/bin/activate``` with ```.venv\Scripts\activate```.
 
+## Environment for NN Stat Contributors
+
+Run the following command to install all the project dependencies:
+```bash
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu124
+```
+
 ## Installation with the LEMUR Dataset
 
 ```bash
@@ -51,15 +60,6 @@ source .venv/bin/activate
 pip install git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu124
 ```
 
-
-## Environment for NN Stat Contributors
-### Pip package manager
-Create a virtual environment, activate it, and run the following command to install all the project dependencies:
-```bash
-source .venv/bin/activate
-python -m pip install --upgrade pip
-pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu124
-```
 
 ### Docker
 All versions of this project are compatible with <a href='https://hub.docker.com/r/abrainone/ai-linux' target='_blank'>AI Linux</a> and can be run inside a Docker image:
