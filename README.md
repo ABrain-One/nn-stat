@@ -66,5 +66,6 @@ All versions of this project are compatible with <a href='https://hub.docker.com
 ```bash
 docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.stat.export"
 ```
+Some recently added dependencies might be missing in the <b>AI Linux</b>. In this case, you can create a container from the Docker image ```abrainone/ai-linux```, install the missing packages (preferably using ```pip install <package name>```), and then create a new image from the container using ```docker commit <container name> <new image name>```. You can use this new image locally or push it to the registry for deployment on the computer cluster.
 
 #### The idea of Dr. Dmitry Ignatov
