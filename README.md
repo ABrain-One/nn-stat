@@ -7,7 +7,7 @@ The original version of the NN Stat project was created by <strong>Waleed Khalid
 
 <h3>Overview 📖</h3>
 
-<p>Automated conversion of <a href="https://github.com/ABrain-One/nn-dataset" target="_blank" rel="noopener noreferrer">LEMUR</a> data into Excel format with statistical visualizations. It is developed to support the <a href="https://github.com/ABrain-One/nn-dataset">NN Dataset</a> and <a href="https://github.com/ABrain-One/nn-gpt">NN GPT</a> projects.</p>
+<p>Automated conversion of <a href="https://github.com/ABrain-One/nn-dataset" target="_blank" rel="noopener noreferrer">LEMUR</a> data into Excel format with statistical visualizations. It is developed to support the <a href="https://github.com/ABrain-One/nn-dataset">NN Dataset</a> and <a href="https://github.com/ABrain-One/nn-gpt">NNGPT</a> projects.</p>
 
 ## Create and Activate a Virtual Environment (recommended):
    ```bash
