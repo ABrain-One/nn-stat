@@ -9,11 +9,16 @@ The original version of the NN Stat project was created by <strong>Waleed Khalid
 
 <p>Automated conversion of <a href="https://github.com/ABrain-One/nn-dataset" target="_blank" rel="noopener noreferrer">LEMUR</a> data into Excel format with statistical visualizations. It is developed to support the <a href="https://github.com/ABrain-One/nn-dataset">NN Dataset</a> and <a href="https://github.com/ABrain-One/nn-gpt">NNGPT</a> projects.</p>
 
-## Create and Activate a Virtual Environment (recommended):
+## Create and Activate a Virtual Environment (recommended)
+For Linux/Mac:
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate   # Linux/Mac
-   .venv\Scripts\activate      # Windows
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+For Windows:
+   ```bash
+   python3 -m venv .venv
+   .venv\Scripts\activate
    ```
 
 All subsequent commands are provided for Linux/Mac OS. For Windows, please replace ```source .venv/bin/activate``` with ```.venv\Scripts\activate```.
