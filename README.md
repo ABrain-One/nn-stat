@@ -48,6 +48,21 @@ python -m ab.stat.export
 ```
 Data and statistics are stored in the <strong>stat</strong> directory in Excel files and PNG/SVG plots.
 
+To use 'ab/stat/nn_analytics.ipynb' install jupyter:
+
+```bash
+source .venv/bin/activate
+pip install jupyter
+```
+
+and run jupyter notebook:
+
+```bash
+source .venv/bin/activate
+jupyter notebook --notebook-dir=.
+```
+
+
 ## Update of NN Dataset
 Remove old version of the LEMUR Dataset and its database:
 ```bash
