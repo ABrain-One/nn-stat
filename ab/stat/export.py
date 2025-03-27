@@ -1,6 +1,6 @@
 import os
 
-from ab.stat.util.Const import plot_dir, excel_dir
+from ab.stat.util.Const import excel_dir, png_dir_stat, svg_dir_stat, png_dir_raw, svg_dir_raw, raw_xlsx, stat_xlsx
 
 from ab.stat.util.fetch_data import fetch_all_data
 from ab.stat.util.filter_raw_data import filter_raw_data
@@ -11,12 +11,6 @@ from ab.stat.xls.export_raw_excel import export_raw_data_with_plots
 
 
 def main():
-    # directories for PNG and SVG
-    png_dir_stat = plot_dir / 'stat' / 'png'
-    svg_dir_stat = plot_dir / 'stat' / 'svg'
-    png_dir_raw = plot_dir / 'raw' / 'png'
-    svg_dir_raw = plot_dir / 'raw' / 'svg'
-
     # Ensure output directories exist
     os.makedirs(png_dir_stat, exist_ok=True)
     os.makedirs(svg_dir_stat, exist_ok=True)
@@ -36,7 +30,6 @@ def main():
     # Map 'acc' to 'accuracy'
     aggregated_data['metric'] = aggregated_data['metric'].replace({'acc': 'accuracy'})
 
-
     print("Generating plots...")
     for metric in aggregated_data['metric'].unique():
         metric_data = aggregated_data[aggregated_data['metric'] == metric]
@@ -48,7 +41,7 @@ def main():
     print("Exporting data to Excel...")
     export_to_excel(
         aggregated_data=aggregated_data,
-        output_file=excel_dir / 'statistics.xlsx',
+        output_file=stat_xlsx,
         plot_dir=png_dir_stat
     )
     # Step 5: Filter Raw Data
@@ -59,9 +52,10 @@ def main():
     # Step 6: Export Raw Data and Plots to Excel
     export_raw_data_with_plots(
         filtered_raw_data,
-        output_file=excel_dir / 'raw_data.xlsx',
+        output_file=raw_xlsx,
         png_dir=png_dir_raw,
         svg_dir=svg_dir_raw)
+
 
 if __name__ == "__main__":
     main()
