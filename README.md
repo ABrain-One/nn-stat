@@ -62,13 +62,13 @@ Remove old version of the LEMUR Dataset and its database:
 pip uninstall nn-dataset -y
 rm -rf db
 ```
-Installing the stable version:
-```bash
-pip install nn-dataset --upgrade --extra-index-url https://download.pytorch.org/whl/cu126
-```
 Install from GitHub to get the most recent code and statistics updates:
 ```bash
 pip install git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu126
+```
+Installing the stable version:
+```bash
+pip install nn-dataset --upgrade --extra-index-url https://download.pytorch.org/whl/cu126
 ```
 
 
