@@ -21,14 +21,12 @@ For Windows:
    .venv\Scripts\activate
    ```
 
-All subsequent commands are provided for Linux/Mac OS. For Windows, please replace ```source .venv/bin/activate``` with ```.venv\Scripts\activate```.
-It is also assumed that CUDA 12.6 is installed. If you have a different version, please replace 'cu126' with the appropriate version number.
+It is assumed that CUDA 12.6 is installed. If you have a different version, please replace 'cu126' with the appropriate version number.
 
 ## Environment for NN Stat Contributors
 
 Run the following command to install all the project dependencies:
 ```bash
-source .venv/bin/activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu126
 ```
@@ -36,14 +34,12 @@ pip install -r requirements.txt --extra-index-url https://download.pytorch.org/w
 ## Installation with the LEMUR Dataset
 
 ```bash
-source .venv/bin/activate
 pip install nn-stat[dataset]
 ```
 
 ## Usage
 
 ```bash
-source .venv/bin/activate
 python -m ab.stat.export
 ```
 Data and statistics are stored in the <strong>stat</strong> directory in Excel files and PNG/SVG plots.
@@ -51,33 +47,27 @@ Data and statistics are stored in the <strong>stat</strong> directory in Excel f
 To use 'ab/stat/nn_analytics.ipynb' install jupyter:
 
 ```bash
-source .venv/bin/activate
 pip install jupyter
 ```
 
 and run jupyter notebook:
 
 ```bash
-source .venv/bin/activate
 jupyter notebook --notebook-dir=.
 ```
-
 
 ## Update of NN Dataset
 Remove old version of the LEMUR Dataset and its database:
 ```bash
-source .venv/bin/activate
 pip uninstall nn-dataset -y
 rm -rf db
 ```
 Installing the stable version:
 ```bash
-source .venv/bin/activate
 pip install nn-dataset --upgrade --extra-index-url https://download.pytorch.org/whl/cu126
 ```
 Install from GitHub to get the most recent code and statistics updates:
 ```bash
-source .venv/bin/activate
 pip install git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu126
 ```
 
@@ -89,4 +79,4 @@ docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.
 ```
 Some recently added dependencies might be missing in the <b>AI Linux</b>. In this case, you can create a container from the Docker image ```abrainone/ai-linux```, install the missing packages (preferably using ```pip install <package name>```), and then create a new image from the container using ```docker commit <container name> <new image name>```. You can use this new image locally or push it to the registry for deployment on the computer cluster.
 
-#### The idea of Dr. Dmitry Ignatov
+#### The idea and leadership of Dr. Ignatov
