@@ -73,7 +73,7 @@ pip install nn-dataset --upgrade --extra-index-url https://download.pytorch.org/
 
 
 ### Docker
-All versions of this project are compatible with <a href='https://hub.docker.com/r/abrainone/ai-linux' target='_blank'>AI Linux</a> and can be run inside a Docker image:
+All versions of this project are compatible with <a href='https://hub.docker.com/r/abrainone/ai-linux' target='_blank'>AI Linux</a> and can be seamlessly executed within a Docker container:
 ```bash
 docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.stat.export"
 ```
