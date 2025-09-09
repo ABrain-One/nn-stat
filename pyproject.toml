@@ -1,0 +1,40 @@
+[build-system]
+requires = ['setuptools', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'nn-stat'
+dynamic = ['version', 'dependencies']
+description = 'Neural Network Performance Analysis'
+readme = { file = 'README.md', content-type = 'text/markdown' }
+license = { file = "LICENSE" }
+requires-python = '>=3.10'
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+authors = [
+    { name = 'ABrain One and contributors', email = 'AI@ABrain.one' }
+]
+
+[project.urls]
+Homepage = 'https://ABrain.one'
+Repository = 'https://github.com/ABrain-One/nn-stat'
+
+[tool.setuptools.dynamic]
+version = { file = 'version' }
+dependencies = { file = 'requirements.txt' }
+
+[tool.setuptools.packages.find]
+where = ['']
+
+[tool.setuptools]
+include-package-data = true
+
+[project.optional-dependencies]
+dataset = ['nn-dataset']
+
+[tool.setuptools.package-data]
+'ab' = ['*.md', '*.json']
+'*' = ['requirements.txt', 'README.md', 'LICENSE', 'version']
