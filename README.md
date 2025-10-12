@@ -65,7 +65,7 @@ rm -rf db
 ```
 Install from GitHub to get the most recent code and statistics updates:
 ```bash
-pip install git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu126
+pip install --no-cache-dir git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu126
 ```
 Installing the stable version:
 ```bash
