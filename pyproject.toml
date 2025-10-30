@@ -7,12 +7,18 @@ name = 'nn-stat'
 dynamic = ['version', 'dependencies']
 description = 'Neural Network Performance Analysis'
 readme = { file = 'README.md', content-type = 'text/markdown' }
-license = { file = "LICENSE" }
+license = { file = 'LICENSE' }
+keywords = ['neural networks', 'statistical analysis', 'machine learning', 'python', 'artificial intelligence', 'data science', 'AI tools']
 requires-python = '>=3.10'
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+classifiers = [    
+    'Programming Language :: Python :: 3',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Science/Research',
+    'Topic :: Scientific/Engineering :: Artificial Intelligence',
+    'Topic :: Scientific/Engineering :: Mathematics',
+    'Topic :: Software Development :: Libraries'
 ]
 authors = [{ name = 'ABrain One and contributors', email = 'AI@ABrain.one' }]
 
