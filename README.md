@@ -78,3 +78,29 @@ docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.
 Some recently added dependencies might be missing in the <b>AI Linux</b>. In this case, you can create a container from the Docker image ```abrainone/ai-linux```, install the missing packages (preferably using ```pip install <package name>```), and then create a new image from the container using ```docker commit <container name> <new image name>```. You can use this new image locally or push it to the registry for deployment on the computer cluster.
 
 #### The idea and leadership of Dr. Ignatov
+
+## Tasks & datasets
+<img src='docs/figures/tasks_datasets_table.png'/>
+
+## Statistics
+
+### Image Classification
+<img src='docs/figures/img-classification_celeba-gender_top5_acc_vs_epoch.png'/>
+<img src='docs/figures/img-classification_cifar-10_top5_acc_vs_epoch.png'/>
+<img src='docs/figures/img-classification_cifar-100_top5_acc_vs_epoch.png'/>
+<img src='docs/figures/img-classification_imagenette_top5_acc_vs_epoch.png'/>
+<img src='docs/figures/img-classification_mnist_top5_acc_vs_epoch.png'/>
+<img src='docs/figures/img-classification_places365_top5_acc_vs_epoch.png'/>
+<img src='docs/figures/img-classification_svhn_top5_acc_vs_epoch.png'/>
+
+### Image Captioning
+<img src='docs/figures/img-captioning_coco_top5_bleu_vs_epoch.png'/>
+
+### Image Segmentation
+<img src='docs/figures/img-segmentation_coco_top5_iou_vs_epoch.png'/>
+
+### Text Generation
+<img src='docs/figures/txt-generation_wikitext_top2_acc_vs_epoch.png'/>
+
+
+
