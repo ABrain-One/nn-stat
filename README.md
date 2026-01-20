@@ -80,27 +80,27 @@ Some recently added dependencies might be missing in the <b>AI Linux</b>. In thi
 #### The idea and leadership of Dr. Ignatov
 
 ## Tasks & datasets
-<img src='docs/figures/tasks_datasets_table.png'/>
+<img src='ab/stat/docs/figures/tasks_datasets_table.png'/>
 
 ## Statistics
 
 ### Image Classification
-<img src='docs/figures/img-classification_celeba-gender_top5_acc_vs_epoch.png'/>
-<img src='docs/figures/img-classification_cifar-10_top5_acc_vs_epoch.png'/>
-<img src='docs/figures/img-classification_cifar-100_top5_acc_vs_epoch.png'/>
-<img src='docs/figures/img-classification_imagenette_top5_acc_vs_epoch.png'/>
-<img src='docs/figures/img-classification_mnist_top5_acc_vs_epoch.png'/>
-<img src='docs/figures/img-classification_places365_top5_acc_vs_epoch.png'/>
-<img src='docs/figures/img-classification_svhn_top5_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-classification_celeba-gender_top5_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-classification_cifar-10_top5_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-classification_cifar-100_top5_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-classification_imagenette_top5_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-classification_mnist_top5_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-classification_places365_top5_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-classification_svhn_top5_acc_vs_epoch.png'/>
 
 ### Image Captioning
-<img src='docs/figures/img-captioning_coco_top5_bleu_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-captioning_coco_top5_bleu_vs_epoch.png'/>
 
 ### Image Segmentation
-<img src='docs/figures/img-segmentation_coco_top5_iou_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-segmentation_coco_top5_iou_vs_epoch.png'/>
 
 ### Text Generation
-<img src='docs/figures/txt-generation_wikitext_top2_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/txt-generation_wikitext_top2_acc_vs_epoch.png'/>
 
 
 
