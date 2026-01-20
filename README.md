@@ -80,27 +80,40 @@ Some recently added dependencies might be missing in the <b>AI Linux</b>. In thi
 #### The idea and leadership of Dr. Ignatov
 
 ## Tasks & datasets
-<img src='ab/stat/docs/figures/tasks_datasets_table.png'/>
+ab/stat/docs/tasks_datasets_table.md
 
 ## Statistics
 
 ### Image Classification
-<img src='ab/stat/docs/figures/img-classification_celeba-gender_top5_acc_vs_epoch.png'/>
-<img src='ab/stat/docs/figures/img-classification_cifar-10_top5_acc_vs_epoch.png'/>
-<img src='ab/stat/docs/figures/img-classification_cifar-100_top5_acc_vs_epoch.png'/>
-<img src='ab/stat/docs/figures/img-classification_imagenette_top5_acc_vs_epoch.png'/>
-<img src='ab/stat/docs/figures/img-classification_mnist_top5_acc_vs_epoch.png'/>
-<img src='ab/stat/docs/figures/img-classification_places365_top5_acc_vs_epoch.png'/>
-<img src='ab/stat/docs/figures/img-classification_svhn_top5_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-classification_top5_metric_vs_epoch_grid.png'/>
 
 ### Image Captioning
-<img src='ab/stat/docs/figures/img-captioning_coco_top5_bleu_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-captioning_bleu_top5_metric_vs_epoc_grid.png'/>
 
 ### Image Segmentation
-<img src='ab/stat/docs/figures/img-segmentation_coco_top5_iou_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/img-segmentation_iou_top5_metric_vs_epoch_grid.png'/>
 
 ### Text Generation
-<img src='ab/stat/docs/figures/txt-generation_wikitext_top2_acc_vs_epoch.png'/>
+<img src='ab/stat/docs/figures/txt-generation_top2_metric_vs_epoc_grid.png'/>
 
+### Accuracy VS Duration Best Models
+<img src='ab/stat/docs/figures/img-classification_accuracy_vs_duration_top5_models_grid.png'/>
+<img src='ab/stat/docs/figures/img-segmentation_iou_accuracy_vs_duration_top5_models_grid.png'/>
+<img src='ab/stat/docs/figures/txt-generation_accuracy_vs_duration_top2_models_grid.png'/>
 
+### Best Per Run Distribution
+<img src='ab/stat/docs/figures/img-classification_best_metric_distribution_top10.png'/>
+<img src='ab/stat/docs/figures/img-segmentation_iou_best_metric_distribution_top10.png'/>
+<img src='ab/stat/docs/figures/img-captioning_bleu_best_metric_distribution_top10.png'/>
+<img src='ab/stat/docs/figures/txt-generation_best_metric_distribution_top10.png'/>
 
+### Best Per Run VS Duration
+<img src='ab/stat/docs/figures/img-classification_pareto_best_vs_duration.png'/>
+<img src='ab/stat/docs/figures/img-segmentation_iou_pareto_best_vs_duration.png'/>
+<img src='ab/stat/docs/figures/img-captioning_bleu_pareto_best_vs_duration.png'/>
+<img src='ab/stat/docs/figures/txt-generation_pareto_best_vs_duration.png'/>
+
+### Model Rank Heatmap
+<img src='ab/stat/docs/figures/img-classification_rank_heatmap_top10.png'/>
+<img src='ab/stat/docs/figures/img-segmentation_iou_rank_heatmap_top10.png'/>
+<img src='ab/stat/docs/figures/img-captioning_bleu_rank_heatmap_top10.png'/>
