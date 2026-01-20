@@ -4,6 +4,9 @@ import ab.nn.api as api
 import numpy as np
 import pandas as pd
 from scipy.stats import gaussian_kde
+import matplotlib.image as mpimg
+import math
+
 
 
 OUTDIR = "ab/stat/docs/figures"
@@ -464,7 +467,7 @@ def best_per_run(df, task_name, metric_name=None, value_col="accuracy", higher_i
     best = d.loc[idx].copy()
     return best
 
-
+#plot best vs duration
 def plot_pareto_best_vs_duration(
     df,
     outdir=OUTDIR,
@@ -540,7 +543,7 @@ def plot_pareto_best_vs_duration(
     plt.close()
     print(f"Saved: {fname}")
 
-
+#create heatmap
 def plot_winner_rank_heatmap(
     df,
     outdir=OUTDIR,
@@ -618,6 +621,51 @@ def plot_winner_rank_heatmap(
     plt.savefig(fname, dpi=220)
     plt.close()
     print(f"Saved: {fname}")
+
+#combine some pictures into one grid
+def combine_pngs_to_grid(
+    image_paths,
+    out_path,
+    ncols=3,
+    figsize_per_cell=(6.5, 3.8),
+    titles=None,              
+    dpi=220,
+    pad=0.02,
+    bg_color="white",
+):
+    paths = [p for p in image_paths if os.path.exists(p)]
+    if not paths:
+        raise FileNotFoundError("None of the provided image paths exist.")
+
+    n = len(paths)
+    nrows = math.ceil(n / ncols)
+
+    fig_w = figsize_per_cell[0] * ncols
+    fig_h = figsize_per_cell[1] * nrows
+
+    fig, axes = plt.subplots(nrows, ncols, figsize=(fig_w, fig_h), facecolor=bg_color)
+    if nrows * ncols == 1:
+        axes = [axes]
+    else:
+        axes = axes.flatten()
+
+    for i, ax in enumerate(axes):
+        if i >= n:
+            ax.axis("off")
+            continue
+
+        img = mpimg.imread(paths[i])
+        ax.imshow(img)
+        ax.axis("off")
+
+        if titles is not None and i < len(titles) and titles[i]:
+            ax.set_title(titles[i], fontsize=12)
+
+    plt.subplots_adjust(wspace=pad, hspace=pad)
+    os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    print(f"Saved combined grid: {out_path}")
 
 
 def main():
@@ -733,6 +781,54 @@ def main():
     plot_winner_rank_heatmap(df, task_name="img-captioning", metric_name="bleu", top_k_models=10)
 
 
+    group1 = [
+        "ab/stat/docs/figures/img-captioning_bleu_top5_metric_vs_epoch_grid.png",
+        "ab/stat/docs/figures/img-segmentation_iou_top5_metric_vs_epoch_grid.png",
+        "ab/stat/docs/figures/txt-generation_top2_metric_vs_epoch_grid.png"
+    ]
+
+    group2 = [
+        "ab/stat/docs/figures/img-classification_best_metric_distribution_top10.png",
+        "ab/stat/docs/figures/img-segmentation_iou_best_metric_distribution_top10.png",
+        "ab/stat/docs/figures/img-captioning_bleu_best_metric_distribution_top10.png",
+        "ab/stat/docs/figures/txt-generation_best_metric_distribution_top10.png",
+    ]
+
+    group3 = [
+        "ab/stat/docs/figures/img-classification_pareto_best_vs_duration.png",
+        "ab/stat/docs/figures/img-segmentation_iou_pareto_best_vs_duration.png",
+        "ab/stat/docs/figures/img-captioning_bleu_pareto_best_vs_duration.png",
+        "ab/stat/docs/figures/txt-generation_pareto_best_vs_duration.png",
+    ]
+
+    group4 = [
+        "ab/stat/docs/figures/img-segmentation_iou_accuracy_vs_duration_top5_models_grid.png",
+        "ab/stat/docs/figures/txt-generation_accuracy_vs_duration_top2_models_grid.png"
+    ]
+
+    combine_pngs_to_grid(
+        group1,
+        out_path="ab/stat/docs/figures/Figure_A_accuracy_vs_epoch.png",
+        ncols=2,
+    )
+
+    combine_pngs_to_grid(
+        group2,
+        out_path="ab/stat/docs/figures/Figure_B_best_metric_distributions.png",
+        ncols=2,
+    )
+
+    combine_pngs_to_grid(
+        group3,
+        out_path="ab/stat/docs/figures/Figure_C_pareto_frontiers.png",
+        ncols=2,
+    )
+
+    combine_pngs_to_grid(
+        group4,
+        out_path="ab/stat/docs/figures/Figure_D_acc_vs_duration.png",
+        ncols=2,
+    )
 
 
 if __name__ == "__main__":
