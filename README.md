@@ -112,3 +112,14 @@ Some recently added dependencies might be missing in the <b>AI Linux</b>. In thi
 ### The best models for image classification, image segmentation and text generation tasks across all the datasets.
 <img src='ab/stat/docs/figures/Figure_E.png'/>
 
+### Model performance and variability across runs
+
+
+#### The bars show the average result for each model, while the error bars indicate how much those results vary across different runs when enough data is available.
+<img src='ab/stat/docs/figures/Figure_F.png'/>
+
+#### The plot shows how performance develops over time. Error bars reflect how much the results change across different runs with different settings, and they are only included when enough data is available.
+<img src='ab/stat/docs/figures/Figure_G.png'/>
+
+#### The confidence intervals show how much results vary across different runs. They are not meant to compare models statistically or indicate which model is significantly better.
+

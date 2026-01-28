@@ -6,6 +6,8 @@ import pandas as pd
 from scipy.stats import gaussian_kde
 import matplotlib.image as mpimg
 import math
+from scipy.stats import t
+
 
 
 
@@ -834,6 +836,237 @@ def plot_topk_models_bar(
 
     print(f"Saved: {fname}")
 
+def mean_ci95_t(values):
+    """
+    Mean ± 95% CI using Student-t interval.
+    Returns (mean, low, high, n). For n<2 -> (nan, nan, nan, n).
+    """
+
+    x = np.asarray(values, dtype=float)
+    x = x[np.isfinite(x)]
+    n = len(x)
+    if n < 2:
+        return (np.nan, np.nan, np.nan, n)
+
+    m = float(x.mean())
+    s = float(x.std(ddof=1))
+    se = s / (n ** 0.5)
+    h = t.ppf(0.975, df=n - 1) * se
+    return (m, m - h, m + h, n)
+
+
+def plot_bar_ci95_top_models(
+    df,
+    out_path,
+    task_name,
+    top_k=10,
+    metric_name=None,          
+    value_col="accuracy",
+    dataset=None,
+    higher_is_better=True,
+    min_n_ci=5,               
+
+    figsize=(10.5, 6.5),
+    title_fontsize=18,
+    label_fontsize=14,
+    tick_fontsize=12,
+
+    palette="Set2",          
+    ci_color="blue",         
+):
+   
+
+    os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
+
+    d = df[df["task"].astype(str) == str(task_name)].copy()
+    if d.empty:
+        print(f"No data for task '{task_name}'")
+        return
+
+    if metric_name is not None:
+        if "metric" not in d.columns:
+            raise KeyError("metric_name provided but df has no 'metric' column.")
+        d = d[d["metric"].astype(str).str.lower() == str(metric_name).lower()].copy()
+        if d.empty:
+            print(f"No data for task '{task_name}' metric '{metric_name}'")
+            return
+
+    if dataset is not None:
+        d = d[d["dataset"].astype(str) == str(dataset)].copy()
+        if d.empty:
+            print(f"No data for dataset '{dataset}'")
+            return
+
+    if value_col not in d.columns:
+        raise KeyError(f"Missing '{value_col}' column")
+
+    run_cols = ["dataset", "nn", "prm_id", "transform_id"]
+    chooser = "idxmax" if higher_is_better else "idxmin"
+    idx = getattr(d.groupby(run_cols)[value_col], chooser)().dropna().astype(int)
+    best = d.loc[idx].copy()
+    if best.empty:
+        print("No best-per-run rows found.")
+        return
+
+    rank = best.groupby("nn")[value_col].mean().sort_values(ascending=not higher_is_better)
+    top_models = rank.head(top_k).index.tolist()
+    best = best[best["nn"].isin(top_models)].copy()
+
+    rows = []
+    for nn in top_models:
+        vals = best.loc[best["nn"] == nn, value_col].dropna().to_numpy()
+        mu, lo, hi, n = mean_ci95_t(vals)
+        if n >= min_n_ci and np.isfinite(mu):
+            rows.append((str(nn), mu, lo, hi, n))
+
+    if not rows:
+        print(f"No models with n>={min_n_ci} runs to compute CI.")
+        return
+
+    labels = [r[0] for r in rows]
+    means  = np.array([r[1] for r in rows], float)
+    lows   = np.array([r[2] for r in rows], float)
+    highs  = np.array([r[3] for r in rows], float)
+
+    yerr = np.vstack([means - lows, highs - means])
+
+    cmap = plt.get_cmap(palette)
+    bar_colors = cmap(np.linspace(0.1, 0.9, len(means)))
+
+    x = np.arange(len(labels))
+
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.bar(x, means, color=bar_colors)
+    ax.errorbar(
+        x, means, yerr=yerr,
+        fmt="none",
+        ecolor=ci_color,
+        capsize=6,
+        linewidth=1.5
+    )
+
+    metric_label = metric_name.upper() if metric_name else value_col
+    title1 = f"{task_name}" + (f" ({metric_label})" if metric_name else "")
+    title2 = f"Top {len(labels)} models — mean ± 95% CI" + (f" — {dataset}" if dataset else "")
+
+    ax.set_title(title1 + "\n" + title2, fontsize=title_fontsize)
+    ax.set_ylabel(metric_label, fontsize=label_fontsize)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=tick_fontsize)
+    ax.tick_params(axis="y", labelsize=tick_fontsize)
+
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=300)
+    plt.close(fig)
+    print(f"Saved: {out_path}")
+
+
+def plot_line_ci95_over_epochs(
+    df,
+    out_path,
+    task_name,
+    top_k_models=10,          
+    metric_name=None,          
+    value_col="accuracy",
+    dataset=None,
+    higher_is_better=True,
+    min_n_ci=5,               
+
+    figsize=(10.5, 6.5),
+    title_fontsize=18,
+    label_fontsize=14,
+    tick_fontsize=12,
+    line_width=2.0,
+    marker_size=5,
+    capsize=6,
+
+    line_color="blue",
+    ci_color="red",
+):
+   
+
+    os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
+
+    d = df[df["task"].astype(str) == str(task_name)].copy()
+    if d.empty:
+        print(f"No data for task '{task_name}'")
+        return
+
+    if metric_name is not None:
+        if "metric" not in d.columns:
+            raise KeyError("metric_name provided but df has no 'metric' column.")
+        d = d[d["metric"].astype(str).str.lower() == str(metric_name).lower()].copy()
+        if d.empty:
+            print(f"No data for task '{task_name}' metric '{metric_name}'")
+            return
+
+    if dataset is not None:
+        d = d[d["dataset"].astype(str) == str(dataset)].copy()
+        if d.empty:
+            print(f"No data for dataset '{dataset}'")
+            return
+
+    for col in ["epoch", "nn", "prm_id", "transform_id", value_col]:
+        if col not in d.columns:
+            raise KeyError(f"Missing column '{col}'")
+
+    d["epoch"] = d["epoch"].astype(int)
+
+    run_cols = ["dataset", "nn", "prm_id", "transform_id"]
+    chooser = "idxmax" if higher_is_better else "idxmin"
+    idx = getattr(d.groupby(run_cols)[value_col], chooser)().dropna().astype(int)
+    best = d.loc[idx].copy()
+    if best.empty:
+        print("No best-per-run rows found.")
+        return
+
+    rank = best.groupby("nn")[value_col].mean().sort_values(ascending=not higher_is_better)
+    top_models = rank.head(top_k_models).index.tolist()
+    d = d[d["nn"].isin(top_models)].copy()
+
+    epochs = sorted(d["epoch"].unique())
+    xs, means, lo, hi = [], [], [], []
+
+    for e in epochs:
+        vals = d.loc[d["epoch"] == e, value_col].dropna().to_numpy()
+        mu, l, h, n = mean_ci95_t(vals)
+        if np.isfinite(mu) and n >= min_n_ci:
+            xs.append(e); means.append(mu); lo.append(l); hi.append(h)
+
+    if len(xs) < 2:
+        print(f"Not enough epochs with n>={min_n_ci} to plot CI.")
+        return
+
+    means = np.asarray(means, float)
+    yerr = np.vstack([means - np.asarray(lo), np.asarray(hi) - means])
+
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.errorbar(
+        xs, means, yerr=yerr,
+        marker="o",
+        markersize=marker_size,
+        linewidth=line_width,
+        capsize=capsize,
+        color=line_color,
+        ecolor=ci_color
+    )
+
+    metric_label = metric_name.upper() if metric_name else value_col
+    title1 = f"{task_name}" + (f" ({metric_label})" if metric_name else "")
+    title2 = f"Top {len(top_models)} models — mean ± 95% CI" + (f" — {dataset}" if dataset else "")
+
+    ax.set_title(title1 + "\n" + title2, fontsize=title_fontsize)
+    ax.set_xlabel("Epoch", fontsize=label_fontsize)
+    ax.set_ylabel(metric_label, fontsize=label_fontsize)
+    ax.tick_params(axis="both", labelsize=tick_fontsize)
+
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=300)
+    plt.close(fig)
+    print(f"Saved: {out_path}")
+
+
 def main():
     df = load_data()
     print_tasks(df)
@@ -1008,6 +1241,17 @@ def main():
         "ab/stat/docs/figures/img-segmentation_iou_top10_models_bar.png",
         "ab/stat/docs/figures/txt-generation_top2_models_bar.png"
     ]
+    group6 = [
+        "ab/stat/docs/figures/bar_ci95_img_classification.png",
+        "ab/stat/docs/figures/bar_ci95_img_segmentation_iou.png",
+        "ab/stat/docs/figures/bar_ci95_txt_generation.png"
+    ]
+    group7 = [
+        "ab/stat/docs/figures/line_ci95_img_classification.png",
+        "ab/stat/docs/figures/line_ci95_img_segmentation_iou.png",
+        "ab/stat/docs/figures/line_ci95_txt_generation.png"
+    ]
+  
 
 
     combine_pngs_to_grid(
@@ -1037,6 +1281,16 @@ def main():
     combine_pngs_to_grid(
         group5,
         out_path="ab/stat/docs/figures/Figure_E.png",
+        ncols=2,
+    )
+    combine_pngs_to_grid(
+        group6,
+        out_path="ab/stat/docs/figures/Figure_F.png",
+        ncols=2,
+    )
+    combine_pngs_to_grid(
+        group7,
+        out_path="ab/stat/docs/figures/Figure_G.png",
         ncols=2,
     )
     plot_topk_models_bar(
@@ -1071,6 +1325,56 @@ def main():
     )
 
 
+    plot_bar_ci95_top_models(
+        df,
+        out_path="ab/stat/docs/figures/bar_ci95_img_classification.png",
+        task_name="img-classification",
+        top_k=10,
+        palette="Set2",
+    )
+    plot_line_ci95_over_epochs(
+        df,
+        out_path="ab/stat/docs/figures/line_ci95_img_classification.png",
+        task_name="img-classification",
+        top_k_models=10,
+        line_color="blue",
+        ci_color="red",
+    )
+
+    plot_bar_ci95_top_models(
+        df,
+        out_path="ab/stat/docs/figures/bar_ci95_txt_generation.png",
+        task_name="txt-generation",
+        top_k=2,
+        palette="Set2",
+    )
+    plot_line_ci95_over_epochs(
+        df,
+        out_path="ab/stat/docs/figures/line_ci95_txt_generation.png",
+        task_name="txt-generation",
+        top_k_models=2,
+        line_color="blue",
+        ci_color="red",
+    )
+
+    plot_bar_ci95_top_models(
+        df,
+        out_path="ab/stat/docs/figures/bar_ci95_img_segmentation_iou.png",
+        task_name="img-segmentation",
+        metric_name="iou",
+        top_k=10,
+        palette="Set2",
+    )
+    plot_line_ci95_over_epochs(
+        df,
+        out_path="ab/stat/docs/figures/line_ci95_img_segmentation_iou.png",
+        task_name="img-segmentation",
+        metric_name="iou",
+        top_k_models=10,
+        line_color="blue",
+        ci_color="red",
+    )
+   
 
 
 
