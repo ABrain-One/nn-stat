@@ -149,8 +149,14 @@ def plot_task_metric_vs_duration_topk_models_per_dataset_grid(
     use_lines=True,
     figsize_per_col=6.5,
     figsize_per_row=4.8,
-    ylabel=None,                 
+    ylabel=None,
+
+    title_fontsize=14,
+    label_fontsize=12,
+    tick_fontsize=10,
+    legend_fontsize=10,
 ):
+
     os.makedirs(outdir, exist_ok=True)
 
     d = df[df["task"] == task_name].copy()
@@ -187,6 +193,7 @@ def plot_task_metric_vs_duration_topk_models_per_dataset_grid(
         ncols=ncols,
         figsize=(figsize_per_col * ncols, figsize_per_row * nrows),
     )
+
     if nrows * ncols == 1:
         axes = np.array([axes])
     axes = np.array(axes).flatten()
@@ -202,7 +209,6 @@ def plot_task_metric_vs_duration_topk_models_per_dataset_grid(
 
         gb = sub.groupby(run_cols)[value_col]
         idx = getattr(gb, chooser)().dropna().astype(int)
-
         best_rows = sub.loc[idx].copy()  
 
         model_rank = best_rows.groupby("nn")[value_col].mean()
@@ -226,15 +232,26 @@ def plot_task_metric_vs_duration_topk_models_per_dataset_grid(
                 continue
 
             if use_lines:
-                ax.plot(curve["dur"], curve["val"], marker="o", linewidth=1, label=str(nn))
+                ax.plot(curve["dur"], curve["val"], marker="o", linewidth=1.8, label=str(nn))
             else:
                 ax.scatter(curve["dur"], curve["val"], s=18, alpha=0.8, label=str(nn))
 
-        ax.set_xlabel("Duration")
-        ax.set_ylabel(ylabel or f"{value_col} (mean)")
+        ax.set_xlabel("Duration", fontsize=label_fontsize)
+        ax.set_ylabel(ylabel or f"{value_col} (mean)", fontsize=label_fontsize)
+
         metric_part = f" ({metric_name})" if metric_name is not None else ""
-        ax.set_title(f"{task_name}{metric_part} — {dataset} — {value_col} vs Duration (Top {len(top_models)} models)")
-        ax.legend(fontsize=7)
+        # ax.set_title(
+        #     f"{task_name}{metric_part} — {dataset} — {value_col} vs Duration (Top {len(top_models)} models)",
+        #     fontsize=title_fontsize,
+        # )
+        title_line1 = f"{task_name}{metric_part} — {dataset}"
+        title_line2 = f"{value_col} vs duration (best {len(top_models)} models)"
+
+        ax.set_title(title_line1 + "\n" + title_line2, fontsize=title_fontsize)
+
+
+        ax.tick_params(axis="both", labelsize=tick_fontsize)
+        ax.legend(fontsize=legend_fontsize)
 
     for j in range(len(datasets), len(axes)):
         axes[j].axis("off")
@@ -246,6 +263,7 @@ def plot_task_metric_vs_duration_topk_models_per_dataset_grid(
         outdir,
         f"{task_name}{metric_tag}_{value_col}_vs_{duration_col}_top{top_k}_models_grid.png"
     )
+
     fig.savefig(fname, dpi=200)
     plt.close(fig)
     print(f"Saved: {fname}")
@@ -262,7 +280,12 @@ def plot_task_metric_vs_epoch_topk_models_per_dataset_grid(
     max_cols=3,
     figsize_per_col=6.5,
     figsize_per_row=4.8,
-    ylabel=None,              
+    ylabel=None,
+    title_fontsize=14,
+    label_fontsize=12,
+    tick_fontsize=10,
+    legend_fontsize=10,
+    palette=None,  
 ):
     os.makedirs(outdir, exist_ok=True)
 
@@ -297,11 +320,15 @@ def plot_task_metric_vs_epoch_topk_models_per_dataset_grid(
         ncols=ncols,
         figsize=(figsize_per_col * ncols, figsize_per_row * nrows),
     )
+
     if nrows * ncols == 1:
         axes = np.array([axes])
     axes = np.array(axes).flatten()
 
     chooser = "idxmax" if higher_is_better else "idxmin"
+
+    cmap = plt.get_cmap(palette)
+    
 
     for ax_i, dataset in enumerate(datasets):
         ax = axes[ax_i]
@@ -322,16 +349,32 @@ def plot_task_metric_vs_epoch_topk_models_per_dataset_grid(
             ax.axis("off")
             continue
 
-        for nn in top_models:
+        for i, nn in enumerate(top_models):
             m = sub[sub["nn"] == nn]
             curve = m.groupby("epoch")[value_col].mean().sort_index()
-            ax.plot(curve.index, curve.values, marker="o", linewidth=1, label=str(nn))
 
-        ax.set_xlabel("Epoch")
-        ax.set_ylabel(ylabel or f"{value_col} (mean)")
+            color = cmap(i / max(len(top_models)-1, 1))
+
+            ax.plot(
+                curve.index,
+                curve.values,
+                marker="o",
+                linewidth=1.8,
+                label=str(nn),
+                color=color
+            )
+
+        ax.set_xlabel("Epoch", fontsize=label_fontsize)
+        ax.set_ylabel(ylabel or f"{value_col} (mean)", fontsize=label_fontsize)
+
         metric_part = f" ({metric_name})" if metric_name is not None else ""
-        ax.set_title(f"{task_name}{metric_part} — {dataset} — Top {len(top_models)} models")
-        ax.legend(fontsize=7)
+        ax.set_title(
+            f"{task_name}{metric_part} — {dataset} — best {len(top_models)} models",
+            fontsize=title_fontsize
+        )
+
+        ax.tick_params(axis="both", labelsize=tick_fontsize)
+        ax.legend(fontsize=legend_fontsize)
 
     for j in range(len(datasets), len(axes)):
         axes[j].axis("off")
@@ -345,7 +388,6 @@ def plot_task_metric_vs_epoch_topk_models_per_dataset_grid(
 
     print(f"Saved: {fname}")
 
-
 #plot best per run distribution
 def plot_task_best_metric_distribution(
     df,
@@ -356,8 +398,12 @@ def plot_task_best_metric_distribution(
     top_k=10,
     higher_is_better=True,
     dataset=None,
-    figsize=(10, 6),
+    figsize=(6.5, 4.8),
     bw_adjust=1.0,
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+    legend_fontsize=11,
 ):
     os.makedirs(outdir, exist_ok=True)
 
@@ -429,11 +475,18 @@ def plot_task_best_metric_distribution(
     if metric_name:
         title_parts.append(metric_name.upper())
 
-    plt.title(" — ".join(title_parts) + " — Best-per-run Distribution")
-    plt.xlabel(metric_label)
-    plt.ylabel("Density")
-    plt.legend(title="Model", fontsize=9)
+
+    plt.title(
+    " — ".join(title_parts) + " — Best-per-run Distribution",
+    fontsize=title_fontsize
+)
+    plt.xlabel(metric_label, fontsize=label_fontsize)
+    plt.ylabel("Density", fontsize=label_fontsize)
+    plt.xticks(fontsize=tick_fontsize)
+    plt.yticks(fontsize=tick_fontsize)
+    plt.legend(title="Model", fontsize=6)
     plt.tight_layout()
+
 
     metric_tag = f"_{metric_name}" if metric_name else ""
     dataset_tag = f"_{dataset}" if dataset else ""
@@ -480,6 +533,10 @@ def plot_pareto_best_vs_duration(
     dataset=None,
     figsize=(10.5, 6.5),
     logx=False,
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+    legend_fontsize=11,
 ):
     os.makedirs(outdir, exist_ok=True)
 
@@ -530,11 +587,14 @@ def plot_pareto_best_vs_duration(
     title = f"{task_name} — Best-per-run {metric_label} vs {duration_col} (Pareto)"
     if dataset is not None:
         title += f" — {dataset}"
-    plt.title(title)
-    plt.xlabel(duration_col)
-    plt.ylabel(metric_label)
-    plt.legend(fontsize=8, ncol=2, frameon=False)
+    plt.title(title, fontsize=title_fontsize)
+    plt.xlabel(duration_col, fontsize=label_fontsize)
+    plt.ylabel(metric_label, fontsize=label_fontsize)
+    plt.xticks(fontsize=tick_fontsize)
+    plt.yticks(fontsize=tick_fontsize)
+    plt.legend(fontsize=7, ncol=2, frameon=False)
     plt.tight_layout()
+
 
     metric_tag = f"_{metric_name}" if metric_name else ""
     dataset_tag = f"_{str(dataset).replace('/','_').replace(' ','_')}" if dataset is not None else ""
@@ -628,7 +688,8 @@ def combine_pngs_to_grid(
     out_path,
     ncols=3,
     figsize_per_cell=(6.5, 3.8),
-    titles=None,              
+    titles=None,  
+    title_fontsize=16,            
     dpi=220,
     pad=0.02,
     bg_color="white",
@@ -659,7 +720,7 @@ def combine_pngs_to_grid(
         ax.axis("off")
 
         if titles is not None and i < len(titles) and titles[i]:
-            ax.set_title(titles[i], fontsize=12)
+            ax.set_title(titles[i], fontsize=title_fontsize)
 
     plt.subplots_adjust(wspace=pad, hspace=pad)
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
@@ -683,6 +744,10 @@ def main():
     top_k=5,
     value_col="accuracy",
     higher_is_better=True,
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+    legend_fontsize=11,
     )
 
     plot_task_metric_vs_duration_topk_models_per_dataset_grid(
@@ -692,6 +757,10 @@ def main():
     value_col="accuracy",
     higher_is_better=True,
     max_cols=2,
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+    legend_fontsize=11,
     )
 
     plot_task_metric_vs_duration_topk_models_per_dataset_grid(
@@ -703,14 +772,23 @@ def main():
     metric_name="iou",              
     higher_is_better=True,
     ylabel="IoU (mean)",
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+    legend_fontsize=11,
     )
-   
+
     plot_task_metric_vs_epoch_topk_models_per_dataset_grid(
     df,
     task_name="img-classification",
     value_col="accuracy",
     top_k=5,
     ylabel="Accuracy (mean)",
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+    legend_fontsize=11,
+    palette="Set2"
     )
 
     plot_task_metric_vs_epoch_topk_models_per_dataset_grid(
@@ -720,6 +798,11 @@ def main():
     top_k=5,
     value_col="accuracy",
     ylabel="IoU (mean)",
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+    legend_fontsize=11,
+    palette="tab10"
     )
 
     plot_task_metric_vs_epoch_topk_models_per_dataset_grid(
@@ -729,6 +812,11 @@ def main():
     top_k=5,
     value_col="accuracy",
     ylabel="BLEU (mean)",
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+    legend_fontsize=11,
+    palette="Set2"
     )
 
     plot_task_metric_vs_epoch_topk_models_per_dataset_grid(
@@ -738,6 +826,11 @@ def main():
     value_col="accuracy",
     ylabel="Accuracy (mean)",
     max_cols=2,
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+    legend_fontsize=11,
+    palette="Dark2"
     )
 
     plot_task_best_metric_distribution(
