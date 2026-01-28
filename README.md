@@ -108,3 +108,7 @@ Some recently added dependencies might be missing in the <b>AI Linux</b>. In thi
 <img src='ab/stat/docs/figures/img-classification_rank_heatmap_top10.png'/>
 <img src='ab/stat/docs/figures/img-segmentation_iou_rank_heatmap_top10.png'/>
 <img src='ab/stat/docs/figures/img-captioning_bleu_rank_heatmap_top10.png'/>
+
+### The best models for image classification, image segmentation and text generation tasks across all the datasets.
+<img src='ab/stat/docs/figures/Figure_E.png'/>
+

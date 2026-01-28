@@ -728,6 +728,111 @@ def combine_pngs_to_grid(
     plt.close(fig)
     print(f"Saved combined grid: {out_path}")
 
+def plot_topk_models_bar(
+    df,
+    outdir=OUTDIR,
+    task_name="img-classification",
+    metric_name=None,           
+    value_col="accuracy",       
+    top_k=10,
+    higher_is_better=True,
+    dataset=None,               
+    figsize=(10.5, 6.5),
+    title=None,
+    xlabel="Score",
+    palette="viridis",          
+    title_fontsize=16,
+    label_fontsize=13,
+    tick_fontsize=11,
+):
+
+
+    os.makedirs(outdir, exist_ok=True)
+
+    d = df[df["task"].astype(str) == str(task_name)].copy()
+    if d.empty:
+        print(f"No data found for task '{task_name}'")
+        return
+
+    if metric_name is not None:
+        if "metric" not in d.columns:
+            raise KeyError("metric_name provided but df has no 'metric' column.")
+        d = d[d["metric"].astype(str).str.lower() == str(metric_name).lower()].copy()
+        if d.empty:
+            print(f"No data found for task '{task_name}' with metric '{metric_name}'")
+            return
+
+    if dataset is not None:
+        d = d[d["dataset"].astype(str) == str(dataset)].copy()
+        if d.empty:
+            print(f"No data found for dataset '{dataset}' in task '{task_name}'")
+            return
+
+    if value_col not in d.columns:
+        raise KeyError(f"'{value_col}' column not found. Available: {list(d.columns)}")
+
+    d["prm_str"] = d["prm"].astype(str) if "prm" in d.columns else ""
+    run_cols = ["task", "dataset", "nn", "prm_str", "transform_code"]
+    if "metric" in d.columns:
+        run_cols.insert(2, "metric")
+
+    chooser = "idxmax" if higher_is_better else "idxmin"
+
+    gb = d.groupby(run_cols)[value_col]
+    idx = getattr(gb, chooser)().dropna().astype(int)
+    if idx.empty:
+        print("No best-per-run indices found (check value_col / data).")
+        return
+    best = d.loc[idx].copy()
+
+    model_scores = best.groupby("nn")[value_col].mean().sort_values(ascending=not higher_is_better)
+    top = model_scores.head(top_k)
+
+    if top.empty:
+        print("No models found after ranking.")
+        return
+
+    labels = top.index.astype(str).tolist()[::-1]       
+    scores = top.values[::-1]
+
+    cmap = plt.get_cmap(palette)
+    colors = cmap(np.linspace(0.05, 0.95, len(scores)))
+
+    fig, ax = plt.subplots(figsize=figsize)
+    bars = ax.barh(labels, scores, color=colors)
+
+    for b, s in zip(bars, scores):
+        ax.text(
+            b.get_width(),
+            b.get_y() + b.get_height() / 2,
+            f"{s:.4f}",
+            va="center",
+            ha="left",
+            fontsize=tick_fontsize,
+            clip_on=False,
+        )
+
+    if title is None:
+        metric_part = f" ({str(metric_name).upper()})" if metric_name else ""
+        ds_part = f" — {dataset}" if dataset else ""
+        title = f"{task_name}{metric_part}{ds_part} — Top {len(scores)} models"
+
+    ax.set_title(title, fontsize=title_fontsize)
+    ax.set_xlabel(xlabel, fontsize=label_fontsize)
+    ax.tick_params(axis="both", labelsize=tick_fontsize)
+
+    x_min, x_max = ax.get_xlim()
+    ax.set_xlim(x_min, x_max + (x_max - x_min) * 0.06)
+
+    fig.tight_layout()
+
+    metric_tag = f"_{metric_name}" if metric_name else ""
+    ds_tag = f"_{str(dataset).replace('/','_').replace(' ','_')}" if dataset else ""
+    fname = os.path.join(outdir, f"{task_name}{metric_tag}{ds_tag}_top{top_k}_models_bar.png")
+    fig.savefig(fname, dpi=300)
+    plt.close(fig)
+
+    print(f"Saved: {fname}")
 
 def main():
     df = load_data()
@@ -898,6 +1003,12 @@ def main():
         "ab/stat/docs/figures/img-segmentation_iou_accuracy_vs_duration_top5_models_grid.png",
         "ab/stat/docs/figures/txt-generation_accuracy_vs_duration_top2_models_grid.png"
     ]
+    group5 = [
+        "ab/stat/docs/figures/img-classification_top10_models_bar.png",
+        "ab/stat/docs/figures/img-segmentation_iou_top10_models_bar.png",
+        "ab/stat/docs/figures/txt-generation_top2_models_bar.png"
+    ]
+
 
     combine_pngs_to_grid(
         group1,
@@ -922,6 +1033,45 @@ def main():
         out_path="ab/stat/docs/figures/Figure_D_acc_vs_duration.png",
         ncols=2,
     )
+
+    combine_pngs_to_grid(
+        group5,
+        out_path="ab/stat/docs/figures/Figure_E.png",
+        ncols=2,
+    )
+    plot_topk_models_bar(
+    df,
+    outdir=OUTDIR,
+    task_name="img-classification",
+    metric_name=None,
+    value_col="accuracy",
+    top_k=10,
+    xlabel="Score",
+    palette="viridis",
+    )
+    plot_topk_models_bar(
+    df,
+    outdir=OUTDIR,
+    task_name="txt-generation",
+    metric_name=None,
+    value_col="accuracy",
+    top_k=2,
+    xlabel="Score",
+    palette="viridis",
+    )
+    plot_topk_models_bar(
+    df,
+    outdir=OUTDIR,
+    task_name="img-segmentation",
+    metric_name="iou",
+    value_col="accuracy",  
+    top_k=10,
+    xlabel="Score",
+    palette="viridis",
+    )
+
+
+
 
 
 if __name__ == "__main__":
