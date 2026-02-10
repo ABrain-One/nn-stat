@@ -1,0 +1,65 @@
+Top param↔param dependencies (all epochs):
+                param_a                     param_b      corr    n  abs_corr
+             prm__batch        prm__steps_per_epoch -0.500458 5466  0.500458
+          prm__momentum           prm__random_sigma  0.390597  863  0.390597
+     prm__bg_iou_thresh          prm__fg_iou_thresh  0.362796 3901  0.362796
+             prm__batch     prm__random_rho_initial  0.362113  863  0.362113
+          prm__momentum     prm__random_rho_initial -0.342680  863  0.342680
+          prm__norm_eps             prm__iou_thresh -0.340581 3380  0.340581
+     prm__norm_momentum     prm__detections_per_img  0.328649 3380  0.328649
+             prm__batch            prm__num_classes -0.319873  582  0.319873
+             prm__beta2        prm__steps_per_epoch  0.317540 5466  0.317540
+        prm__iou_thresh       prm__neg_to_pos_ratio  0.316161 3380  0.316161
+        prm__batch_size           prm__weight_decay  0.315186  871  0.315186
+          prm__momentum prm__center_sampling_radius  0.309968 1364  0.309968
+                prm__lr     prm__random_rho_initial  0.304605  863  0.304605
+                prm__lr            prm__random_beta -0.295698  863  0.295698
+          prm__momentum             prm__batch_size -0.290121  871  0.290121
+                prm__lr             prm__batch_size -0.281359  871  0.281359
+          prm__norm_eps             prm__pretrained -0.277561 3380  0.277561
+             prm__batch      prm__kld_warmup_epochs  0.249372 3912  0.249372
+             prm__beta1      prm__kld_warmup_epochs  0.249004 3912  0.249004
+        prm__nms_thresh       prm__neg_to_pos_ratio  0.247961 3380  0.247961
+                prm__lr        prm__steps_per_epoch  0.247496 5466  0.247496
+          prm__norm_eps  prm__stochastic_depth_prob  0.232313 2692  0.232313
+prm__detections_per_img          prm__bg_iou_thresh  0.229907 2735  0.229907
+        prm__pretrained             prm__iou_thresh  0.223906 3380  0.223906
+                prm__lr     prm__detections_per_img  0.219559 7479  0.219559
+                prm__lr          prm__fg_iou_thresh -0.215051 3901  0.215051
+      prm__score_thresh      prm__positive_fraction  0.214790 1166  0.214790
+        prm__pretrained          prm__fg_iou_thresh  0.212816 3901  0.212816
+             prm__beta1                  prm__beta2 -0.207094 9378  0.207094
+                prm__lr   prm__batch_size_per_image -0.204811 1166  0.204811
+
+Top param↔accuracy (all epochs, global):
+                                 corr       n  abs_corr
+prm__steps_per_epoch         0.558286    5466  0.558286
+prm__version                -0.549945     156  0.549945
+prm__timesteps              -0.498012      55  0.498012
+prm__epochs                 -0.498012      55  0.498012
+prm__random_rho_initial     -0.370280     863  0.370280
+prm__iou_thresh             -0.367914    3380  0.367914
+prm__random_beta            -0.302333     863  0.302333
+prm__bg_iou_thresh           0.282599    3901  0.282599
+prm__batch_size             -0.268663     871  0.268663
+prm__num_classes             0.252063     582  0.252063
+prm__center_sampling_radius  0.247966    1364  0.247966
+prm__kernel_size            -0.208524     890  0.208524
+prm__random_sigma            0.206605     863  0.206605
+prm__lr                      0.164915  578595  0.164915
+prm__patch_size             -0.152487    4862  0.152487
+prm__nms_thresh              0.151773    8645  0.151773
+prm__score_thresh           -0.149493    8645  0.149493
+prm__beta1                  -0.138624   10311  0.138624
+prm__attention_dropout      -0.134255    9973  0.134255
+prm__tie_weights            -0.101679    7696  0.101679
+prm__beta2                   0.092203    9378  0.092203
+prm__dropout_aux             0.090974    4191  0.090974
+prm__warmup_epochs          -0.090633    2422  0.090633
+prm__weight_decay            0.069682    9951  0.069682
+prm__lr_schedule            -0.062961    5439  0.062961
+prm__epoch                  -0.054117    9606  0.054117
+prm__norm_momentum           0.053600    5543  0.053600
+prm__mixup_alpha            -0.045478    2422  0.045478
+prm__norm_eps                0.043346    8235  0.043346
+prm__momentum                0.042906  567835  0.042906
