@@ -405,7 +405,7 @@ def plot_task_best_metric_distribution(
     title_fontsize=16,
     label_fontsize=13,
     tick_fontsize=11,
-    legend_fontsize=11,
+    legend_fontsize=9,
 ):
     os.makedirs(outdir, exist_ok=True)
 
@@ -486,7 +486,7 @@ def plot_task_best_metric_distribution(
     plt.ylabel("Density", fontsize=label_fontsize)
     plt.xticks(fontsize=tick_fontsize)
     plt.yticks(fontsize=tick_fontsize)
-    plt.legend(title="Model", fontsize=6)
+    plt.legend(title="Model", fontsize=legend_fontsize)
     plt.tight_layout()
 
 
@@ -538,7 +538,7 @@ def plot_pareto_best_vs_duration(
     title_fontsize=16,
     label_fontsize=13,
     tick_fontsize=11,
-    legend_fontsize=11,
+    legend_fontsize=9,
 ):
     os.makedirs(outdir, exist_ok=True)
 
@@ -594,7 +594,7 @@ def plot_pareto_best_vs_duration(
     plt.ylabel(metric_label, fontsize=label_fontsize)
     plt.xticks(fontsize=tick_fontsize)
     plt.yticks(fontsize=tick_fontsize)
-    plt.legend(fontsize=7, ncol=2, frameon=False)
+    plt.legend(fontsize=legend_fontsize, ncol=2, frameon=False)
     plt.tight_layout()
 
 
