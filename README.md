@@ -77,12 +77,10 @@ docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.
 ```
 Some recently added dependencies might be missing in the <b>AI Linux</b>. In this case, you can create a container from the Docker image ```abrainone/ai-linux```, install the missing packages (preferably using ```pip install <package name>```), and then create a new image from the container using ```docker commit <container name> <new image name>```. You can use this new image locally or push it to the registry for deployment on the computer cluster.
 
-#### The idea and leadership of Dr. Ignatov
-
 ## Tasks & datasets
 [Tasks & datasets](ab/stat/docs/tasks_datasets_table.md)
 
-## Statistics
+## Current LEMUR Statistics
 
 ### Image Classification
 <img src='ab/stat/docs/figures/img-classification_top5_metric_vs_epoch_grid.png'/>
@@ -123,3 +121,4 @@ Some recently added dependencies might be missing in the <b>AI Linux</b>. In thi
 
 #### The confidence intervals show how much results vary across different runs. They are not meant to compare models statistically or indicate which model is significantly better.
 
+#### The idea and leadership of Dr. Ignatov
