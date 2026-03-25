@@ -22,14 +22,14 @@ For Windows:
    .venv\Scripts\activate
    ```
 
-It is assumed that CUDA 12.6 is installed. If you have a different version, please replace 'cu126' with the appropriate version number.
+It is assumed that CUDA 13.0 is installed. If you have a different version, please replace 'cu130' with the appropriate version number.
 
 ## Environment for NN Stat Contributors
 
 Run the following command to install all the project dependencies:
 ```bash
 python -m pip install --upgrade pip
-pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu126
+pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu130
 ```
 
 ## Installation with the LEMUR Dataset
@@ -61,12 +61,12 @@ jupyter notebook --notebook-dir=.
 Install from GitHub to get the most recent code and statistics updates:
 ```bash
 rm -rf db
-pip install --no-cache-dir git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu126
+pip install --no-cache-dir git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu130
 ```
 Installing the stable version:
 ```bash
 rm -rf db
-pip install nn-dataset --upgrade --extra-index-url https://download.pytorch.org/whl/cu126
+pip install nn-dataset --upgrade --extra-index-url https://download.pytorch.org/whl/cu130
 ```
 
 
@@ -78,46 +78,46 @@ docker run -v /a/mm:. abrainone/ai-linux bash -c "PYTHONPATH=/a/mm python -m ab.
 Some recently added dependencies might be missing in the <b>AI Linux</b>. In this case, you can create a container from the Docker image ```abrainone/ai-linux```, install the missing packages (preferably using ```pip install <package name>```), and then create a new image from the container using ```docker commit <container name> <new image name>```. You can use this new image locally or push it to the registry for deployment on the computer cluster.
 
 ## Tasks & datasets
-[Tasks & datasets](ab/stat/docs/tasks_datasets_table.md)
+[Tasks & datasets](https://github.com/ABrain-One/nn-stat/tree/main/ab/stat/docs/tasks_datasets_table.md)
 
 ## Current LEMUR Statistics
 
 ### Image Classification
-<img src='ab/stat/docs/figures/img-classification_top5_metric_vs_epoch_grid.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/img-classification_top5_metric_vs_epoch_grid.png'/>
 
 ### Image Captioning, Image Segmentation, Text Generation
-<img src='ab/stat/docs/figures/Figure_A_accuracy_vs_epoch.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/Figure_A_accuracy_vs_epoch.png'/>
 
 
 ### Accuracy VS Duration Best Models
-<img src='ab/stat/docs/figures/img-classification_accuracy_vs_duration_top5_models_grid.png'/>
-<img src='ab/stat/docs/figures/Figure_D_acc_vs_duration.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/img-classification_accuracy_vs_duration_top5_models_grid.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/Figure_D_acc_vs_duration.png'/>
 
 
 ### Best Per Run Distribution
-<img src='ab/stat/docs/figures/Figure_B_best_metric_distributions.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/Figure_B_best_metric_distributions.png'/>
 
 
 ### Best Per Run VS Duration
-<img src='ab/stat/docs/figures/Figure_C_pareto_frontiers.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/Figure_C_pareto_frontiers.png'/>
 
 
 ### Model Rank Heatmap
-<img src='ab/stat/docs/figures/img-classification_rank_heatmap_top10.png'/>
-<img src='ab/stat/docs/figures/img-segmentation_iou_rank_heatmap_top10.png'/>
-<img src='ab/stat/docs/figures/img-captioning_bleu_rank_heatmap_top10.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/img-classification_rank_heatmap_top10.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/img-segmentation_iou_rank_heatmap_top10.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/img-captioning_bleu_rank_heatmap_top10.png'/>
 
 ### The best models for image classification, image segmentation and text generation tasks across all the datasets.
-<img src='ab/stat/docs/figures/Figure_E.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/Figure_E.png'/>
 
 ### Model performance and variability across runs
 
 
 #### The bars show the average result for each model, while the error bars indicate how much those results vary across different runs when enough data is available.
-<img src='ab/stat/docs/figures/Figure_F.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/Figure_F.png'/>
 
 #### The plot shows how performance develops over time. Error bars reflect how much the results change across different runs with different settings, and they are only included when enough data is available.
-<img src='ab/stat/docs/figures/Figure_G.png'/>
+<img src='https://raw.githubusercontent.com/ABrain-One/nn-stat/main/ab/stat/docs/figures/Figure_G.png'/>
 
 #### The confidence intervals show how much results vary across different runs. They are not meant to compare models statistically or indicate which model is significantly better.
 
