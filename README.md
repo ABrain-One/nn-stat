@@ -22,14 +22,12 @@ For Windows:
    .venv\Scripts\activate
    ```
 
-It is assumed that CUDA 13.0 is installed. If you have a different version, please replace 'cu130' with the appropriate version number.
-
 ## Environment for NN Stat Contributors
 
 Run the following command to install all the project dependencies:
 ```bash
 python -m pip install --upgrade pip
-pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu130
+pip install -r requirements.txt
 ```
 
 ## Installation with the LEMUR Dataset
@@ -61,12 +59,14 @@ jupyter notebook --notebook-dir=.
 Install from GitHub to get the most recent code and statistics updates:
 ```bash
 rm -rf db
-pip install --no-cache-dir git+https://github.com/ABrain-One/nn-dataset --upgrade --force --extra-index-url https://download.pytorch.org/whl/cu130
+pip uninstall -y nn-dataset
+pip install --no-cache-dir git+https://github.com/ABrain-One/nn-dataset
 ```
+
 Installing the stable version:
 ```bash
 rm -rf db
-pip install nn-dataset --upgrade --extra-index-url https://download.pytorch.org/whl/cu130
+pip install nn-dataset --upgrade
 ```
 
 
