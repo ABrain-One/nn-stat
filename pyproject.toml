@@ -40,5 +40,5 @@ include-package-data = true
 dataset = ['nn-dataset']
 
 [tool.setuptools.package-data]
-'ab' = ['*.md', '*.json', '*.png']
+'ab' = ['**/*.md', '**/*.png']
 '*' = ['requirements.txt', 'README.md', 'LICENSE', 'version']
