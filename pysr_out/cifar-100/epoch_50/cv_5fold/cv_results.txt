@@ -1,0 +1,10 @@
+Cross‑validation results for best stage "Stage3_all8":
+  5‑fold CV
+  Algorithm (best per fold) : R² = 0.3827 ± 0.0809
+  Reference equation        : R² = 0.5010 ± 0.0655
+
+Per‑fold values (algo):
+0.3163, 0.3245, 0.3277, 0.5264, 0.4184
+
+Per‑fold values (ref):
+0.4843, 0.5564, 0.3837, 0.5653, 0.5154

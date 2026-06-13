@@ -1,0 +1,141 @@
+held_out_dataset,complexity,equation,loss,train_r2,test_r2
+celeba-gender,1,0.242716220000000,1.2479947,0.24937165835682396,-0.01251805139878126
+celeba-gender,3,epoch_log/3.1003256,0.9367802,0.29541090550729,0.012976113683530577
+celeba-gender,4,sqrt(epoch_log) - 0.595667,0.91695166,0.3252233057239371,0.02884238970225894
+celeba-gender,5,(epoch_log - 0.74128234)*0.44042343,0.87932354,0.32986906488095513,0.11224076942045758
+celeba-gender,7,-(-0.42130488)*epoch_log - 7.787036/nn_total_layers,0.84211785,0.3464590968739124,0.09660768942750819
+celeba-gender,8,0.38468334*epoch_log - 0.38468334*sqrt(prm__batch)/nn_total_layers,0.83631986,0.3480460572673838,0.0973822376474811
+celeba-gender,9,0.42064583*epoch_log - 0.42064583*log(prm__batch)/sqrt(nn_total_layers),0.8224654,0.35454214514005566,0.07210180776089092
+celeba-gender,10,0.41241407*epoch_log - 0.41241407*prm__batch**0.30916235/sqrt(nn_total_layers),0.8156156,0.3552490337198625,0.07001593816283647
+celeba-gender,11,epoch_log*0.4165376 - 1/(nn_total_layers**0.7642903*(prm__batch**(-0.28847355))),0.81363505,0.35977545786338605,0.08926055482588047
+celeba-gender,13,epoch_log**0.77218306*0.5562241 - 1/(nn_total_layers**0.6169272*(prm__batch**(-0.24020918))),0.80552804,0.36252441903040933,0.06080607587341291
+celeba-gender,15,0.5562241*epoch_log**0.77218306 - 1/(nn_total_layers**0.6169272*((nn_max_depth + prm__batch)**(-0.24020918))),0.80464584,0.3653920909127072,0.07463965478246071
+celeba-gender,16,(-epoch_log**0.7260091 + prm__batch**0.26522672/sqrt(nn_total_layers))*(nn_max_depth/nn_total_layers - 0.6673048),0.7989968,0.3721498101658257,0.06287050676653316
+celeba-gender,18,(0.7664995**(nn_total_layers/nn_max_depth) - 0.68253636)*(-epoch_log**0.6364958 + prm__batch**0.2667332/sqrt(nn_total_layers)),0.7974936,0.37317662718262845,0.06200308091278772
+celeba-gender,20,(0.80413234**(nn_total_layers/nn_max_depth) - 1/nn_total_layers**0.088000305)*(-epoch_log**0.7153255 + sqrt(prm__batch**0.5290132/nn_total_layers)),0.7955662,,
+celeba-gender,22,(0.7937442**((-epoch_log + nn_total_layers)/nn_max_depth) - 1/nn_total_layers**0.098259605)*(-epoch_log**0.7200326 + prm__batch**0.27088544/sqrt(nn_total_layers)),0.7926329,,
+celeba-gender,23,-0.91550535**nn_total_layers + (0.798879**(nn_total_layers/nn_max_depth) - 1/nn_total_layers**0.11508961)*(-epoch_log**0.7474373 + prm__batch**0.45599982/nn_total_layers),0.7919873,,
+celeba-gender,24,-0.8821394**nn_total_layers + (0.8123887**(nn_total_layers/nn_max_depth) - 1/nn_total_layers**0.103825696)*(-epoch_log**0.776021 + sqrt(prm__batch**0.51068556/nn_total_layers)),0.7835538,,
+celeba-gender,26,-0.8821394**(-epoch_log + nn_total_layers) + (0.8123887**(nn_total_layers/nn_max_depth) - 1/nn_total_layers**0.103825696)*(-epoch_log**0.776021 + sqrt(prm__batch**0.51068556/nn_total_layers)),0.7823849,,
+celeba-gender,28,-0.8821394**(-epoch_log + nn_total_layers - 0.53178865) + (0.8123887**(nn_total_layers/nn_max_depth) - 1/nn_total_layers**0.103825696)*(-epoch_log**0.776021 + sqrt(prm__batch**0.51068556/nn_total_layers)),0.7822723,,
+cifar-10,1,0.171530620000000,1.201956,0.18617656809078886,0.09437203906068059
+cifar-10,3,epoch_log/3.3924444,0.9781801,0.22887211345111247,0.14721113507111727
+cifar-10,4,sqrt(epoch_log) - 0.6040264,0.97537154,0.23257157703926956,0.13844376576658968
+cifar-10,5,(epoch_log - 1*0.7307313)*0.41756055,0.9268619,0.2460596004066078,0.23160981949237347
+cifar-10,6,sqrt(epoch_log + 0.34717032) - 0.9335549,0.92241555,0.2612399121276615,0.19403664491741635
+cifar-10,7,(epoch_log - 17.795946/nn_total_layers)*0.39741707,0.9062035,0.2699921110592184,0.25545774779095765
+cifar-10,8,0.42212602*epoch_log - 0.0828549711882836*log(prm__batch),0.8879574,0.2762734167397395,0.2627895640116945
+cifar-10,10,0.39578077*epoch_log - 1.7851796*log(prm__batch)/nn_total_layers,0.87743765,0.28246796876652336,0.2698056285475523
+cifar-10,11,epoch_log*0.38338622 - (0.77428627**nn_total_layers)**(prm__batch**(-0.3559389)),0.86988777,0.2833895140599155,0.25934123222674965
+cifar-10,12,0.693149074874951*sqrt(epoch_log) - 2.6241772/nn_total_layers**(prm__batch**(-0.12759137)),0.86328363,0.2835624274935131,0.25803249811055173
+cifar-10,14,0.68582072001362*sqrt(epoch_log) - 3.013992/(nn_total_layers**(prm__batch**(-0.09494533)) - 0.80137336),0.8624423,0.2891034096104974,0.2711627724334137
+cifar-10,15,(epoch_log*0.42108986)**0.70534194 - (0.77428627**nn_total_layers)**(prm__batch**(-0.3559389)) - 0.07864548,0.8613346,0.289886075236674,0.26149342817934684
+cifar-10,16,0.673322211129263*sqrt(epoch_log) - 1.2687542/nn_total_layers**((nn_max_depth + prm__batch/nn_total_layers)**(-0.4925807)),0.86112666,0.29027978193487725,0.26045919914271976
+cifar-10,17,epoch_log**0.7104338*0.5826848 - 1.2726454/(nn_total_layers**((nn_max_depth + prm__batch/nn_total_layers)**(-0.5031496))),0.85657126,0.2916075215785081,0.26170341929461893
+cifar-10,19,epoch_log**0.6440652*0.60656077 - 1.2726454/((nn_total_layers - 1*3.1597574)**((nn_max_depth + prm__batch/nn_total_layers)**(-0.49225932))),0.8544666,0.29399188121568,0.26756191074628743
+cifar-10,21,(epoch_log/(prm__batch + 46.608624)**0.1624317)**0.7448608 - (0.52027726**nn_total_layers)**((prm__batch + 44.918064)**(-0.45399)) - 0.12972432,0.85358644,0.29455708607453757,0.26882158880286233
+cifar-10,22,(epoch_log/(prm__batch + 46.608624)**0.1624317)**0.70043257564225 - (0.52027726**nn_total_layers)**((prm__batch + 46.608624)**(-0.45399)) - 0.12972432,0.8531139,,
+cifar-10,23,(epoch_log/(prm__batch + 44.918064)**0.1624317)**0.7448608 - (0.84749585**nn_total_layers)**(((prm__batch + 44.918064)/nn_total_layers)**(-0.45399)) - 0.12972432,0.8514569,,
+cifar-10,24,(epoch_log/(prm__batch + 44.918064)**0.1624317)**exp(-0.41984126) - (0.84749585**nn_total_layers)**(((prm__batch + 44.918064)/nn_total_layers)**(-0.45399)) - 0.12972432,0.8513483,,
+cifar-10,25,(epoch_log/(prm__batch + 44.918064)**0.1624317)**0.7448608 - (0.84749585**(nn_total_layers - 6.1457005))**((prm__batch/44.918064 + 0.7448608)**(-0.45399)) - 0.1624317,0.8485909,,
+cifar-10,26,(epoch_log/(prm__batch + 44.918064)**0.1624317)**0.7448608 - (0.84749585**(nn_total_layers - 6.1457005))**((sqrt(nn_max_depth) + 0.0222627582524483*prm__batch)**(-0.45399)) - 0.12972432,0.84836346,,
+cifar-10,27,(epoch_log/(prm__batch + 44.918064)**0.1624317)**0.7448608 - (0.84749585**(nn_total_layers - 6.1457005))**((nn_max_depth + prm__batch/44.918064 - 0.5949678)**(-0.45399)) - 0.12972432,0.8479116,,
+cifar-100,1,0.220475720000000,1.1868234,0.21254628238755602,0.1895841585203728
+cifar-100,3,epoch_log*0.29015785,0.9345685,0.28043485032496274,0.2959494315627661
+cifar-100,5,epoch_log*0.39759567 - 1*0.29496598,0.8885642,0.30429219743725666,0.3014828805267892
+cifar-100,7,epoch_log*0.38340682 - 7.4495497/nn_total_layers,0.85399675,0.30919462666761155,0.3397540867179295
+cifar-100,8,0.34007773*epoch_log - 0.34007773*sqrt(prm__batch)/nn_total_layers,0.83707124,0.3161390673186425,0.3471815048629603
+cifar-100,9,epoch_log*0.36447558 - prm__batch**0.36881948/nn_total_layers,0.8256823,0.32336427945744484,0.3545315919864994
+cifar-100,11,epoch_log*0.36447558 - (prm__batch**0.36881948 + 0.91611755)/nn_total_layers,0.8232236,0.32606710626010293,0.353574204397606
+cifar-100,12,-(prm__batch/nn_total_layers**2)**(1/8) + log(epoch_log + 1.5554764),0.819864,0.3269786617691397,0.3534858368435013
+cifar-100,13,-log(prm__batch**0.10377377) + log(epoch_log + 1.4527845) - 6.864031/nn_total_layers,0.8116222,0.32712699412242274,0.3511008912516925
+cifar-100,15,-log(prm__batch**0.10945627)**2 + Abs(log(epoch_log + 0.8437222)) - 5.870996/nn_total_layers,0.8030472,0.3280531242174193,0.3590995193228753
+cifar-100,16,sqrt(log(epoch_log + 0.8148375)**2) - log(prm__batch**0.113108166)**2 - 5.882716/nn_total_layers,0.802873,0.3281822467964256,0.35964451251391005
+cifar-100,17,-log(prm__batch**0.10945627)**2 + Abs(log(epoch_log + 0.8437222)) - 5.870996/(-epoch_log + nn_total_layers),0.7998393,0.32819166625851315,0.36475819902067075
+cifar-100,19,-log(0.8391564*prm__batch**0.14216943)**2 + Abs(log(epoch_log + 0.8437222)) - 5.870996/(-epoch_log + nn_total_layers),0.7987575,0.3288172953874682,0.35905237028051895
+cifar-100,20,-(log(prm__batch**0.1209678) - 0.08907625)**2 + Abs(log(epoch_log + 0.8437222)) - 5.870996/(nn_total_layers - 2.24271189273299),0.7985815,,
+cifar-100,21,-1.38125191431466*log(0.8391564*prm__batch**0.1209678)**2 + Abs(log(epoch_log + 0.8437222)) - 5.870996/(-epoch_log + nn_total_layers),0.79801804,,
+cifar-100,22,-1.0985357*(log(prm__batch**0.12960261) - 0.18487468)**2 + sqrt(log(epoch_log + 0.85960406)**2) - 6.45845978582281/(-epoch_log + nn_total_layers),0.7974824,,
+cifar-100,23,-1.0985357*(log(prm__batch**0.12960261) - 0.18487468)**2 + sqrt(log(epoch_log + 0.85960406)**2) - 6.45845978582281/(-sqrt(epoch_log) + nn_total_layers),0.7973291,,
+cifar-100,24,-1.14456522465856*(log(prm__batch**0.12960261) - 0.18487468)**2 + 1.0419008*sqrt(log(epoch_log + 0.85960406)**2) - 6.72907441761661/(-epoch_log + nn_total_layers),0.79731786,,
+cifar-100,27,-(log((prm__batch + log(epoch_log + 0.40046206))**0.12960261) - 0.16907927)**2 + sqrt(log(epoch_log + 0.85960406)**2) - 6.45845978582281/(-epoch_log + nn_total_layers),0.7968971,,
+cifar-100,29,-1.0985357*(log((epoch_log*nn_max_depth + prm__batch - 0.85960406)**0.12960261) - 0.18487468)**2 + sqrt(log(epoch_log + 0.85960406)**2) - 6.45845978582281/(-epoch_log + nn_total_layers),0.79657537,,
+imagenette,1,0.218257760000000,1.2084508,0.19985637480291585,0.2127092067244689
+imagenette,3,epoch_log*0.2892375,0.9669342,0.23460168894224676,0.3218488098360476
+imagenette,4,0.28929013*epoch_log,0.96693414,0.2683086417573832,0.3115367288988563
+imagenette,5,(epoch_log - 1*0.72060513)*0.3932802,0.92494625,0.27665055363789315,0.32345433940986046
+imagenette,7,(epoch_log - 19.59062/nn_total_layers)*0.37947053,0.884213,0.29384194663377206,0.3310695320265906
+imagenette,8,0.37582976*epoch_log - 0.018719621*sqrt(prm__batch),0.8741322,0.2970786265318477,0.3470311048819893
+imagenette,9,0.3680808*epoch_log - prm__batch**0.3680808/nn_total_layers,0.85655934,0.29720659494543467,0.33985950283410704
+imagenette,11,epoch_log*0.3680808 - prm__batch**0.29129827/(nn_total_layers/1.759802),0.85335726,0.3108546403395437,0.29506273872122923
+imagenette,12,0.39389524*epoch_log - sqrt(prm__batch**0.39540213/nn_total_layers) + 0.157804898940527,0.8494459,0.3115148026604302,0.3090490017277119
+imagenette,13,0.39389524*epoch_log - sqrt(prm__batch**0.39540213/nn_total_layers) + 0.1877663441621,0.8492913,0.3141780113307495,0.32306106788683375
+imagenette,14,0.365332*epoch_log - 0.01614111303728*sqrt(prm__batch) + 0.21298268 - 6.893775/nn_total_layers,0.8338898,0.3145124228282622,0.32702841393964366
+imagenette,15,0.3408*epoch_log - 0.0122922008285255*log(prm__batch)**2 + 0.41160738 - 10.302589/nn_total_layers,0.8327983,0.3146734299528804,0.3236124298191416
+imagenette,16,0.370183086781183*epoch_log - 0.0133520095247587*log(prm__batch)**2 + 0.41160738 - 10.302589/nn_total_layers,0.8320005,0.31487671640204984,0.32099826598246683
+imagenette,17,0.38341048*epoch_log - 0.0131805538662339*log(prm__batch)**2 + 0.297466490398832 - 6.8297253/(-epoch_log + nn_total_layers),0.82878214,0.31502250906710094,0.32200472486662446
+imagenette,19,0.38341048*epoch_log - 0.0131805538662339*log(nn_max_depth + prm__batch)**2 + 0.30194371643567 - 6.8297253/(-epoch_log + nn_total_layers),0.828378,,
+imagenette,21,0.38341048*epoch_log - 0.0135001868107601*log(nn_max_depth + prm__batch)**2 + 0.328343280169563 - 6.8297253/(-0.916384580583149*epoch_log + 0.916384580583149*nn_total_layers),0.8281835,,
+imagenette,23,0.37437966*epoch_log - 0.0128701001471121*log(-epoch_log + prm__batch + 2.9388852)**2 + 0.320609508621584 - 6.8297253/(-0.919117984969847*epoch_log + 0.919117984969847*nn_total_layers),0.8279378,,
+imagenette,28,0.37437966*epoch_log - 0.0128701001471121*log(-epoch_log + prm__batch + 2.93888514)**2 + 0.320609508621584 - 6.8297253/(-0.839760699530553*epoch_log + 0.916384580583149*nn_total_layers),0.8277616,,
+mnist,1,0.254130480000000,1.2770143,0.24726487015154652,0.03308078751452359
+mnist,3,epoch_log*0.3278035,0.9612536,0.28933673938793103,0.08389183965115865
+mnist,4,sqrt(epoch_log) - 0.58352447,0.9551758,0.31656724851883866,0.14437273709828813
+mnist,5,epoch_log*0.44474053 - 0.3178175,0.90752727,0.3232033348771164,0.16608898143935513
+mnist,7,epoch_log*0.42572287 - 7.7149653/nn_total_layers,0.87275344,0.3394663381662001,0.13355586461014024
+mnist,8,0.42572287*epoch_log - 0.42572287*sqrt(prm__batch)/nn_total_layers,0.8642791,0.3444116894829251,0.1421582660600782
+mnist,9,0.43937033*epoch_log - 0.43937033*log(prm__batch)/sqrt(nn_total_layers),0.8477221,0.3483188549515267,0.1413185013859124
+mnist,11,epoch_log**0.6158169/prm__batch**0.109033465 - 9.174457/nn_total_layers,0.84351104,0.34883450340538835,0.14456771503696664
+mnist,13,epoch_log**0.7017017/(nn_max_depth + prm__batch)**0.13221706 - 8.93299/nn_total_layers,0.83719563,0.3540146438522713,0.19543986291881865
+mnist,14,epoch_log*((prm__batch + exp(epoch_log))**(-2.0819936))**0.08847293 - 8.218204/nn_total_layers,0.83220613,0.3540453208370421,0.194631916156499
+mnist,15,epoch_log*((2.8618784**epoch_log + prm__batch)**(-2.3637187))**0.07505602 - 8.122753/nn_total_layers,0.83212334,0.35622991357797884,0.18248471050487747
+mnist,16,epoch_log*((nn_max_depth + prm__batch + exp(epoch_log))**(-2.2879832))**0.0781545 - 8.455343/nn_total_layers,0.83154774,0.35686079159032125,0.17835688468477873
+mnist,17,(epoch_log + 1.8072417)*((prm__batch + 66.10439)**(-1.5739433))**0.11041567 - 0.7343964 - 8.0837965/nn_total_layers,0.82508016,0.359709070910891,0.18754712981564303
+mnist,19,(epoch_log + 1.8072417)*((prm__batch + 66.10439)**(-1.5739433))**0.11041567 - 0.7343964 - 8.0837965/(nn_total_layers + 0.23104876),0.8249326,,
+mnist,20,(epoch_log + 1.8072417)*((prm__batch + 66.10439)**(-1.5739433))**0.11041567 - 0.7343964 - 8.0837965/(nn_total_layers + 0.34495386),0.8248934,,
+mnist,21,(epoch_log + 0.90832317)*((1.977728**(epoch_log + 3.2570484) + prm__batch)**(-2.1991487))**0.0663684 - 0.53564364 - 8.1160755/nn_total_layers,0.8221036,,
+mnist,22,(epoch_log + 0.7701534)*((3.0294273**epoch_log + nn_max_depth**2 + prm__batch)**(-1.883326))**0.08468889 - 0.43294445 - 8.329468/nn_total_layers,0.82129806,,
+mnist,23,(epoch_log + 1.3737108)*((2.6859243**epoch_log + prm__batch*0.26268893 + 9.503228)**(-1.6597761))**0.10578893 - 0.7756624 - 8.15159/nn_total_layers,0.8176608,,
+mnist,25,(epoch_log + 1.3737108)*((2.6859243**epoch_log + nn_max_depth + prm__batch*0.26268893 + 8.254799)**(-1.6597761))**0.10578893 - 0.7756624 - 8.15159/nn_total_layers,0.8171567,,
+places365,1,0.259060600000000,1.2459134,0.2313815446395231,0.11866963971352906
+places365,3,epoch_log/3.2248883,0.95763236,0.30079165705436517,0.196890226782661
+places365,5,epoch_log/2.3870518 - 0.30194598,0.9106985,0.3234002176177073,0.1960913545769375
+places365,7,epoch_log*0.40533045 - 7.4882736/nn_total_layers,0.87115324,0.33517800333591297,0.16808935793161128
+places365,8,0.395472848297485*epoch_log - 0.02099291*sqrt(prm__batch),0.8552572,0.3360864859260041,0.15133330833231606
+places365,10,sqrt(epoch_log/prm__batch**0.19310382) - 9.033692/nn_total_layers,0.842985,0.341738499609453,0.15554410120889162
+places365,12,sqrt(epoch_log/(0.007938526*prm__batch + 1.3394104)) - 8.843673/nn_total_layers,0.8329906,0.3458139221754222,0.1570569971116451
+places365,13,epoch_log/(sqrt(epoch_log) + 0.0752523022903619*sqrt(prm__batch)) - 8.835993/nn_total_layers,0.8283108,0.3472435702372314,0.15291061664018657
+places365,14,epoch_log/sqrt(epoch_log + 0.017176025*prm__batch + 0.732496) - 9.668388/nn_total_layers,0.8271789,0.353758233287386,0.16009308874717976
+places365,15,epoch_log/sqrt(epoch_log + 0.01053939*prm__batch + log(nn_max_depth)) - 9.170863/nn_total_layers,0.8223258,0.356208405852091,0.1735586736514637
+places365,16,(epoch_log + 0.15339641)/sqrt(epoch_log + 0.017176025*prm__batch + 1.1183696) - 9.668388/nn_total_layers,0.820137,0.3568195042165424,0.17250044490762462
+places365,17,(epoch_log + 0.16727084)/sqrt(epoch_log + 0.019917643*prm__batch + log(nn_max_depth)) - 10.261605/nn_total_layers,0.81553346,0.35858827594182474,0.16823220093430724
+places365,18,1.19625352535914*(epoch_log + 0.30229142)/sqrt(epoch_log + nn_max_depth + 0.02301674*prm__batch) - 11.281133694251/nn_total_layers,0.8150594,0.3586009442072887,0.1694874273865422
+places365,20,1.28119944867425*(epoch_log + 0.7036043)/sqrt(epoch_log + nn_max_depth + 0.01952916*prm__batch) - 0.34610838 - 9.495536/nn_total_layers,0.8132782,,
+places365,21,(epoch_log + 1.0608903)/(epoch_log**2 + nn_max_depth + 0.054121226*prm__batch)**(1/4) - 0.63984793 - 9.647056/nn_total_layers,0.8051615,,
+places365,23,(epoch_log + 1.316464)/(epoch_log*nn_max_depth + 0.031784374*prm__batch + 2.1820424)**(1/4) - 0.84268653 - 8.654073/(-epoch_log + nn_total_layers),0.80210876,,
+places365,25,(epoch_log + 1.2680682)/(epoch_log*nn_max_depth + 0.031784374*prm__batch + 2.1820424)**(1/4) - 0.84268653 - 8.654073/(-epoch_log + nn_total_layers + 0.6404496),0.8013473,,
+places365,27,(epoch_log + 1.3523145)/(epoch_log*nn_max_depth + 0.032578252*prm__batch + 2.1673596)**(1/4) - 0.8931955 - 8.637891/(-epoch_log + nn_max_depth + nn_total_layers - 1.3415451),0.7991437,,
+places365,29,(epoch_log + 1.3415451)/(epoch_log*nn_max_depth + 0.032578252*prm__batch + 2.1673596)**(1/4) - 0.882426116 - 8.637891/(-epoch_log + nn_max_depth + nn_total_layers - 1.3415451),0.79912776,,
+svhn,1,0.233985630000000,1.2092737,0.24096215056322545,0.01924360010329984
+svhn,3,epoch_log/3.1568193,0.9178845,0.28497514024837034,0.06391114616165061
+svhn,4,sqrt(epoch_log) - 0.59352267,0.9064659,0.28528046478121094,0.03534196035442305
+svhn,5,(epoch_log - 1*0.72862715)*0.43493584,0.8646608,0.31642274089151,0.08716125562034749
+svhn,6,sqrt(epoch_log + 0.22138524) - 0.8314395,0.8642915,0.31820382153616233,0.04902550493627389
+svhn,7,(epoch_log - 18.533356/nn_total_layers)*0.41158974,0.8266321,0.3224343436434737,0.07423159832452886
+svhn,8,0.716678570468104*sqrt(epoch_log) - 9.234861/nn_total_layers,0.82447827,0.3327819721084826,0.1092146836832184
+svhn,9,(epoch_log**0.77220446 - 15.615991/nn_total_layers)/1.8634741,0.8193624,0.33809259057751473,0.10348668927861748
+svhn,10,sqrt(epoch_log/prm__batch**(1/4)) - 8.341464/nn_total_layers,0.80684924,0.34218465222544436,0.1095834954426258
+svhn,12,sqrt(epoch_log*(epoch_log/prm__batch)**(1/4)) - 9.139555/nn_total_layers,0.8004273,0.34872944620093205,0.1300366238519054
+svhn,13,sqrt(epoch_log/sqrt(1.9784167 + prm__batch/nn_total_layers)) - 8.422903/nn_total_layers,0.7954789,0.34935674470090716,0.11272601703252472
+svhn,14,epoch_log/log(epoch_log + nn_max_depth + 0.04870676*prm__batch) - 8.557193/nn_total_layers,0.79046625,0.35026806860128445,0.11810107455919172
+svhn,15,epoch_log/sqrt(nn_max_depth + (prm__batch + exp(epoch_log))/nn_total_layers) - 6.913937/nn_total_layers,0.78756446,0.35237777713401464,0.1224549759766842
+svhn,16,1.2456918*epoch_log/sqrt(epoch_log + nn_max_depth + 0.0202394857389548*prm__batch) - 9.354961/nn_total_layers,0.78680587,0.3526509751314687,0.1180364614730276
+svhn,17,0.991247849934616*epoch_log*sqrt(1/(epoch_log + 0.0138582870963133*prm__batch + log(nn_max_depth))) - 8.53922/nn_total_layers,0.7857038,0.3537623722750056,0.11314919751800678
+svhn,18,epoch_log/sqrt(nn_max_depth + (prm__batch + exp(epoch_log))/(nn_total_layers + sqrt(prm__batch))) - 8.160695/nn_total_layers,0.7831526,0.35441447320097896,0.11686831260245412
+svhn,19,epoch_log/sqrt(nn_max_depth + (prm__batch + exp(epoch_log))/(nn_total_layers + log(prm__batch)**2)) - 8.557193/nn_total_layers,0.7828222,0.35470654190025963,0.11523651364806942
+svhn,21,1.2528712*epoch_log/sqrt(nn_max_depth + (prm__batch + exp(epoch_log))/log(nn_total_layers + prm__batch)**2) - 8.748784/nn_total_layers,0.7814783,0.3554679705287439,0.11369471310263024
+svhn,23,1.1202012*epoch_log/sqrt(0.860895401811307*nn_max_depth + 0.860895401811307*(prm__batch + exp(epoch_log))/log(nn_total_layers + prm__batch)**2) - 8.587623/nn_total_layers,0.78068966,,
+svhn,24,epoch_log/sqrt(nn_max_depth + (prm__batch + exp(epoch_log))/Abs(nn_total_layers/(epoch_log - 1.8675951) + log(prm__batch)**2)) - 8.291151/nn_total_layers,0.78033644,,
+svhn,26,epoch_log/sqrt(nn_max_depth + (prm__batch + exp(epoch_log))/Abs(nn_total_layers/(epoch_log - 1.8675951) + log(nn_total_layers + prm__batch)**2)) - 8.748784/nn_total_layers,0.7800557,,
+svhn,28,epoch_log/sqrt(nn_max_depth + (prm__batch + exp(epoch_log))/Abs((-epoch_log + nn_total_layers)/(epoch_log - 1.8414863) + log(nn_total_layers + prm__batch)**2)) - 8.743366/nn_total_layers,0.7794157,,
+svhn,30,epoch_log/sqrt(nn_max_depth + (prm__batch + exp(epoch_log))/Abs((epoch_log - nn_total_layers)/(1.02971245588583*epoch_log - 1.8414863) - log(nn_total_layers + prm__batch)**2)) - 8.743366/nn_total_layers,0.77925783,,

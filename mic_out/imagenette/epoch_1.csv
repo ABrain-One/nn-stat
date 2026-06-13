@@ -1,0 +1,12 @@
+dataset,target,feature,n_samples,mic,mic_pval,spearman,spearman_pval,abs_spearman
+imagenette,accuracy_epoch_1,prm__lr,18088,0.098217,0.004975,0.013925,0.061105,0.013925
+imagenette,accuracy_epoch_1,nn_total_layers,17978,0.075883,0.004975,0.029118,9.4e-05,0.029118
+imagenette,accuracy_epoch_1,nn_max_depth,17978,0.067603,0.004975,0.12534,0.0,0.12534
+imagenette,accuracy_epoch_1,nn_total_params,17978,0.066254,0.004975,-0.091402,0.0,0.091402
+imagenette,accuracy_epoch_1,nn_dropout_count,17978,0.062983,0.004975,-0.115956,0.0,0.115956
+imagenette,accuracy_epoch_1,prm__batch,18088,0.062326,0.004975,-0.234953,0.0,0.234953
+imagenette,accuracy_epoch_1,nn_flops,17978,0.061912,0.004975,0.031712,2.1e-05,0.031712
+imagenette,accuracy_epoch_1,prm__dropout,13540,0.056701,0.064677,0.000497,0.953849,0.000497
+imagenette,accuracy_epoch_1,prm__momentum,18088,0.051019,0.054726,0.003411,0.646439,0.003411
+imagenette,accuracy_epoch_1,nn_has_residual,17978,0.032012,1.0,-0.034029,5e-06,0.034029
+imagenette,accuracy_epoch_1,nn_has_attention,17978,0.020024,1.0,-0.005794,0.437274,0.005794

@@ -1,0 +1,321 @@
+{
+  "generated_at_utc": "2026-04-10T12:14:33.281044+00:00",
+  "software_versions": {
+    "python": "3.10.12",
+    "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.35",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "dcor": "0.7",
+    "minepy": "1.2.6",
+    "pysr": "1.5.9",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.10.8",
+    "tqdm": "4.67.3"
+  },
+  "column_roles": {
+    "dataset": "bookkeeping \u2014 dataset name; not a feature",
+    "dataset_id": "bookkeeping \u2014 integer 0\u20136; not a feature",
+    "epoch": "bookkeeping \u2014 raw epoch {1,5,50}; not a feature (kept for existing scripts)",
+    "epoch_log": "feature \u2014 log(epoch); evenly spaced epoch scale for correlation and PySR",
+    "accuracy": "bookkeeping \u2014 raw accuracy; not normalized",
+    "accuracy_znorm_ds": "TARGET \u2014 z-scored within dataset only; epoch trend preserved"
+  },
+  "normalization": {
+    "accuracy_znorm_ds": {
+      "grouping": "within dataset only (NOT within epoch)",
+      "formula": "(accuracy - mean(accuracy|dataset)) / std(accuracy|dataset, ddof=1)",
+      "epoch_signal": "preserved \u2014 znorm_ds_mean rises from negative (epoch 1) to positive (epoch 50)",
+      "use_for": "Phase 1 universal correlation; Phase 2 universal PySR"
+    },
+    "epoch_log": {
+      "formula": "log(epoch)",
+      "values": {
+        "1": 0.0,
+        "5": 1.609438,
+        "50": 3.912023
+      },
+      "rationale": "Raw epoch {1,5,50} is not evenly spaced. Log scale {0, 1.61, 3.91} is evenly spaced, improves correlation detection, and produces simpler symbolic regression formulas. Raw epoch is kept as a bookkeeping column only."
+    }
+  },
+  "feature_allowlist": [
+    "epoch_log",
+    "nn_total_params",
+    "nn_flops",
+    "nn_total_layers",
+    "nn_max_depth",
+    "nn_has_attention",
+    "nn_has_residual",
+    "nn_dropout_count",
+    "prm__lr",
+    "prm__batch",
+    "prm__dropout",
+    "prm__momentum"
+  ],
+  "epochs_included": [
+    1,
+    5,
+    50
+  ],
+  "dataset_id_mapping": {
+    "celeba-gender": 0,
+    "cifar-10": 1,
+    "cifar-100": 2,
+    "imagenette": 3,
+    "mnist": 4,
+    "places365": 5,
+    "svhn": 6
+  },
+  "dataset_stats": {
+    "celeba-gender": {
+      "total_rows": 24535,
+      "rows_per_epoch": {
+        "1": 14388,
+        "5": 9734,
+        "50": 413
+      },
+      "accuracy_raw": {
+        "mean": 0.731798,
+        "std": 0.14805,
+        "min": 0.60004,
+        "max": 0.98407
+      },
+      "accuracy_znorm_ds_by_epoch": {
+        "1": {
+          "mean": -0.166499,
+          "std": 0.909475
+        },
+        "5": {
+          "mean": 0.210744,
+          "std": 1.069119
+        },
+        "50": {
+          "mean": 0.833423,
+          "std": 0.973997
+        }
+      }
+    },
+    "cifar-10": {
+      "total_rows": 70149,
+      "rows_per_epoch": {
+        "1": 42783,
+        "5": 25260,
+        "50": 2106
+      },
+      "accuracy_raw": {
+        "mean": 0.434284,
+        "std": 0.206046,
+        "min": 0.1065,
+        "max": 0.9717
+      },
+      "accuracy_znorm_ds_by_epoch": {
+        "1": {
+          "mean": -0.276393,
+          "std": 0.961392
+        },
+        "5": {
+          "mean": 0.351478,
+          "std": 0.863133
+        },
+        "50": {
+          "mean": 1.399141,
+          "std": 0.778652
+        }
+      }
+    },
+    "cifar-100": {
+      "total_rows": 36733,
+      "rows_per_epoch": {
+        "1": 20991,
+        "5": 15347,
+        "50": 395
+      },
+      "accuracy_raw": {
+        "mean": 0.11774,
+        "std": 0.113845,
+        "min": 0.0113,
+        "max": 0.7232
+      },
+      "accuracy_znorm_ds_by_epoch": {
+        "1": {
+          "mean": -0.500125,
+          "std": 0.474624
+        },
+        "5": {
+          "mean": 0.636202,
+          "std": 1.090304
+        },
+        "50": {
+          "mean": 1.859038,
+          "std": 1.539343
+        }
+      }
+    },
+    "imagenette": {
+      "total_rows": 32606,
+      "rows_per_epoch": {
+        "1": 18088,
+        "5": 13879,
+        "50": 639
+      },
+      "accuracy_raw": {
+        "mean": 0.320294,
+        "std": 0.153503,
+        "min": 0.100382,
+        "max": 0.880764
+      },
+      "accuracy_znorm_ds_by_epoch": {
+        "1": {
+          "mean": -0.557567,
+          "std": 0.600946
+        },
+        "5": {
+          "mean": 0.651988,
+          "std": 0.934284
+        },
+        "50": {
+          "mean": 1.621812,
+          "std": 1.088154
+        }
+      }
+    },
+    "mnist": {
+      "total_rows": 38406,
+      "rows_per_epoch": {
+        "1": 21395,
+        "5": 16547,
+        "50": 464
+      },
+      "accuracy_raw": {
+        "mean": 0.770839,
+        "std": 0.29189,
+        "min": 0.1005,
+        "max": 0.9968
+      },
+      "accuracy_znorm_ds_by_epoch": {
+        "1": {
+          "mean": -0.27445,
+          "std": 1.083693
+        },
+        "5": {
+          "mean": 0.340203,
+          "std": 0.758034
+        },
+        "50": {
+          "mean": 0.522665,
+          "std": 0.507186
+        }
+      }
+    },
+    "places365": {
+      "total_rows": 2885,
+      "rows_per_epoch": {
+        "1": 1705,
+        "5": 1092,
+        "50": 88
+      },
+      "accuracy_raw": {
+        "mean": 0.132254,
+        "std": 0.117786,
+        "min": 0.003288,
+        "max": 0.465808
+      },
+      "accuracy_znorm_ds_by_epoch": {
+        "1": {
+          "mean": -0.372317,
+          "std": 0.755034
+        },
+        "5": {
+          "mean": 0.512247,
+          "std": 1.068427
+        },
+        "50": {
+          "mean": 0.857124,
+          "std": 0.956774
+        }
+      }
+    },
+    "svhn": {
+      "total_rows": 41594,
+      "rows_per_epoch": {
+        "1": 23222,
+        "5": 17729,
+        "50": 643
+      },
+      "accuracy_raw": {
+        "mean": 0.323994,
+        "std": 0.240728,
+        "min": 0.120045,
+        "max": 0.964275
+      },
+      "accuracy_znorm_ds_by_epoch": {
+        "1": {
+          "mean": -0.225677,
+          "std": 0.760275
+        },
+        "5": {
+          "mean": 0.253298,
+          "std": 1.161534
+        },
+        "50": {
+          "mean": 1.166333,
+          "std": 1.283768
+        }
+      }
+    }
+  },
+  "input_files": {
+    "celeba-gender": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/dataset_splits/epoch_1_5_50/celeba-gender.csv",
+      "sha256": "a3e787f4bdaddbf40655c7730fc7bbefd13874a6d531fc58145b5e6860b30470",
+      "size_bytes": 12105576
+    },
+    "cifar-10": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/dataset_splits/epoch_1_5_50/cifar-10.csv",
+      "sha256": "028a97684a0829af84c4016efa828d0f554aa141efc9e2a6d4ebdddd687bdcbf",
+      "size_bytes": 33627969
+    },
+    "cifar-100": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/dataset_splits/epoch_1_5_50/cifar-100.csv",
+      "sha256": "a11cf5929c603dec0320aae83d373d46aa53922acdadc36b0926d5c7ba85a442",
+      "size_bytes": 17828652
+    },
+    "imagenette": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/dataset_splits/epoch_1_5_50/imagenette.csv",
+      "sha256": "bd16d4ff493aac13a99a97c17097ae2f7b83971817c5039fa15e6afe3596d321",
+      "size_bytes": 16315091
+    },
+    "mnist": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/dataset_splits/epoch_1_5_50/mnist.csv",
+      "sha256": "4e5712c0fe27c9edd95e97df1c6131ccbf4e5bbbb8d643f296f7283d84dd5ebd",
+      "size_bytes": 18230842
+    },
+    "places365": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/dataset_splits/epoch_1_5_50/places365.csv",
+      "sha256": "4a3068bc5ddfccfc4fb30baaea642cc3cb6ef9efcb68ac0560a347cd3b0d03b2",
+      "size_bytes": 1295854
+    },
+    "svhn": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/dataset_splits/epoch_1_5_50/svhn.csv",
+      "sha256": "9d43201c0eb9b1dabeba144873aadb31b14adc34c68cac4c584f61eca06b0f61",
+      "size_bytes": 20560364
+    }
+  },
+  "output_files": {
+    "pooled_all_datasets.csv": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/universal_out/pooled_all_datasets.csv",
+      "sha256": "42b60b7a77f33560a045905a8be531e30a3c2da89e479a0b1c90dfc6bf2c13d0",
+      "size_bytes": 126923256
+    },
+    "group_stats.csv": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/universal_out/group_stats.csv",
+      "sha256": "391a80326483e0071538517c1c16af03cb2347e14ef9606c71e1743dc28913f6",
+      "size_bytes": 1656
+    },
+    "feature_coverage.csv": {
+      "path": "/home/divyeshdhanani/Desktop/Pipline/nn-stat/universal_out/feature_coverage.csv",
+      "sha256": "c85dc4ff6b9a68833a65e168d439fe8a2bce49f469c0f4c819f7e90b8b8f26f7",
+      "size_bytes": 795
+    }
+  }
+}

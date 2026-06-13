@@ -1,0 +1,7 @@
+Cross‑validation results for best stage "Stage3_all5":
+  Algorithm (best per fold) : R² = 0.4447 ± 0.0993
+  Reference equation        : R² = 0.4787 ± 0.0771
+
+Per‑fold values:
+  Algo: 0.5843, 0.2984, 0.4784, 0.3722, 0.4902
+  Ref : 0.5726, 0.3577, 0.4836, 0.4352, 0.5446

@@ -1,0 +1,89 @@
+PySR Symbolic Regression — cifar-100 epoch 50
+======================================================================
+
+Stage1_top3
+Features: ['nn_total_layers', 'nn_max_depth', 'nn_has_residual']
+Best R²: 0.2770
+
+Complexity   Loss        R²      Equation
+------------------------------------------------------------
+         1      0.030724    0.1697  0.331207450000000
+         4      0.025511    0.1896  0.07643737*log(nn_total_layers)
+         6      0.025082    0.1770  0.012368037*sqrt(nn_total_layers) + 0.20644553
+         7      0.024933    0.2272  0.15423723*(nn_total_layers/nn_max_depth)**(1/4)
+         8      0.024898    0.2296  0.12893736*(nn_total_layers/sqrt(nn_max_depth))**(1/4)
+         9      0.024661    0.2329  0.15212773*sqrt(nn_has_residual + sqrt(nn_total_layers/nn_max_depth))
+        11      0.024369    0.2522  -0.15549564*0.48406866**nn_max_depth + 0.15549564*(nn_total_layers/nn_max_depth)**(1/4)
+        12      0.023745    0.2655  log(log(Abs(nn_total_layers - nn_total_layers/(nn_max_depth - 2.3571553)))**(1/4))
+        13      0.023671    0.2770  log(sqrt(log(sqrt(nn_max_depth**2 + nn_total_layers/Abs(nn_max_depth - 1.5680488)))))
+        14      0.023567    0.1648  log(log(Abs(nn_total_layers - nn_total_layers/(nn_has_residual + nn_max_depth - 2.3739238)))**(1/4))
+        15      0.023140    0.1668  log(sqrt(log(sqrt(Abs((nn_total_layers + exp(nn_max_depth))/(nn_max_depth**1.1836183 - 1.7247236))))))
+        17      0.022976    0.2668  log(sqrt(log(nn_has_residual + sqrt(Abs((nn_total_layers + 0.45530969646408*exp(nn_max_depth))/(nn_max_depth - 1.5796773))))))
+        19      0.022568       nan  log(log(0.25637817*nn_total_layers + Abs(nn_total_layers/(nn_max_depth - 2.2784896) - 0.343179025172525*exp(nn_max_depth)))**(1/4))
+        21      0.022214       nan  log(log(nn_total_layers*(nn_has_residual + 0.21945421) + Abs(nn_total_layers/(nn_max_depth - 2.2325988) - 0.36922024929382*exp(nn_max_depth)))**(1/4))
+        23      0.021913       nan  log(log(Abs(0.381765140757762*2.7880397**nn_max_depth - nn_total_layers/(nn_max_depth - 1.7054858) + 0.381765140757762*exp(1.2651364*nn_has_residual + nn_max_depth)))**(1/4))
+        24      0.021852       nan  log(log(Abs(0.381765140757762*2.7880397**nn_max_depth + 0.381765140757762*exp(1.2651364*nn_has_residual + nn_max_depth) - Abs(nn_total_layers/(nn_max_depth - 1.7054858))))**(1/4))
+        29      0.021845       nan  log(log(0.25850835*nn_total_layers + Abs(0.324627642355389*1.8760971**nn_max_depth + 0.324627642355389*exp(1.4976515*nn_has_residual + nn_max_depth) - (nn_total_layers - 2.2004964)/(nn_max_depth - 1.7981323)))**(1/4))
+        30      0.021811       nan  log(log(0.25850835*nn_total_layers + Abs(0.324627642355389*1.8760971**nn_max_depth + 0.324627642355389*exp(1.4976515*nn_has_residual + nn_max_depth) - Abs((nn_total_layers - 1.8336567)/(nn_max_depth - 1.7981323))))**(1/4))
+
+Stage2_top5
+Features: ['nn_total_layers', 'nn_max_depth', 'nn_has_residual', 'nn_total_params', 'nn_flops']
+Best R²: 0.3297
+
+Complexity   Loss        R²      Equation
+------------------------------------------------------------
+         1      0.030724    0.1697  0.331207450000000
+         4      0.025511    0.2088  0.07643736*log(nn_total_layers)
+         5      0.025102    0.2207  nn_total_layers**0.1913041/7.0236225
+         6      0.025065    0.2207  0.6869714 - 4.872446/log(nn_total_params)
+         7      0.024309    0.2260  0.029753195**((nn_total_layers*nn_total_params)**(-0.062309336))
+         8      0.023943    0.2363  0.029264593**((nn_total_layers**2*nn_total_params)**(-0.050828643))
+         9      0.023943    0.2635  0.028936591**((nn_total_layers*nn_total_layers*nn_total_params)**(-0.050935443))
+        10      0.023782    0.2635  0.0063009774**((nn_total_layers**2*nn_total_params)**(-0.09716686))/1.6966485
+        12      0.023463    0.2810  nn_total_layers**(0.038930755 - 5.41267667036161*sqrt(1/nn_total_params)) - 0.81063515
+        13      0.022629    0.2868  0.052995857**(Abs(2.0312774**(nn_max_depth**2) - nn_total_params)**(-0.11646651))/1.8832232
+        15      0.022627    0.3037  0.052995857**(Abs(nn_total_params - (2.0312774**(nn_max_depth**2) - nn_total_layers))**(-0.11646651))/1.8832232
+        16      0.022171    0.3134  0.0140857315**(Abs(nn_total_layers*(2.0312757**(nn_max_depth*nn_max_depth) - nn_total_params))**(-0.11561842))/1.9431572
+        18      0.022093    0.3232  0.018710883**(Abs((2.0312755**(nn_max_depth*nn_max_depth) - nn_total_params)*(nn_total_layers - 16.720785))**(-0.11561846))/1.8828076
+        19      0.021914    0.3276  0.014087479**(Abs((2.0312757**(nn_max_depth*nn_max_depth) - nn_total_params)*(nn_total_layers - exp(nn_max_depth)))**(-0.11562007))/1.8828067
+        20      0.021842    0.3297  0.014106677**(Abs((2.0312753**(nn_max_depth**2) - nn_total_params)*(-nn_total_layers + exp(nn_max_depth) + 1.3195662))**(-0.11564104))/1.8828057
+        21      0.021396       nan  0.014853025**(Abs((2.0312753**(nn_max_depth*nn_max_depth) - nn_total_params)*(-nn_total_layers + exp(nn_max_depth) + 3.504683))**(-0.11562282))/1.8828065
+        22      0.021097       nan  0.014106677**(Abs((2.0312753**((nn_has_residual + nn_max_depth)**2) - nn_total_params)*(-nn_total_layers + exp(nn_max_depth) + 3.5046837))**(-0.11564104))/1.8828057
+        25      0.020839       nan  0.0140855815**(Abs((2.0312755**(nn_max_depth*nn_max_depth) - nn_total_params)*(nn_total_layers - nn_total_layers*nn_total_layers/(exp(nn_max_depth) + 3.5046825)))**(-0.11561874))/1.8828067
+        27      0.020797       nan  0.0140855815**(Abs((2.0312755**(nn_max_depth*(nn_has_residual + nn_max_depth)) - nn_total_params)*(nn_total_layers - nn_total_layers*nn_total_layers/(exp(nn_max_depth) + 3.5046825)))**(-0.11561874))/1.8828067
+        28      0.020660       nan  0.014091814**(Abs((2.0312755**(nn_max_depth*nn_max_depth) - nn_total_params)*(nn_total_layers - nn_total_layers/((exp(nn_max_depth**0.15118231) + exp(nn_max_depth))/nn_total_layers)))**(-0.11562312))/1.8652554
+        29      0.020596       nan  0.0140855815**(Abs((2.0312755**((nn_has_residual + nn_max_depth)*(nn_has_residual + nn_max_depth)) - nn_total_params)*(nn_total_layers - nn_total_layers*nn_total_layers/(exp(nn_max_depth) + 3.5046825)))**(-0.11561874))/1.8828067
+
+Stage3_all8
+Features: ['nn_total_layers', 'nn_max_depth', 'nn_has_residual', 'nn_total_params', 'nn_flops', 'prm__lr', 'nn_dropout_count', 'prm__dropout']
+Best R²: 0.5257
+
+Complexity   Loss        R²      Equation
+------------------------------------------------------------
+         1      0.030772    0.1001  0.399227400000000
+         4      0.027692    0.3429  log(nn_flops**0.019174103)
+         5      0.024023    0.3574  1.5391169 - 1/prm__lr**0.023794858
+         6      0.023986    0.3617  0.7903386**exp(prm__lr**(-0.054545447))
+         7      0.020220    0.3749  1.5318854 - 1/(nn_has_residual + prm__lr)**0.027286774
+         8      0.019774    0.3825  sqrt(1.2677759 - 1/(nn_has_residual + prm__lr)**0.020499133)
+        10      0.019642    0.4473  sqrt(1.2772417 - 1/(nn_has_residual*prm__dropout + prm__lr)**0.02132096)
+        12      0.019236    0.4787  sqrt(1.2772417 - 1/(nn_has_residual/sqrt(exp(nn_dropout_count)) + prm__lr)**0.02132096)
+        13      0.019001    0.4799  sqrt(Abs((nn_max_depth/(nn_total_layers*(nn_has_residual + prm__lr)))**0.02249159 - 1.1962744))
+        15      0.017542    0.4717  nn_max_depth**(-0.17912583/(prm__lr**0.31238517*(nn_total_layers/(nn_dropout_count - 1*(-15.463665)))))*0.5301656
+        16      0.017008    0.4729  nn_max_depth**(-0.35359675/(prm__lr**0.32313257*(nn_total_layers/Abs(nn_dropout_count - 8.51663))))*0.5261612
+        18      0.016126    0.5063  (nn_total_layers - 1*20.982695)**(-0.24073419/(prm__lr**0.25110233*(nn_total_layers/Abs(nn_dropout_count - 9.725785))))*0.568125
+        19      0.016041    0.5182  0.5723079/(nn_total_layers - log(nn_flops))**(0.2522262/(prm__lr**0.24566953*Abs(nn_total_layers/(nn_dropout_count - 9.846947))))
+        21      0.016006    0.5201  0.5677211/(nn_total_layers - log(nn_flops))**(0.23964685/(prm__lr**0.2510673*Abs(nn_total_layers/(nn_dropout_count + nn_has_residual - 9.847634))))
+        22      0.015998    0.5257  0.5747666/(nn_total_layers - log(nn_flops))**(0.25540197*Abs(1/(nn_total_layers/(nn_dropout_count - 9.846742) + sqrt(prm__lr)))/Abs(prm__lr**0.24470419))
+        23      0.015824       nan  0.579319/(nn_total_layers - log(nn_flops))**(0.27035177*Abs(0.77904516**nn_dropout_count - nn_dropout_count + 9.916559)/(nn_total_layers*prm__lr**0.24337554))
+        24      0.015795       nan  0.57738096/(nn_total_layers - log(nn_flops))**(0.26193377*Abs(0.83037627**(nn_dropout_count**2) - nn_dropout_count + 9.923787)/(nn_total_layers*prm__lr**0.24692184))
+        25      0.015211       nan  nn_total_layers**(-0.2999869/(prm__lr**0.21064095*(3.6863136 + (-nn_dropout_count + nn_total_layers/3.8354836)/(3.8306262 + 1.2820622/(1.2896254 - nn_dropout_count)))))*0.62954336
+        26      0.015193       nan  nn_total_layers**(-0.36104685/(prm__lr**0.19474857*(4.1585793 + (-nn_dropout_count + nn_total_layers/4.014978)/(3.8259203 + 0.9955867/(-nn_dropout_count + exp(prm__dropout))))))*0.6501048
+        27      0.014827       nan  nn_total_layers**(-0.3474579/(prm__lr**0.18529621*((-nn_dropout_count + nn_total_layers/4.141974)/(prm__lr**(nn_dropout_count*(nn_dropout_count - 1*1.4050618)) + 3.823752) + 4.1666236)))*0.6488774
+        28      0.014825       nan  0.6489466/nn_total_layers**(0.34743363/(prm__lr**0.18531342*((-nn_dropout_count + 0.241431009881771*nn_total_layers)/(prm__lr**(sqrt(nn_dropout_count)*(nn_dropout_count - 1.4050655)) + 3.8237567) + 4.166622)))
+        29      0.014769       nan  nn_total_layers**(-0.309238/(prm__lr**0.19314429*((-nn_dropout_count + nn_total_layers/4.1653523)/(-nn_has_residual + prm__lr**(nn_dropout_count*(nn_dropout_count - 1*1.4184375)) + 4.157063) + 4.158369)))*0.6359303
+        30      0.014595       nan  0.6605577/nn_total_layers**(0.35858157/(prm__lr**0.18265364*((-nn_dropout_count + 0.241306103065698*nn_total_layers)/(prm__lr**((nn_dropout_count - 1.4208736)*sqrt(nn_dropout_count + prm__lr)) + 3.8210576) + 4.165446)))
+
+
+======================================================================
+RECOMMENDED: Stage3_all8  (R²=0.5257)
