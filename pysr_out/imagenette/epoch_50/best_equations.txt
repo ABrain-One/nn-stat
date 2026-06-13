@@ -1,0 +1,57 @@
+PySR Symbolic Regression — imagenette epoch 50
+======================================================================
+
+Stage1_top3
+Features: ['nn_total_layers', 'prm__batch', 'nn_has_attention']
+Best R²: 0.2177
+
+Complexity   Loss        R²      Equation
+------------------------------------------------------------
+         1      0.027462    0.0466  0.567784300000000
+         4      0.026182    0.1063  Abs(nn_has_attention - 1*0.5766138)
+         5      0.024658    0.1859  0.6329365 - 1.8804522/nn_total_layers
+         6      0.024653    0.1868  sqrt(0.3903049 - 1.9089746/nn_total_layers)
+         7      0.024544    0.1869  0.6283761 + (-nn_has_attention - 1.788735)/nn_total_layers
+         8      0.022355    0.1956  Abs(nn_has_attention - 0.6527291 + 2.195757/nn_total_layers)
+        10      0.022332    0.1979  Abs(nn_has_attention - 0.6527291 + (nn_has_attention + 2.195757)/nn_total_layers)
+        11      0.022330    0.2076  Abs(nn_has_attention - 0.65461785 + 2.209963*exp(nn_has_attention)/nn_total_layers)
+        12      0.022090    0.2081  Abs(nn_has_attention + (0.0014442210074077/nn_total_layers)*(prm__batch + 1344.1986) - 0.6496447)
+        14      0.022031    0.2149  Abs(nn_has_attention + (prm__batch + 1344.9244)/(nn_total_layers*690.5607 + prm__batch) - 0.6487668)
+        15      0.022026    0.2177  Abs((nn_has_attention + 0.32842085)*(-1.0215588) + exp((-prm__batch - 1686.4994)/((nn_total_layers*662.5131))))
+        17      0.021760       nan  Abs((nn_has_attention + 0.3346742)*(-1.0158644) + exp(prm__batch*(-0.000108801476) - 773.26733*0.00303139019706007/nn_total_layers))
+        19      0.021746       nan  Abs((nn_has_attention + 0.34216294)/(-1.0158644) + exp(prm__batch*(-0.00015842998)/1.4138308 - 773.843*0.0030436017252352/nn_total_layers))
+        20      0.021723       nan  Abs((nn_has_attention + 0.3346742)/(-1.0158644) + exp(Abs(prm__batch - 1*32.45471)*(-0.00015842998) - 773.843*0.0030436017252352/nn_total_layers))
+        21      0.021561       nan  Abs((nn_has_attention + 0.3295331)/(-1.0158644) + exp((prm__batch + 328.5581/prm__batch)*(-0.00015842998) - 773.843*0.0030436017252352/nn_total_layers))
+        23      0.021484       nan  Abs(0.984383348801277*nn_has_attention - exp(-0.00015842998*Abs(prm__batch - 328.5581/sqrt(prm__batch)) - 2.35526988986118/nn_total_layers) + 0.324386896518866)
+
+Stage2_top5
+Features: ['nn_total_layers', 'prm__batch', 'nn_has_attention', 'nn_dropout_count', 'nn_flops']
+Best R²: 0.2414
+
+Complexity   Loss        R²      Equation
+------------------------------------------------------------
+         1      0.027462    0.0466  0.567755160000000
+         4      0.026182    0.1296  Abs(nn_has_attention - 0.5766523)
+         5      0.024658    0.1863  0.6329141 - 1.8797972/nn_total_layers
+         6      0.024534    0.1882  0.61111605/exp(0.90271175**nn_total_layers)
+         7      0.023904    0.1923  0.6329141 - nn_dropout_count**nn_has_attention/nn_total_layers
+         8      0.022345    0.2017  0.6329141 - Abs((nn_dropout_count - 2.3018358)/nn_total_layers)
+        10      0.022294    0.2047  0.6361848**(nn_has_attention + exp(0.9474935**(nn_dropout_count + nn_total_layers)))
+        11      0.022180    0.2068  0.63653326**(nn_has_attention + exp(0.949689**(nn_dropout_count**2 + nn_total_layers)))
+        12      0.021922    0.2120  0.63837886**(nn_has_attention + exp(0.69633776**nn_dropout_count*0.957017**nn_total_layers))
+        13      0.021911    0.2146  0.6387395**(nn_has_attention + exp(0.5947733**(sqrt(nn_dropout_count))*0.9573351**nn_total_layers))
+        14      0.021840   -0.4487  0.639635**(nn_has_attention + exp(0.639635**nn_dropout_count*0.7101969**(1.0406126**nn_total_layers)))
+        15      0.021783   -0.2481  0.643031**(nn_has_attention + exp(0.96407896**nn_total_layers))*nn_dropout_count**(nn_dropout_count/exp(nn_dropout_count))
+        16      0.021639   -0.0135  0.63444215**(nn_has_attention + exp(0.95242435**nn_total_layers))*nn_dropout_count**(nn_dropout_count*exp(-nn_dropout_count)/2)
+        17      0.021569    0.0020  0.6327508**(nn_has_attention + exp(0.95534986**nn_total_layers))*nn_dropout_count**(nn_dropout_count*0.6372589/exp(nn_dropout_count))
+        18      0.021270    0.2412  0.6548783**(nn_has_attention + (0.64547235 - 0.45330083**nn_dropout_count)*Abs(0.97439003**nn_total_layers - 0.16065675) + 0.95274276)
+        20      0.021207    0.2414  0.67175585**(Abs(nn_has_attention*(-1.3377634) + (0.93342716 - 0.44808638**nn_dropout_count)*(0.9742337**nn_total_layers - 0.1609345)) + 0.950059)
+        22      0.021079       nan  0.6517339**(Abs(nn_has_attention + (0.34649995 - (-0.34106678**nn_dropout_count + 1.044917**nn_dropout_count))*(0.96836585**nn_total_layers - 0.098844916)) + 0.9424584)
+        24      0.020959       nan  0.6486887**(Abs(nn_has_attention + (0.34088475 - (-0.34088475**nn_dropout_count + (prm__batch**0.010159564)**nn_dropout_count))*(0.9676863**nn_total_layers - 0.0960231)) + 0.94543093)
+        26      0.020839       nan  0.6554193**(((0.9818802**nn_total_layers - 1*1.0422436)**(nn_dropout_count + nn_has_attention) + 0.87156475)*Abs(-0.9724984**nn_total_layers + nn_has_attention + 0.14022878) + 0.9818802) + 0.01925523
+        28      0.020838       nan  0.6554193**(((0.9818802**(nn_total_layers - 1*0.44613707) - 1*1.0422436)**(nn_dropout_count + nn_has_attention) + 0.87156475)*Abs(-0.9724984**nn_total_layers + nn_has_attention + 0.14022878) + 0.9818802) + 0.01925523
+        30      0.020833       nan  0.6554193**(((0.9818802**nn_total_layers - 1*1.0422436)**(nn_dropout_count + nn_has_attention) + 0.87156475)*Abs(-1*0.9724984**nn_total_layers*0.9818802 + nn_has_attention + 0.14022878) + prm__batch/prm__batch) + 0.01925523
+
+
+======================================================================
+RECOMMENDED: Stage2_top5  (R²=0.2414)

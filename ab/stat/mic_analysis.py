@@ -75,7 +75,6 @@ FEATURE_ALLOWLIST = [
     "prm__lr",
     "prm__batch",
     "prm__dropout",
-    "prm__weight_decay",
     "prm__momentum",
 ]
 

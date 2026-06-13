@@ -1,0 +1,4 @@
+# Large generated data files that exceed GitHub's size limits
+pooled_out/
+dataset_splits/epoch_1_5_50/*.csv
+universal_out/pooled_all_datasets.csv

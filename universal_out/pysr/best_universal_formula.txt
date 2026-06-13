@@ -1,0 +1,85 @@
+Universal Symbolic Regression — Best Formula
+======================================================================
+
+TARGET:   accuracy_znorm_ds  (z-scored within dataset)
+FEATURES: ['epoch_log', 'prm__batch', 'nn_total_layers', 'nn_max_depth']
+
+CHOSEN EQUATION
+----------------------------------------------------------------------
+  Stage:      Stage1_top3
+  Complexity: 16
+  Train R²:   0.2757
+  Formula:    epoch_log/2.4675765 - (-2.9465007e-6)*nn_total_layers**2 - 0.13939767/(nn_total_layers/prm__batch + 0.13320917)
+
+ALL STAGES (POOLED RUN)
+----------------------------------------------------------------------
+  Stage1_top3                          R²=0.2757
+  Stage2_top5                          R²=0.2637
+
+LODO CROSS-VALIDATION SUMMARY
+----------------------------------------------------------------------
+  cifar-100             best_test_r2=0.3648
+  imagenette            best_test_r2=0.3470
+  cifar-10              best_test_r2=0.2712
+  places365             best_test_r2=0.1969
+  mnist                 best_test_r2=0.1954
+  svhn                  best_test_r2=0.1300
+  celeba-gender         best_test_r2=0.1122
+
+  Mean LODO R²: 0.2311
+  Datasets with R²>0: 7/7
+  Universality claim (R²>0 on majority): DEFENSIBLE
+
+EPOCH GENERALIZATION (train {1,5} → test epoch 50)
+----------------------------------------------------------------------
+  Best train R² (epochs 1,5): 0.2584
+  Best test R²  (epoch 50):   0.0432
+
+PARETO FRONT — ALL STAGES
+----------------------------------------------------------------------
+
+Stage1_top3
+Features: ['epoch_log', 'prm__batch', 'nn_total_layers']
+Complexity          Loss    R²_train  Equation
+-----------------------------------------------------------------
+         1      0.998424      0.0968  -0.000138082100000000
+         3      0.901729      0.1996  epoch_log*0.26897314
+         5      0.839294      0.2147  epoch_log*0.4446731 - 1*0.32268918
+         7      0.799119      0.2401  epoch_log/2.2812383 - 7.915789/nn_total_layers
+         8      0.794502      0.2414  0.45632762*epoch_log - log(prm__batch**0.09346366)
+         9      0.784070      0.2453  (epoch_log - (prm__batch**0.15301935 - 1.1037362))*0.4120152
+        10      0.773391      0.2470  0.408186456961146*epoch_log - 0.11414866/sqrt(nn_total_layers/prm__batch)
+        11      0.758673      0.2614  epoch_log/2.4031012 - 0.12980795/(nn_total_layers/prm__batch + 0.123757556)
+        13      0.757409      0.2641  epoch_log/2.4675765 - 0.13939767/(nn_total_layers/(prm__batch + 2.4675765) + 0.13320917)
+        14      0.753489      0.2746  epoch_log/2.4675765 - 0.13939767/(nn_total_layers/(prm__batch + exp(2.4675765)) + 0.13320917)
+        15      0.751765      0.2747  epoch_log/2.3175318 - 0.13939767/(nn_total_layers/prm__batch + 0.13320917) - 0.37596714/prm__batch
+        16      0.737464      0.2757  epoch_log/2.4675765 - (-2.9465007e-6)*nn_total_layers**2 - 0.13939767/(nn_total_layers/prm__batch + 0.13320917)
+        18      0.735711         nan  epoch_log/2.4675765 - (-2.9465007e-6)*nn_total_layers**2 - 0.13939767/(nn_total_layers/(prm__batch + 2.4675765) + 0.13320917)
+        19      0.734693         nan  epoch_log/2.4675765 - (-2.9465007e-6)*nn_total_layers**2 - 0.13939767/(nn_total_layers/(prm__batch + exp(1.4202749)) + 0.13320917)
+        20      0.724210         nan  epoch_log/2.360404 - (-3.0578146e-6)*nn_total_layers**2 + (-0.09219224 - 3.808635/prm__batch)/(nn_total_layers/prm__batch + 0.084442414)
+        21      0.724136         nan  epoch_log/2.0836065 - (-3.0578146e-6)*nn_total_layers**2 + (-0.09195858 - 4.282449/Abs(prm__batch))/(nn_total_layers/prm__batch + 0.084442414)
+        22      0.723181         nan  epoch_log/2.360404 - (-3.0578146e-6)*nn_total_layers**2 + (-0.09219224 - 4.050336/prm__batch)/(nn_total_layers/prm__batch + 0.084442414) + 0.04670892
+        26      0.718894         nan  epoch_log/2.360404 - (-3.0578146e-6)*nn_total_layers**2 + (-0.09219224 + (0.34743732 - exp(exp(4.625269/nn_total_layers)))/prm__batch)/(nn_total_layers/prm__batch + 0.084442414)
+
+Stage2_top5
+Features: ['epoch_log', 'prm__batch', 'nn_total_layers', 'nn_max_depth']
+Complexity          Loss    R²_train  Equation
+-----------------------------------------------------------------
+         1      0.998424      0.0968  -0.000367886820000000
+         3      0.901729      0.1996  epoch_log*0.26972932
+         5      0.839295      0.2296  epoch_log*0.4447714 - 0.3202212
+         7      0.799117      0.2376  -(-0.4421982)*epoch_log - 8.099648/nn_total_layers
+         8      0.786476      0.2499  0.38985837*epoch_log - 0.38985837*sqrt(prm__batch)/nn_total_layers
+         9      0.769175      0.2560  0.48605973*epoch_log - 0.48605973*log(prm__batch)/sqrt(nn_total_layers)
+        11      0.762421      0.2591  -(-0.4281436)*epoch_log + prm__batch**0.25653577*(-2.5030782)/nn_total_layers
+        13      0.761224      0.2620  -(-0.44009063)*epoch_log + (prm__batch + 3.1103508)**0.25653577*(-2.5030782)/nn_total_layers
+        14      0.748938      0.2628  0.40915355*epoch_log + 0.40915355*nn_total_layers**0.17823374 - 0.0173855632085064*sqrt(prm__batch) - 0.8530732
+        16      0.742855      0.2637  0.45043927*epoch_log - 0.146643143922622*prm__batch**(1/4) + 0.45043927*log(nn_total_layers**0.5693055) - 0.767586713330096
+        18      0.741977         nan  0.45043927*epoch_log - 0.146643143922622*prm__batch**(1/4) + 0.45043927*log((-epoch_log + nn_total_layers)**0.5693055) - 0.767586713330096
+        19      0.739772         nan  0.42786747*epoch_log + 0.42786747*nn_total_layers**0.23277387 - 0.42786747*nn_total_layers**log(0.14848408*log(prm__batch) + 0.13229677) - 1.0604634
+        20      0.736969         nan  0.42786747*epoch_log + 0.42786747*nn_total_layers**0.23277387 - 0.42786747*log(nn_total_layers**((0.14848408*log(prm__batch) - 0.36372623)**2)) - 1.0744716
+        22      0.736880         nan  0.42786747*epoch_log + 0.42786747*nn_total_layers**0.23277387 - 0.42786747*log(nn_total_layers**((0.14848408*log(prm__batch) - 0.338287794869683)**2)) - 1.0604634
+        23      0.736027         nan  0.42786747*epoch_log + 0.42786747*(nn_total_layers - 1.8518286)**0.23277387 - 0.42786747*log(nn_total_layers**((0.14848408*log(prm__batch) - 0.36372623)**2)) - 1.0604634
+        24      0.735584         nan  0.42786747*epoch_log + 0.42786747*nn_total_layers**0.23277387 - 0.42786747*log(nn_total_layers**((0.14848408*log(3.20909071216943*epoch_log + prm__batch) - 0.36372623)**2)) - 1.0744716
+        26      0.735101         nan  0.42786747*epoch_log + 0.42786747*(nn_total_layers - 1.8518286)**0.23277387 - 0.42786747*log(nn_total_layers**((0.14848408*log(prm__batch + Abs(epoch_log)) - 0.36372623)**2)) - 1.0604634
+        28      0.734455         nan  0.42786747*epoch_log + 0.42786747*(nn_total_layers - 1.8518286)**0.23277387 - 0.42786747*log(nn_total_layers**((0.14848408*log(0.17132096**(0.5280181 - epoch_log) + prm__batch) - 0.36372623)**2)) - 1.0604634

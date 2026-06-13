@@ -1,0 +1,109 @@
+======================================================================
+PHASE 1 — UNIVERSAL CORRELATION ANALYSIS
+======================================================================
+  Pooled CSV : /home/divyeshdhanani/Desktop/Pipline/nn-stat/universal_out/pooled_all_datasets.csv
+  Output dir : /home/divyeshdhanani/Desktop/Pipline/nn-stat/universal_out/correlation
+  Target     : accuracy_znorm_ds
+  Features   : 12  ['epoch_log', 'nn_total_params', 'nn_flops', 'nn_total_layers', 'nn_max_depth', 'nn_has_attention', 'nn_has_residual', 'nn_dropout_count', 'prm__lr', 'prm__batch', 'prm__dropout', 'prm__momentum']
+  dcor       : full data, AVL O(n log n), analytical t-test + BH-FDR
+  MIC        : 3000/group subsample, 200 permutations + BH-FDR
+  FDR α      : 0.05
+  Min samples: 30
+======================================================================
+
+Loading pooled dataset ...
+  Loaded 246,908 rows × 112 cols
+  Usable features: 12  ['epoch_log', 'nn_total_params', 'nn_flops', 'nn_total_layers', 'nn_max_depth', 'nn_has_attention', 'nn_has_residual', 'nn_dropout_count', 'prm__lr', 'prm__batch', 'prm__dropout', 'prm__momentum']
+
+──────────────────────────────────────────────────────────────────────
+APPROACH A1 — POOLED dcor (full data)
+──────────────────────────────────────────────────────────────────────
+
+  [Approach A — dcor] n=246,908  features=12
+  dcor:   0%|          | 0/12 [00:00<?, ?feat/s]  dcor:   0%|          | 0/12 [00:00<?, ?feat/s, feat=epoch_log]  dcor:   8%|▊         | 1/12 [00:00<00:06,  1.79feat/s, feat=epoch_log]  dcor:   8%|▊         | 1/12 [00:00<00:06,  1.79feat/s, feat=nn_total_params]  dcor:  17%|█▋        | 2/12 [00:01<00:05,  1.77feat/s, feat=nn_total_params]  dcor:  17%|█▋        | 2/12 [00:01<00:05,  1.77feat/s, feat=nn_flops]         dcor:  25%|██▌       | 3/12 [00:01<00:05,  1.77feat/s, feat=nn_flops]  dcor:  25%|██▌       | 3/12 [00:01<00:05,  1.77feat/s, feat=nn_total_layers]  dcor:  33%|███▎      | 4/12 [00:02<00:04,  1.78feat/s, feat=nn_total_layers]  dcor:  33%|███▎      | 4/12 [00:02<00:04,  1.78feat/s, feat=nn_max_depth]     dcor:  42%|████▏     | 5/12 [00:02<00:03,  1.81feat/s, feat=nn_max_depth]  dcor:  42%|████▏     | 5/12 [00:02<00:03,  1.81feat/s, feat=nn_has_attention]  dcor:  50%|█████     | 6/12 [00:03<00:03,  1.80feat/s, feat=nn_has_attention]  dcor:  50%|█████     | 6/12 [00:03<00:03,  1.80feat/s, feat=nn_has_residual]   dcor:  58%|█████▊    | 7/12 [00:03<00:02,  1.80feat/s, feat=nn_has_residual]  dcor:  58%|█████▊    | 7/12 [00:03<00:02,  1.80feat/s, feat=nn_dropout_count]  dcor:  67%|██████▋   | 8/12 [00:04<00:02,  1.80feat/s, feat=nn_dropout_count]  dcor:  67%|██████▋   | 8/12 [00:04<00:02,  1.80feat/s, feat=prm__lr]           dcor:  75%|███████▌  | 9/12 [00:05<00:01,  1.78feat/s, feat=prm__lr]  dcor:  75%|███████▌  | 9/12 [00:05<00:01,  1.78feat/s, feat=prm__batch]  dcor:  83%|████████▎ | 10/12 [00:05<00:01,  1.79feat/s, feat=prm__batch]  dcor:  83%|████████▎ | 10/12 [00:05<00:01,  1.79feat/s, feat=prm__dropout]  dcor:  92%|█████████▏| 11/12 [00:06<00:00,  1.91feat/s, feat=prm__dropout]  dcor:  92%|█████████▏| 11/12 [00:06<00:00,  1.91feat/s, feat=prm__momentum]  dcor: 100%|██████████| 12/12 [00:06<00:00,  1.85feat/s, feat=prm__momentum]  dcor: 100%|██████████| 12/12 [00:06<00:00,  1.82feat/s, feat=prm__momentum]
+
+  Completed in 6.6s
+  FDR-significant features: 12 / 12
+         feature  n_samples     dcor  dcor_pval_fdr  dcor_significant  spearman
+       epoch_log     246908 0.377106            0.0              True  0.392831
+      prm__batch     246908 0.255806            0.0              True -0.225908
+ nn_total_layers     245398 0.167525            0.0              True  0.161383
+        nn_flops     245398 0.125495            0.0              True  0.128761
+    nn_max_depth     245398 0.123854            0.0              True  0.107640
+         prm__lr     246908 0.110625            0.0              True  0.201666
+ nn_has_residual     245398 0.088577            0.0              True  0.070837
+   prm__momentum     246908 0.078066            0.0              True  0.076629
+ nn_total_params     245398 0.062618            0.0              True  0.035715
+nn_dropout_count     245398 0.051031            0.0              True -0.000002
+    prm__dropout     187570 0.044143            0.0              True -0.021072
+nn_has_attention     245398 0.021674            0.0              True -0.020962
+
+──────────────────────────────────────────────────────────────────────
+APPROACH A2 — POOLED MIC (stratified subsample)
+──────────────────────────────────────────────────────────────────────
+
+  [Approach A — MIC] subsample n=43,545  groups=21  perms=200  features=12
+  Group sizes: min=88  max=3000  total=43,545
+  MIC :   0%|          | 0/12 [00:00<?, ?feat/s]  MIC :   0%|          | 0/12 [00:00<?, ?feat/s, feat=epoch_log]                                                                  MIC :   0%|          | 0/12 [41:53<?, ?feat/s, feat=epoch_log]  MIC :   8%|▊         | 1/12 [41:53<7:40:43, 2513.03s/feat, feat=epoch_log]  MIC :   8%|▊         | 1/12 [41:53<7:40:43, 2513.03s/feat, feat=nn_total_params]                                                                                    MIC :   8%|▊         | 1/12 [1:57:53<7:40:43, 2513.03s/feat, feat=nn_total_params]  MIC :  17%|█▋        | 2/12 [1:57:53<10:19:35, 3717.52s/feat, feat=nn_total_params]  MIC :  17%|█▋        | 2/12 [1:57:53<10:19:35, 3717.52s/feat, feat=nn_flops]                                                                                       MIC :  17%|█▋        | 2/12 [3:13:30<10:19:35, 3717.52s/feat, feat=nn_flops]  MIC :  25%|██▌       | 3/12 [3:13:30<10:13:44, 4091.62s/feat, feat=nn_flops]  MIC :  25%|██▌       | 3/12 [3:13:30<10:13:44, 4091.62s/feat, feat=nn_total_layers]                                                                                       MIC :  25%|██▌       | 3/12 [4:01:18<10:13:44, 4091.62s/feat, feat=nn_total_layers]  MIC :  33%|███▎      | 4/12 [4:01:18<8:01:09, 3608.73s/feat, feat=nn_total_layers]   MIC :  33%|███▎      | 4/12 [4:01:18<8:01:09, 3608.73s/feat, feat=nn_max_depth]                                                                                      MIC :  33%|███▎      | 4/12 [4:43:32<8:01:09, 3608.73s/feat, feat=nn_max_depth]  MIC :  42%|████▏     | 5/12 [4:43:32<6:15:46, 3220.99s/feat, feat=nn_max_depth]  MIC :  42%|████▏     | 5/12 [4:43:32<6:15:46, 3220.99s/feat, feat=nn_has_attention]                                                                                       MIC :  42%|████▏     | 5/12 [4:43:33<6:15:46, 3220.99s/feat, feat=nn_has_attention]  MIC :  50%|█████     | 6/12 [4:43:33<3:32:37, 2126.17s/feat, feat=nn_has_attention]  MIC :  50%|█████     | 6/12 [4:43:33<3:32:37, 2126.17s/feat, feat=nn_has_residual]                                                                                       MIC :  50%|█████     | 6/12 [4:43:42<3:32:37, 2126.17s/feat, feat=nn_has_residual]  MIC :  58%|█████▊    | 7/12 [4:43:42<1:59:30, 1434.03s/feat, feat=nn_has_residual]  MIC :  58%|█████▊    | 7/12 [4:43:42<1:59:30, 1434.03s/feat, feat=nn_dropout_count]                                                                                       MIC :  58%|█████▊    | 7/12 [5:27:24<1:59:30, 1434.03s/feat, feat=nn_dropout_count]  MIC :  67%|██████▋   | 8/12 [5:27:24<2:00:48, 1812.17s/feat, feat=nn_dropout_count]  MIC :  67%|██████▋   | 8/12 [5:27:24<2:00:48, 1812.17s/feat, feat=prm__lr]                                                                                       MIC :  67%|██████▋   | 8/12 [6:56:00<2:00:48, 1812.17s/feat, feat=prm__lr]  MIC :  75%|███████▌  | 9/12 [6:56:00<2:25:22, 2907.56s/feat, feat=prm__lr]  MIC :  75%|███████▌  | 9/12 [6:56:00<2:25:22, 2907.56s/feat, feat=prm__batch]                                                                                 MIC :  75%|███████▌  | 9/12 [7:38:47<2:25:22, 2907.56s/feat, feat=prm__batch]  MIC :  83%|████████▎ | 10/12 [7:38:47<1:33:24, 2802.48s/feat, feat=prm__batch]  MIC :  83%|████████▎ | 10/12 [7:38:47<1:33:24, 2802.48s/feat, feat=prm__dropout]                                                                                    MIC :  83%|████████▎ | 10/12 [7:39:01<1:33:24, 2802.48s/feat, feat=prm__dropout]  MIC :  92%|█████████▏| 11/12 [7:39:01<32:29, 1949.15s/feat, feat=prm__dropout]    MIC :  92%|█████████▏| 11/12 [7:39:01<32:29, 1949.15s/feat, feat=prm__momentum]                                                                                   MIC :  92%|█████████▏| 11/12 [7:39:28<32:29, 1949.15s/feat, feat=prm__momentum]  MIC : 100%|██████████| 12/12 [7:39:28<00:00, 1364.33s/feat, feat=prm__momentum]  MIC : 100%|██████████| 12/12 [7:39:28<00:00, 2297.38s/feat, feat=prm__momentum]
+    epoch_log                       mic=0.2071  pval=0.0050  t=2513s
+    nn_total_params                 mic=0.0815  pval=0.0050  t=4561s
+    nn_flops                        mic=0.0789  pval=0.0050  t=4537s
+    nn_total_layers                 mic=0.0888  pval=0.0050  t=2868s
+    nn_max_depth                    mic=0.0959  pval=0.0050  t=2533s
+    nn_has_attention                mic=0.0294  pval=1.0000  t=1s
+    nn_has_residual                 mic=0.0443  pval=1.0000  t=9s
+    nn_dropout_count                mic=0.1099  pval=0.0050  t=2622s
+    prm__lr                         mic=0.1242  pval=0.0050  t=5316s
+    prm__batch                      mic=0.0831  pval=0.0050  t=2567s
+    prm__dropout                    mic=0.0466  pval=1.0000  t=14s
+    prm__momentum                   mic=0.0431  pval=1.0000  t=27s
+
+  Completed in 27568.7s
+  FDR-significant features (MIC): 8 / 12
+
+  Approach A results saved: /home/divyeshdhanani/Desktop/Pipline/nn-stat/ab/stat/../../universal_out/correlation/pooled_dcor_mic.csv
+
+──────────────────────────────────────────────────────────────────────
+APPROACH B — RANDOM-EFFECTS META-ANALYSIS
+──────────────────────────────────────────────────────────────────────
+  Loaded 231 per-dataset dcor rows (7 datasets, 3 epochs)
+  Meta-analysis completed in 0.0s
+
+  Universal features (pooled_dcor>0, I²<50.0%): 0 / 11
+         feature  pooled_dcor  ci_lower  ci_upper    I2  p_heterogeneity  universal
+      prm__batch     0.234514  0.194535  0.274493 99.08              0.0      False
+ nn_total_layers     0.172004  0.093296  0.250712 99.76              0.0      False
+ nn_total_params     0.169667  0.129406  0.209929 98.99              0.0      False
+         prm__lr     0.168702  0.143644  0.193760 97.15              0.0      False
+    nn_max_depth     0.165557  0.113559  0.217554 99.41              0.0      False
+nn_dropout_count     0.164820  0.127036  0.202603 98.85              0.0      False
+        nn_flops     0.124634  0.063328  0.185940 99.57              0.0      False
+ nn_has_residual     0.090005  0.031158  0.148851 99.53              0.0      False
+   prm__momentum     0.070153  0.002245  0.138061 99.65              0.0      False
+    prm__dropout     0.058240  0.018880  0.097600 98.44              0.0      False
+nn_has_attention     0.047419  0.035253  0.059585 85.08              0.0      False
+
+  Meta-analysis saved: /home/divyeshdhanani/Desktop/Pipline/nn-stat/ab/stat/../../universal_out/correlation/meta_analysis.csv
+
+──────────────────────────────────────────────────────────────────────
+GENERATING FIGURES
+──────────────────────────────────────────────────────────────────────
+  fig_pooled_bar.png  ✓
+  fig_forest_plot.png  ✓
+  fig_I2_bars.png  ✓
+  fig_dcor_heatmap.png  ✓
+  METHODOLOGY_universal_correlation.txt  ✓
+
+======================================================================
+PHASE 1 COMPLETE
+======================================================================
+  Output dir : /home/divyeshdhanani/Desktop/Pipline/nn-stat/universal_out/correlation
+
+  fig_forest_plot.png                                    485.7 KB
+  fig_I2_bars.png                                        165.2 KB
+  meta_analysis.csv                                        1.5 KB
+  fig_pooled_bar.png                                     233.3 KB
+  pooled_dcor_mic.csv                                      1.6 KB
+  METHODOLOGY_universal_correlation.txt                    1.5 KB
+  fig_dcor_heatmap.png                                   411.8 KB
+======================================================================

@@ -1,0 +1,12 @@
+dataset,target,feature,n_samples,dcor,dcor_pval,spearman,spearman_pval,abs_spearman
+imagenette,accuracy_epoch_50,nn_total_layers,620,0.219095,0.0,0.300411,0.0,0.300411
+imagenette,accuracy_epoch_50,prm__batch,639,0.20886,0.0,-0.030196,0.44607,0.030196
+imagenette,accuracy_epoch_50,nn_has_attention,620,0.208343,0.0,-0.190253,2e-06,0.190253
+imagenette,accuracy_epoch_50,nn_dropout_count,620,0.206752,0.0,0.085072,0.034187,0.085072
+imagenette,accuracy_epoch_50,nn_flops,620,0.195669,0.0,0.327881,0.0,0.327881
+imagenette,accuracy_epoch_50,prm__lr,639,0.175166,0.0,0.342317,0.0,0.342317
+imagenette,accuracy_epoch_50,nn_total_params,620,0.154683,0.0,0.173266,1.4e-05,0.173266
+imagenette,accuracy_epoch_50,nn_max_depth,620,0.120934,1e-06,0.086631,0.031021,0.086631
+imagenette,accuracy_epoch_50,prm__dropout,368,0.063374,0.789288,0.002146,0.967269,0.002146
+imagenette,accuracy_epoch_50,prm__momentum,639,0.063053,0.516301,0.036138,0.361757,0.036138
+imagenette,accuracy_epoch_50,nn_has_residual,620,0.059949,0.362582,0.047531,0.237283,0.047531

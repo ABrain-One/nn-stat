@@ -1,0 +1,12 @@
+dataset,target,feature,n_samples,dcor,dcor_pval,spearman,spearman_pval,abs_spearman
+places365,accuracy_epoch_50,nn_has_residual,87,0.329452,0.0,0.326433,0.002031,0.326433
+places365,accuracy_epoch_50,nn_total_layers,87,0.315263,3e-06,0.352367,0.000816,0.352367
+places365,accuracy_epoch_50,nn_max_depth,87,0.299296,4.6e-05,0.267365,0.012297,0.267365
+places365,accuracy_epoch_50,nn_dropout_count,87,0.245324,0.014906,0.224134,0.03689,0.224134
+places365,accuracy_epoch_50,nn_flops,87,0.211724,0.274797,0.278503,0.009001,0.278503
+places365,accuracy_epoch_50,prm__momentum,88,0.205743,0.222738,-0.040911,0.705097,0.040911
+places365,accuracy_epoch_50,nn_total_params,87,0.188866,0.443705,0.158563,0.142409,0.158563
+places365,accuracy_epoch_50,nn_has_attention,87,0.186129,0.210229,-0.163047,0.131318,0.163047
+places365,accuracy_epoch_50,prm__dropout,35,0.183341,0.77116,0.006723,0.969426,0.006723
+places365,accuracy_epoch_50,prm__lr,88,0.178781,0.395132,0.376721,0.000297,0.376721
+places365,accuracy_epoch_50,prm__batch,88,0.153635,0.652371,0.216277,0.042984,0.216277

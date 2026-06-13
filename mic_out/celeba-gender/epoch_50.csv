@@ -1,0 +1,12 @@
+dataset,target,feature,n_samples,mic,mic_pval,spearman,spearman_pval,abs_spearman
+celeba-gender,accuracy_epoch_50,prm__lr,413,0.322934,0.004975,0.398185,0.0,0.398185
+celeba-gender,accuracy_epoch_50,nn_dropout_count,405,0.221272,0.004975,-0.036574,0.462946,0.036574
+celeba-gender,accuracy_epoch_50,nn_flops,405,0.213227,0.004975,0.173214,0.000462,0.173214
+celeba-gender,accuracy_epoch_50,nn_total_params,405,0.198407,0.0199,0.063627,0.20132,0.063627
+celeba-gender,accuracy_epoch_50,prm__batch,413,0.197425,0.014925,-0.236768,1e-06,0.236768
+celeba-gender,accuracy_epoch_50,nn_total_layers,405,0.186206,0.039801,0.134622,0.006664,0.134622
+celeba-gender,accuracy_epoch_50,nn_max_depth,405,0.178294,0.094527,0.111408,0.024955,0.111408
+celeba-gender,accuracy_epoch_50,prm__dropout,254,0.173374,0.746269,-0.023496,0.709391,0.023496
+celeba-gender,accuracy_epoch_50,prm__momentum,413,0.163535,0.61194,0.07424,0.132006,0.07424
+celeba-gender,accuracy_epoch_50,nn_has_residual,405,0.160912,0.149254,0.065003,0.191726,0.065003
+celeba-gender,accuracy_epoch_50,nn_has_attention,405,0.09597,0.169154,0.00096,0.98464,0.00096

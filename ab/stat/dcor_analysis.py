@@ -66,7 +66,6 @@ FEATURE_ALLOWLIST = [
     "prm__lr",
     "prm__batch",
     "prm__dropout",
-    "prm__weight_decay",
     "prm__momentum",
 ]
 
@@ -204,7 +203,7 @@ def plot_fig1_mean_dcor(avg: pd.DataFrame, out_path: str) -> None:
     ax.set_yticks(y_pos)
     ax.set_yticklabels(labels, fontsize=9)
     ax.set_xlabel("Mean Distance Correlation (averaged across all datasets & epochs)", fontsize=9)
-    ax.set_title("Fig 1 — Feature Importance: Mean dcor across All Datasets & Epochs",
+    ax.set_title("Fig — Feature Importance: Mean dcor across All Datasets & Epochs",
                  fontsize=10, fontweight="bold")
     ax.set_xlim(0, min(1.0, df["mean_dcor"].max() * 1.45 + 0.02))
     ax.spines["top"].set_visible(False)

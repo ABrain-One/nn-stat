@@ -1,0 +1,12 @@
+dataset,target,feature,n_samples,dcor,dcor_pval,spearman,spearman_pval,abs_spearman
+cifar-10,accuracy_epoch_50,nn_total_layers,2039,0.290972,0.0,0.347676,0.0,0.347676
+cifar-10,accuracy_epoch_50,nn_flops,2039,0.282652,0.0,0.528872,0.0,0.528872
+cifar-10,accuracy_epoch_50,nn_max_depth,2039,0.253274,0.0,0.185578,0.0,0.185578
+cifar-10,accuracy_epoch_50,nn_total_params,2039,0.234584,0.0,0.454249,0.0,0.454249
+cifar-10,accuracy_epoch_50,prm__batch,2106,0.228077,0.0,-0.19292,0.0,0.19292
+cifar-10,accuracy_epoch_50,nn_has_attention,2039,0.13056,0.0,-0.118952,0.0,0.118952
+cifar-10,accuracy_epoch_50,prm__dropout,600,0.106615,0.001482,0.105181,0.009932,0.105181
+cifar-10,accuracy_epoch_50,prm__momentum,2106,0.084404,0.0,0.068089,0.001769,0.068089
+cifar-10,accuracy_epoch_50,nn_dropout_count,2039,0.082361,0.0,0.019414,0.380922,0.019414
+cifar-10,accuracy_epoch_50,nn_has_residual,2039,0.073635,0.0,0.028534,0.197774,0.028534
+cifar-10,accuracy_epoch_50,prm__lr,2106,0.0707,0.0,0.125154,0.0,0.125154
