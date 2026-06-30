@@ -121,4 +121,22 @@ Some recently added dependencies might be missing in the <b>AI Linux</b>. In thi
 
 #### The confidence intervals show how much results vary across different runs. They are not meant to compare models statistically or indicate which model is significantly better.
 
+## Citation
+
+If you find this project to be useful for your research, please consider citing our article:
+```bibtex
+@Article{ABrain.NN-Stat,
+	AUTHOR = {Dhanani, Divyesh Rameshbhai and Kayani, Faraz and U Din, Saif and Arslanian, Alice and Ignatov, Dmitry and Timofte, Radu},
+	TITLE = {Understanding the Performance of Deep Computer Vision Models: A Symbolic Regression Approach to Accuracy and Latency Prediction},
+	JOURNAL = {Sensors},
+	VOLUME = {26},
+	YEAR = {2026},
+	NUMBER = {13},
+	ARTICLE-NUMBER = {4093},
+	URL = {https://www.mdpi.com/1424-8220/26/13/4093},
+	ISSN = {1424-8220},
+	DOI = {10.3390/s26134093}
+}
+```
+
 #### The idea and leadership of Dr. Ignatov
