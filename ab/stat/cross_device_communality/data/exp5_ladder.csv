@@ -1,0 +1,31 @@
+precision,rung,pair,independence_level,provenance_pair,R2_factor_c1,R2_factor_c2,residual_corr,rho_S_pred_FACTOR,rho_S_obs,signed_error_obs_minus_pred,n
+fp32,A_cross-family-GPU,SM-F926B / GPU x 23106RN0DA / GPU,cross-family,involves-PRIOR,0.9908,0.9897,0.4305,0.9893,0.9877,-0.0016,491
+fp32,A_cross-family-GPU,SM-F926B / GPU x Redmi Note 9 Pro / GPU,cross-family,involves-PRIOR,0.9908,0.9962,-0.6483,0.9928,0.9838,-0.009,491
+fp32,A_cross-family-GPU,SM-F926B / GPU x SM-P613 / GPU,cross-family,involves-PRIOR,0.9908,0.9954,-0.7005,0.9924,0.9831,-0.0093,491
+fp32,A_cross-family-GPU,SM-F926B / GPU x STK-L21 / GPU,cross-family,involves-PRIOR,0.9908,0.95,-0.099,0.9672,0.9642,-0.003,491
+fp32,A_cross-family-GPU,23106RN0DA / GPU x Redmi Note 9 Pro / GPU,cross-family,NEW-only,0.9897,0.9962,-0.5393,0.9923,0.9844,-0.0078,491
+fp32,A_cross-family-GPU,23106RN0DA / GPU x SM-P613 / GPU,cross-family,NEW-only,0.9897,0.9954,-0.6269,0.9918,0.9837,-0.0082,491
+fp32,A_cross-family-GPU,23106RN0DA / GPU x STK-L21 / GPU,cross-family,NEW-only,0.9897,0.95,-0.1176,0.9667,0.9647,-0.002,491
+fp32,B_same-family-GPU,Redmi Note 9 Pro / GPU x SM-P613 / GPU,same-family-SD720G,NEW-only,0.9962,0.9954,0.4552,0.9954,0.9949,-0.0005,491
+fp32,A_cross-family-GPU,Redmi Note 9 Pro / GPU x STK-L21 / GPU,cross-family,NEW-only,0.9962,0.95,-0.1292,0.9702,0.971,0.0008,491
+fp32,A_cross-family-GPU,SM-P613 / GPU x STK-L21 / GPU,cross-family,NEW-only,0.9954,0.95,-0.1095,0.9697,0.9697,-0.0,491
+fp32,C_within-phone-CPUxGPU,SM-F926B / CPU x SM-F926B / GPU,within-phone,involves-PRIOR,0.694,0.9908,0.1954,0.8165,0.8299,0.0134,491
+fp32,C_within-phone-CPUxGPU,23106RN0DA / CPU x 23106RN0DA / GPU,within-phone,NEW-only,0.7389,0.9897,0.0914,0.8438,0.8388,-0.005,491
+fp32,C_within-phone-CPUxGPU,Redmi Note 9 Pro / CPU x Redmi Note 9 Pro / GPU,within-phone,NEW-only,0.7284,0.9962,-0.4829,0.8403,0.8078,-0.0325,491
+fp32,C_within-phone-CPUxGPU,SM-P613 / CPU x SM-P613 / GPU,within-phone,NEW-only,0.7326,0.9954,-0.4156,0.8425,0.8045,-0.038,491
+fp32,C_within-phone-CPUxGPU,STK-L21 / CPU x STK-L21 / GPU,within-phone,NEW-only,0.7462,0.95,0.0071,0.8299,0.8156,-0.0143,491
+int8,A_cross-family-GPU,SM-F926B / GPU x 23106RN0DA / GPU,cross-family,involves-PRIOR,0.9892,0.9849,-0.1026,0.9858,0.9787,-0.007,503
+int8,A_cross-family-GPU,SM-F926B / GPU x Redmi Note 9 Pro / GPU,cross-family,involves-PRIOR,0.9892,0.9856,0.7007,0.9862,0.9898,0.0036,503
+int8,A_cross-family-GPU,SM-F926B / GPU x SM-P613 / GPU,cross-family,involves-PRIOR,0.9892,0.9849,0.6739,0.9857,0.9898,0.004,503
+int8,A_cross-family-GPU,SM-F926B / GPU x STK-L21 / GPU,cross-family,involves-PRIOR,0.9892,0.92,-0.1486,0.9496,0.9391,-0.0106,503
+int8,A_cross-family-GPU,23106RN0DA / GPU x Redmi Note 9 Pro / GPU,cross-family,NEW-only,0.9849,0.9856,-0.2291,0.9838,0.9734,-0.0104,503
+int8,A_cross-family-GPU,23106RN0DA / GPU x SM-P613 / GPU,cross-family,NEW-only,0.9849,0.9849,-0.2533,0.9834,0.9723,-0.0111,503
+int8,A_cross-family-GPU,23106RN0DA / GPU x STK-L21 / GPU,cross-family,NEW-only,0.9849,0.92,0.4031,0.9474,0.9587,0.0113,503
+int8,B_same-family-GPU,Redmi Note 9 Pro / GPU x SM-P613 / GPU,same-family-SD720G,NEW-only,0.9856,0.9849,0.9502,0.9838,0.9958,0.0121,503
+int8,A_cross-family-GPU,Redmi Note 9 Pro / GPU x STK-L21 / GPU,cross-family,NEW-only,0.9856,0.92,-0.1481,0.9478,0.9361,-0.0116,503
+int8,A_cross-family-GPU,SM-P613 / GPU x STK-L21 / GPU,cross-family,NEW-only,0.9849,0.92,-0.1572,0.9473,0.9334,-0.0139,503
+int8,C_within-phone-CPUxGPU,SM-F926B / CPU x SM-F926B / GPU,within-phone,involves-PRIOR,0.989,0.9892,-0.1543,0.988,0.9836,-0.0044,503
+int8,C_within-phone-CPUxGPU,23106RN0DA / CPU x 23106RN0DA / GPU,within-phone,NEW-only,0.9934,0.9849,-0.4152,0.9881,0.9861,-0.0019,503
+int8,C_within-phone-CPUxGPU,Redmi Note 9 Pro / CPU x Redmi Note 9 Pro / GPU,within-phone,NEW-only,0.9844,0.9856,-0.8078,0.9835,0.9691,-0.0144,503
+int8,C_within-phone-CPUxGPU,SM-P613 / CPU x SM-P613 / GPU,within-phone,NEW-only,0.9847,0.9849,-0.7921,0.9833,0.9676,-0.0157,503
+int8,C_within-phone-CPUxGPU,STK-L21 / CPU x STK-L21 / GPU,within-phone,NEW-only,0.9075,0.92,-0.1147,0.9061,0.8971,-0.009,503

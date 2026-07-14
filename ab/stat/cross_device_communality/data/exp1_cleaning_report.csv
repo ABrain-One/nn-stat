@@ -1,0 +1,21 @@
+precision,phone,backend,n_files,dropped_invalid,dropped_degenerate,kept
+fp32,SM-F926B,cpu,586,0,14,572
+fp32,23106RN0DA,cpu,591,0,16,575
+fp32,Redmi Note 9 Pro,cpu,586,0,16,570
+fp32,SM-P613,cpu,586,0,17,569
+fp32,STK-L21,cpu,581,44,41,496
+fp32,SM-F926B,gpu,586,0,4,582
+fp32,23106RN0DA,gpu,591,0,25,566
+fp32,Redmi Note 9 Pro,gpu,586,0,14,572
+fp32,SM-P613,gpu,586,0,14,572
+fp32,STK-L21,gpu,581,44,31,506
+int8,SM-F926B,cpu,577,0,5,572
+int8,23106RN0DA,cpu,582,0,16,566
+int8,Redmi Note 9 Pro,cpu,578,0,14,564
+int8,SM-P613,cpu,578,0,14,564
+int8,STK-L21,cpu,581,47,25,509
+int8,SM-F926B,gpu,577,0,0,577
+int8,23106RN0DA,gpu,582,0,14,568
+int8,Redmi Note 9 Pro,gpu,578,0,0,578
+int8,SM-P613,gpu,578,0,0,578
+int8,STK-L21,gpu,581,47,27,508

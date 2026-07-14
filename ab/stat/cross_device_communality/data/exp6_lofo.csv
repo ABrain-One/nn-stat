@@ -1,0 +1,9 @@
+precision,held_out_family,held_out_provenance,n_target_channels,n_reference_channels,pred_mean_rhoS_fullref,obs_mean_rhoS_fullref,abs_error_fullref,min_reference_set_size_within_0.05,worstcase_err_k1,worstcase_err_k2,best_single_reference,best_single_reference_err,n
+fp32,SD888,involves-PRIOR,1,4,0.9854,0.9797,0.0057,1,0.0093,0.0091,23106RN0DA / GPU,0.0016,491
+fp32,HelioMT6768,held-out-NEW,1,4,0.985,0.9801,0.0049,1,0.0081,0.008,SM-F926B / GPU,0.0016,491
+fp32,SD720G,held-out-NEW,2,3,0.9849,0.9793,0.0056,1,0.0091,0.0085,STK-L21 / GPU,0.0004,491
+fp32,Kirin710,held-out-NEW,1,4,0.9685,0.9674,0.0011,1,0.0031,0.0025,SM-P613 / GPU,0.0,491
+int8,SD888,involves-PRIOR,1,4,0.9768,0.9743,0.0025,1,0.0106,0.0088,Redmi Note 9 Pro / GPU,0.0036,503
+int8,HelioMT6768,held-out-NEW,1,4,0.9751,0.9708,0.0043,1,0.0113,0.0107,SM-F926B / GPU,0.007,503
+int8,SD720G,held-out-NEW,2,3,0.9724,0.9658,0.0066,1,0.0128,0.0118,SM-F926B / GPU,0.0038,503
+int8,Kirin710,held-out-NEW,1,4,0.948,0.9418,0.0062,1,0.0139,0.0128,SM-F926B / GPU,0.0106,503

@@ -1,0 +1,12 @@
+# Working directory — scripts write regenerated results here
+outputs/*
+!outputs/.gitkeep
+
+# Large external raw data (download separately; see data/nnmeter_raw/README.txt)
+data/nnmeter_raw/*.jsonl
+data/nnmeter_raw/*.zip
+data/nn_stat_tflite/
+
+__pycache__/
+*.pyc
+.DS_Store

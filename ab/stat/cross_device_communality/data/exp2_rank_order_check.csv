@@ -1,0 +1,3 @@
+precision,n,mae,max_error,max_error_pair,pred_in_CI_count,rank_order_spearman_pred_vs_obs,kirin_pairs_observed_lowest,sd720g_samefamily_highest_among_nonkirin,sd720g_samefamily_obs,nonkirin_max_obs
+fp32,491,0.00422,0.0093,SM-F926B x SM-P613,6,0.8060606060606059,True,True,0.9949,0.9949
+int8,503,0.009569999999999999,0.014,SM-P613 x STK-L21,4,0.8435741575161889,True,True,0.9958,0.9958
