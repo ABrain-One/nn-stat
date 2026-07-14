@@ -187,8 +187,7 @@ observed value.
 This repository accompanies the paper:
 
 > Faraz Kayani, Sarmad Kayani, Radu Timofte, Dmitry Ignatov.
-> "Cross-Device Neural Architecture Latency Rank Transfer from Device
-> Communality: Theory and Validation." Manuscript under review, 2026.
+> "Communality, Not Reliability: A Closed-Form Law for Cross-Device Neural Architecture Latency Rank Transfer" Manuscript under review, 2026.
 
 A full citation (venue and DOI) will be added here upon publication.
 
