@@ -1,0 +1,7 @@
+# Python 3.10.12 (tested). Create an env, then: pip install -r requirements.txt
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.15.3
+matplotlib==3.10.8
+factor_analyzer==0.5.1
+pingouin==0.6.1

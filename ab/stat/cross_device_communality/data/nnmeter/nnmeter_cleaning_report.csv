@@ -1,0 +1,5 @@
+channel,device,key,n_rows,missing_or_null,nonpositive,valid
+Pixel4 / CPU,Cortex-A76 CPU,cortexA76cpu_tflite21,23998,80,0,23918
+Mi9 / GPU,Adreno 640 GPU,adreno640gpu_tflite21,23998,2005,0,21993
+Pixel3XL / GPU,Adreno 630 GPU,adreno630gpu_tflite21,23998,2005,0,21993
+Myriad / VPU,Intel Myriad VPU,myriadvpu_openvino2019r2,23998,280,0,23718

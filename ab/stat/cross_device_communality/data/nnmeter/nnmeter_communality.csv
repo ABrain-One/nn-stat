@@ -1,0 +1,5 @@
+channel,device,source,n,beta_loading,uniqueness,R2_factor,R2_variance,loglat_var,lat_ms_min,lat_ms_median,lat_ms_max
+Pixel4 / CPU,Cortex-A76 CPU,"nn-Meter (real, measured)",21643,-0.9916,0.0168,0.9832,N/A (no per-run std in nn-Meter),1.4833,7.145,109.719,10288.8
+Mi9 / GPU,Adreno 640 GPU,"nn-Meter (real, measured)",21643,-0.9977,0.0045,0.9955,N/A (no per-run std in nn-Meter),1.1048,0.398,20.868,1263.1
+Pixel3XL / GPU,Adreno 630 GPU,"nn-Meter (real, measured)",21643,-0.9981,0.0038,0.9962,N/A (no per-run std in nn-Meter),1.265,0.403,22.718,1716.2
+Myriad / VPU,Intel Myriad VPU,"nn-Meter (real, measured)",21643,-0.7576,0.426,0.574,N/A (no per-run std in nn-Meter),0.7533,2.052,29.69,1467.2

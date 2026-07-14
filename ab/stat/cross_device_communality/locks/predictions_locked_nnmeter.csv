@@ -1,0 +1,7 @@
+pair,channel_1,channel_2,device_1,device_2,R2_factor_c1,R2_factor_c2,rho_S_pred_FACTOR,pair_class,structure,source,report_group
+Mi9 / GPU x Myriad / VPU,Mi9 / GPU,Myriad / VPU,Adreno 640 GPU,Intel Myriad VPU,0.996,0.574,0.7404,discriminating,cross-device,"nn-Meter (real, measured)",VPU/discriminating (THE RESULT)
+Pixel3XL / GPU x Myriad / VPU,Pixel3XL / GPU,Myriad / VPU,Adreno 630 GPU,Intel Myriad VPU,0.996,0.574,0.7404,discriminating,cross-device,"nn-Meter (real, measured)",VPU/discriminating (THE RESULT)
+Pixel4 / CPU x Myriad / VPU,Pixel4 / CPU,Myriad / VPU,Cortex-A76 CPU,Intel Myriad VPU,0.983,0.574,0.7353,discriminating,cross-device,"nn-Meter (real, measured)",VPU/discriminating (THE RESULT)
+Mi9 / GPU x Pixel3XL / GPU,Mi9 / GPU,Pixel3XL / GPU,Adreno 640 GPU,Adreno 630 GPU,0.996,0.996,0.9956,saturated,same-vendor-GPU-near-family,"nn-Meter (real, measured)",saturated (do NOT pool into MAE)
+Pixel4 / CPU x Mi9 / GPU,Pixel4 / CPU,Mi9 / GPU,Cortex-A76 CPU,Adreno 640 GPU,0.983,0.996,0.9884,saturated,cross-device,"nn-Meter (real, measured)",saturated (do NOT pool into MAE)
+Pixel4 / CPU x Pixel3XL / GPU,Pixel4 / CPU,Pixel3XL / GPU,Cortex-A76 CPU,Adreno 630 GPU,0.983,0.996,0.9884,saturated,cross-device,"nn-Meter (real, measured)",saturated (do NOT pool into MAE)

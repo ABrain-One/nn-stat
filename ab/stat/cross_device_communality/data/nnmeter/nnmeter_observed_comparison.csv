@@ -1,0 +1,7 @@
+pair,pair_class,structure,rho_S_pred_FACTOR,rho_S_obs,rho_S_obs_CI_lo,rho_S_obs_CI_hi,abs_error,signed_error_obs_minus_pred,pred_in_CI,n
+Mi9 / GPU x Myriad / VPU,discriminating,cross-device,0.7404,0.4618,0.4498,0.4731,0.2786,-0.2786,False,21643
+Pixel3XL / GPU x Myriad / VPU,discriminating,cross-device,0.7404,0.4177,0.405,0.4295,0.3227,-0.3227,False,21643
+Pixel4 / CPU x Myriad / VPU,discriminating,cross-device,0.7353,0.3767,0.3639,0.3894,0.3586,-0.3586,False,21643
+Mi9 / GPU x Pixel3XL / GPU,saturated,same-vendor-GPU-near-family,0.9956,0.9933,0.993,0.9936,0.0023,-0.0023,False,21643
+Pixel4 / CPU x Mi9 / GPU,saturated,cross-device,0.9884,0.9818,0.981,0.9825,0.0066,-0.0066,False,21643
+Pixel4 / CPU x Pixel3XL / GPU,saturated,cross-device,0.9884,0.9888,0.9882,0.9893,0.0004,0.0004,True,21643

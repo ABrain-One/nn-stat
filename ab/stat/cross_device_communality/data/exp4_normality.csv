@@ -1,0 +1,7 @@
+precision,pair,type,n,HZ_stat,HZ_p,HZ_normal,mardia_skew,mardia_skew_p,mardia_kurt,mardia_kurt_z,mardia_kurt_p,frac_near_min_c1,frac_near_max_c1,frac_near_min_c2,frac_near_max_c2
+fp32,SM-F926B / GPU x 23106RN0DA / GPU,cross-family-high (SD888 x HelioMT6768),491,28.8256,0.0,False,1.5639,0.0,20.0344,33.333,0.0,0.002,0.0041,0.002,0.0041
+fp32,SM-F926B / GPU x STK-L21 / GPU,cross-family-low (SD888 x Kirin710),491,21.8213,0.0,False,1.296,0.0,8.0018,0.005,0.9961,0.002,0.0041,0.002,0.002
+fp32,Redmi Note 9 Pro / GPU x SM-P613 / GPU,same-family-SD720G,491,40.5378,0.0,False,37.9414,0.0,74.0496,182.945,0.0,0.002,0.0041,0.002,0.0041
+int8,SM-F926B / GPU x 23106RN0DA / GPU,cross-family-high (SD888 x HelioMT6768),503,20.9576,0.0,False,2.9707,0.0,10.4307,6.814,0.0,0.002,0.002,0.002,0.002
+int8,SM-F926B / GPU x STK-L21 / GPU,cross-family-low (SD888 x Kirin710),503,25.1041,0.0,False,3.1583,0.0,10.5583,7.172,0.0,0.002,0.002,0.002,0.002
+int8,Redmi Note 9 Pro / GPU x SM-P613 / GPU,same-family-SD720G,503,40.6431,0.0,False,55.1791,0.0,98.1255,252.663,0.0,0.002,0.002,0.002,0.002
