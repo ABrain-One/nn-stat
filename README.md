@@ -125,6 +125,7 @@ Some recently added dependencies might be missing in the <b>AI Linux</b>. In thi
 
 If you find this project to be useful for your research, please consider citing our article:
 ```bibtex
+
 @article{ABrain.NN-Stat,
 	author  = {Dhanani, Divyesh Rameshbhai and Kayani, Faraz and U Din, Saif and Arslanian, Alice and Ignatov, Dmitry and Timofte, Radu},
 	title   = {Understanding the Performance of Deep Computer Vision Models: A Symbolic Regression Approach to Accuracy and Latency Prediction},
@@ -135,9 +136,9 @@ If you find this project to be useful for your research, please consider citing 
 	year    = {2026},
 	doi     = {10.3390/s26134093},
 	issn	= {1424-8220},
-	article-number = {4093},
-	url     = {https://www.mdpi.com/1424-8220/26/13/4093}
+	article-number = {4093}
 }
+
 ```
 
 #### The idea and leadership of Dr. Ignatov
