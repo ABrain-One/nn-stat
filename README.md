@@ -2,7 +2,7 @@
 <sub><a href='https://pypi.python.org/pypi/nn-stat'><img src='https://img.shields.io/pypi/v/nn-stat.svg'/></a> <a href="https://pepy.tech/project/nn-stat"><img alt="GitHub release" src="https://static.pepy.tech/badge/nn-stat"></a><br/>
 short alias <a href='https://pypi.python.org/pypi/lmurs'>lmurs</a></sub>
 
-The original version of the NN Stat project was created by <strong>Waleed Khalid</strong> at the Computer Vision Laboratory, University of Würzburg, Germany.
+The original version of the NN Stat project was created by <strong>Waleed Khalid</strong> at the Computer Vision Laboratory, University of Würzburg, Germany, under the supervision and technical guidance of <strong>Dr. Dmitry Ignatov</strong>.
 
 <img src='https://abrain.one/img/lemur-nn-stat-whit.jpg' width='25%'/>
 
